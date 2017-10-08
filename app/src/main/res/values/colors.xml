@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#11989C</color>
+    <color name="colorPrimaryDark">#11989C</color>
+    <color name="colorPrimaryLight">#D6F1F2</color>
+    <color name="colorAccent">#FF4081</color>
+    
+    <color name="bgWindow">#EFF2F6</color>
+    <color name="bgLogin">#F8F8F8</color>
+
+    <color name="textPrimary">#333333</color>
+    <color name="textSecondary">#727171</color>
+    <color name="textTertiary">#C9CACA</color>
+
+    <color name="divLogin">#FFDCDDDD</color>
+
+    <color name="white">#FFFFFFFF</color>
+
+</resources>
