@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="spacing_huge">45dp</dimen>
+    <dimen name="spacing_large">20dp</dimen>
     <dimen name="spacing_normal">15dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+
+    <dimen name="widget_tiny">24dp</dimen>
+    <dimen name="widget_small">36dp</dimen>
+    <dimen name="widget_medium">48dp</dimen>
+    <dimen name="widget_max">56dp</dimen>
+
+    <dimen name="text_size_large">21sp</dimen>
+    <dimen name="text_size_title">19sp</dimen>
+    <dimen name="text_size_subhead">17sp</dimen>
+    <dimen name="text_size_body">15sp</dimen>
+    <dimen name="text_size_caption">13sp</dimen>
+    <dimen name="text_size_tiny">11sp</dimen>
 
 </resources>

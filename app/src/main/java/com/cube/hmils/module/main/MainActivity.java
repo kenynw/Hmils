@@ -1,33 +1,30 @@
 package com.cube.hmils.module.main;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 
 import com.cube.hmils.R;
-import com.cube.hmils.module.account.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.tv_main_login)
-    TextView mTvMainLogin;
+    @BindView(R.id.fl_main_container)
+    FrameLayout mFlMainContainer;
+
+    @BindView(R.id.tl_main_indicator)
+    TabLayout mTlMainIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity_main);
         ButterKnife.bind(this);
-        mTvMainLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-        });
+
+
     }
 
 }

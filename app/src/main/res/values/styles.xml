@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowBackground">@color/bgWindow</item>
+        <item name="actionBarSize">44dp</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -18,5 +19,14 @@
     </style>
 
     <style name="AppTheme" parent="AppTheme.Base" />
+
+    <style name="TitleToolbar" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="com.cube.hmils:contentInsetLeft">0dp</item>
+        <item name="com.cube.hmils:contentInsetStart">0dp</item>
+        <item name="com.cube.hmils:contentInsetStartWithNavigation">0dp</item>
+        <item name="com.cube.hmils:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
 
 </resources>
