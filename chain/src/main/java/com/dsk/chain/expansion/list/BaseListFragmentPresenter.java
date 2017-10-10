@@ -26,7 +26,7 @@ public class BaseListFragmentPresenter<V extends BaseListFragment, M> extends Pr
 
         @Override
         public void onCompleted() {
-
+            getView().stopRefresh();
         }
 
         @Override

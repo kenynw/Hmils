@@ -1,9 +1,9 @@
-package com.cube.operation.account;
+package com.cube.hmils.module.account;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.cube.operation.R;
+import com.cube.hmils.R;
 
 public class LoginActivity extends AppCompatActivity {
 

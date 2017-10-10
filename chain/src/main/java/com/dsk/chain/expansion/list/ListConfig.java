@@ -11,7 +11,7 @@ import com.dsk.chain.R;
  */
 public class ListConfig implements Cloneable {
 
-    static ListConfig DEFAULT = new ListConfig();
+    public static ListConfig DEFAULT = new ListConfig();
 
     public static void setDefaultListConfig(ListConfig config){
         DEFAULT = config;
@@ -68,8 +68,15 @@ public class ListConfig implements Cloneable {
         return this;
     }
 
-    public ListConfig setErrorView(View mErrorView) {
+    public ListConfig setFooterErrorView(View mErrorView) {
         this.mFooterErrorView = mErrorView;
+        return this;
+    }
+
+    public ListConfig setFooterView(View footerView) {
+        this.mFooterErrorView = footerView;
+        this.mFooterMoreView = footerView;
+        this.mFooterNoMoreView = footerView;
         return this;
     }
 

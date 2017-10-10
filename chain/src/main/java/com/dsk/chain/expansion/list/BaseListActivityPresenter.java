@@ -70,12 +70,8 @@ public class BaseListActivityPresenter<V extends BaseListActivity, M> extends Pr
         return mMoreSubscriber;
     }
 
-    public DataAdapter createAdapter() {
-        return new DataAdapter(getView());
-    }
-
     public DataAdapter getAdapter() {
-        if (mAdapter == null) mAdapter = createAdapter();
+        if (mAdapter == null) mAdapter = new DataAdapter(getView());
         return mAdapter;
     }
 
@@ -85,6 +81,10 @@ public class BaseListActivityPresenter<V extends BaseListActivity, M> extends Pr
 
     public void setCurPage(int page) {
         this.mPage = page;
+    }
+
+    public M getItem(int position) {
+        return mAdapter.getItem(position);
     }
 
     @Override

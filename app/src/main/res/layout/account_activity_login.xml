@@ -8,7 +8,7 @@
     android:background="@color/colorPrimary"
     android:gravity="bottom"
     android:orientation="vertical"
-    tools:context="com.cube.operation.account.LoginActivity"
+    tools:context=".module.account.LoginActivity"
     >
 
     <ImageView

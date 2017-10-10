@@ -2,7 +2,6 @@ package com.dsk.chain.expansion.list;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
@@ -10,6 +9,7 @@ import com.dsk.chain.R;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 /**
  * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
@@ -19,6 +19,8 @@ public abstract class BaseListActivity<P extends BaseListActivityPresenter> exte
     private EasyRecyclerView mListView;
 
     private ListConfig mListConfig;
+
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public abstract class BaseListActivity<P extends BaseListActivityPresenter> exte
     private void findRecycleView() {
         if (mListView == null) mListView = (EasyRecyclerView) findViewById(R.id.recycle);
         if (mListView == null) throw new RuntimeException("No found RecycleView with id 'recycle'");
-        mListView.setLayoutManager(new LinearLayoutManager(this));
+        mListView.setLayoutManager(mLayoutManager = new LinearLayoutManager(this));
     }
 
     private void initRecycle() {
@@ -67,28 +69,23 @@ public abstract class BaseListActivity<P extends BaseListActivityPresenter> exte
         }
         if (mListConfig.mHasItemDecoration) {
             if (mListConfig.mItemDecoration != null) {
-                mListView.addItemDecoration(mListConfig.mItemDecoration, mListConfig.mDecorationOrientation);
+                mListView.addItemDecoration(mListConfig.mItemDecoration);
             } else {
-                mListView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+                DividerDecoration decoration = new DividerDecoration(android.R.color.transparent, 4);
+                decoration.setDrawHeaderFooter(false);
+                mListView.addItemDecoration(decoration);
             }
         }
     }
 
     private void initAdapter() {
         final BaseListActivityPresenter.DataAdapter adapter = getPresenter().getAdapter();
-        mListView.setAdapterWithProgress(adapter);
+        if (mListConfig.mContainerProgressAble) mListView.setAdapterWithProgress(adapter);
+        else mListView.setAdapter(adapter);
         if (mListConfig.mFooterErrorAble) {
-            View errorView = null;
-            if (mListConfig.mFooterErrorView != null) errorView = adapter.setError(mListConfig.mFooterErrorView);
-            else if (mListConfig.mFooterErrorRes > 0) errorView = adapter.setError(mListConfig.mFooterErrorRes);
-            if (mListConfig.mErrorTouchToResumeAble && errorView != null) {
-                errorView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        adapter.resumeMore();
-                    }
-                });
-            }
+            if (mListConfig.mFooterErrorView != null)
+                adapter.setError(mListConfig.mFooterErrorView);
+            else if (mListConfig.mFooterErrorRes > 0) adapter.setError(mListConfig.mFooterErrorRes);
         }
         if (mListConfig.mLoadMoreAble) {
             if (mListConfig.mFooterMoreView != null) adapter.setMore(mListConfig.mFooterMoreView, getPresenter());
@@ -118,6 +115,10 @@ public abstract class BaseListActivity<P extends BaseListActivityPresenter> exte
 
     public EasyRecyclerView getListView() {
         return mListView;
+    }
+
+    public LinearLayoutManager getLayoutManager() {
+        return mLayoutManager;
     }
 
     public int getViewType(int position){

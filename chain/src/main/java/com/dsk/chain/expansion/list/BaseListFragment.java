@@ -12,6 +12,7 @@ import com.dsk.chain.R;
 import com.dsk.chain.bijection.ChainFragment;
 import com.jude.easyrecyclerview.EasyRecyclerView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
+import com.jude.easyrecyclerview.decoration.DividerDecoration;
 
 /**
  * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
@@ -44,13 +45,13 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
         } else {
             EasyRecyclerView listView = new EasyRecyclerView(getActivity());
             listView.setId(R.id.recycle);
-            listView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            listView.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             mRootView = listView;
         }
     }
 
     private void findRecycleView() {
-        mListView = (EasyRecyclerView) mRootView.findViewById(R.id.recycle);
+        mListView = mRootView.findViewById(R.id.recycle);
         mListView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
@@ -70,25 +71,22 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
         }
         if (mListConfig.mHasItemDecoration) {
             if (mListConfig.mItemDecoration != null) mListView.addItemDecoration(mListConfig.mItemDecoration);
-            else mListView.addItemDecoration(new DividerItemDecoration(getActivity(), mListConfig.mDecorationOrientation));
+            else {
+                DividerDecoration decoration = new DividerDecoration(android.R.color.transparent, 4);
+                decoration.setDrawHeaderFooter(false);
+                mListView.addItemDecoration(decoration);
+            }
         }
     }
 
     private void initAdapter() {
         final BaseListFragmentPresenter.DataAdapter adapter = getPresenter().getAdapter();
-        mListView.setAdapter(adapter);
+        if (mListConfig.mContainerProgressAble) mListView.setAdapterWithProgress(adapter);
+        else mListView.setAdapter(adapter);
         if (mListConfig.mFooterErrorAble) {
-            View errorView = null;
-            if (mListConfig.mFooterErrorView != null) errorView = adapter.setError(mListConfig.mFooterErrorView);
-            else if (mListConfig.mFooterErrorRes > 0) errorView = adapter.setError(mListConfig.mFooterErrorRes);
-            if (mListConfig.mErrorTouchToResumeAble && errorView != null) {
-                errorView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        adapter.resumeMore();
-                    }
-                });
-            }
+            if (mListConfig.mFooterErrorView != null)
+                adapter.setError(mListConfig.mFooterErrorView);
+            else if (mListConfig.mFooterErrorRes > 0) adapter.setError(mListConfig.mFooterErrorRes);
         }
         if (mListConfig.mLoadMoreAble) {
             if (mListConfig.mFooterMoreView != null) adapter.setMore(mListConfig.mFooterMoreView, getPresenter());
@@ -98,10 +96,14 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
             if (mListConfig.mFooterNoMoreView != null) adapter.setNoMore(mListConfig.mFooterNoMoreView);
             else if (mListConfig.mFooterNoMoreRes > 0) adapter.setNoMore(mListConfig.mFooterNoMoreRes);
         }
-    };
+    }
 
     public EasyRecyclerView getListView() {
         return mListView;
+    }
+
+    public View getRootView() {
+        return mRootView;
     }
 
     public void stopRefresh() {

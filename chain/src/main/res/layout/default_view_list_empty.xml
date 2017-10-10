@@ -7,5 +7,5 @@
     android:minHeight="180dp"
     android:gravity="center"
     android:text="@string/text_empty"
-    android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
     />

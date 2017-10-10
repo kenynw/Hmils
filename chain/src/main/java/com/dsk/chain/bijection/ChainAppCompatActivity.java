@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
 import com.dsk.chain.Chain;
+import com.gyf.barlibrary.ImmersionBar;
 
 
 /**
@@ -44,6 +45,7 @@ public abstract class ChainAppCompatActivity<PresenterType extends Presenter> ex
         mHelper.onDestroyView();
         if (isFinishing())
             mHelper.onDestroy();
+        ImmersionBar.with(this).destroy();
     }
 
     @Override

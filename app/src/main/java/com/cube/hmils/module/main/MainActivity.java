@@ -1,4 +1,4 @@
-package com.cube.operation;
+package com.cube.hmils.module.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.cube.operation.account.LoginActivity;
+import com.cube.hmils.R;
+import com.cube.hmils.module.account.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
