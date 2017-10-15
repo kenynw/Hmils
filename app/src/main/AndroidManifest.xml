@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.cube.hmils.module.main.MainActivity">
+        <activity android:name=".module.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -17,10 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.cube.hmils.module.account.LoginActivity"
+            android:name=".module.account.LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
+        <activity android:name=".module.order.RoomNumActivity">
+        </activity>
+        <activity android:name=".module.order.RoomParamsActivity">
+        </activity>
     </application>
 
 </manifest>

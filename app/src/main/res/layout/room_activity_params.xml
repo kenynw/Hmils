@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.order.RoomParamsActivity"
+    >
+
+    <include layout="@layout/include_toolbar"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/bg_radius_stroke_primary_dark"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_room_params_steady"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_lradius_primary_dark_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/text_steady_room"
+            android:textColor="@color/primary2white"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_room_params_unsteady"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/btn_rradius_primary_dark_selector"
+            android:button="@null"
+            android:gravity="center"
+            android:text="@string/text_steady_room"
+            android:textColor="@color/primary2white"
+            />
+
+    </RadioGroup>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_large"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_large"
+        >
+
+        <TextView
+            android:id="@+id/tv_room_params_bedroom"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/text_bedroom_name"
+            android:textColor="@color/textSecondary"
+            />
+
+        <EditText
+            android:id="@+id/et_room_param_bedroom"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:background="@drawable/bg_radius_input"
+            android:ems="4"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@+id/tv_room_params_bedroom"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_room_params_device"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:gravity="center"
+            android:text="@string/text_device_type"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_room_params_bedroom"
+            />
+
+        <EditText
+            android:id="@+id/et_room_param_device"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:background="@drawable/bg_radius_input"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@+id/tv_room_params_device"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_room_params_device"
+            />
+
+        <TextView
+            android:id="@+id/tv_room_params_width"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:gravity="center"
+            android:text="@string/text_room_width"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/et_room_param_device"
+            />
+
+        <EditText
+            android:id="@+id/et_room_param_width"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:background="@drawable/bg_radius_input"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@+id/tv_room_params_width"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_room_params_width"
+            />
+
+        <TextView
+            android:id="@+id/tv_room_params_height"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:gravity="center"
+            android:text="@string/text_room_height"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintTop_toBottomOf="@+id/tv_room_params_width"
+            />
+
+        <EditText
+            android:id="@+id/et_room_param_height"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_marginStart="@dimen/spacing_normal"
+            android:background="@drawable/bg_radius_input"
+            android:inputType="text"
+            app:layout_constraintLeft_toRightOf="@+id/tv_room_params_height"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_room_params_height"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/div_dash_primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_room_params_height"
+            />
+
+        <TextView
+            android:id="@+id/tv_room_params_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:drawableLeft="@mipmap/ic_add_area"
+            android:drawablePadding="7dp"
+            android:drawableStart="@mipmap/ic_add_area"
+            android:text="@string/text_add_area"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/tv_room_params_minus"
+            app:layout_constraintTop_toBottomOf="@id/tv_room_params_height"
+            />
+
+        <TextView
+            android:id="@+id/tv_room_params_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_minus_area"
+            android:drawablePadding="7dp"
+            android:drawableStart="@mipmap/ic_minus_area"
+            android:text="@string/text_minus_area"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintLeft_toRightOf="@id/tv_room_params_add"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_room_params_add"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        style="@style/ButtonLarge"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:text="@string/btn_confirm_info"
+        />
+
+</LinearLayout>

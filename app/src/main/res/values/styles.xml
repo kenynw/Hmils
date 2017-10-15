@@ -18,7 +18,7 @@
         <item name="android:textColorTertiary">@color/textTertiary</item>
     </style>
 
-    <style name="AppTheme" parent="AppTheme.Base" />
+    <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="TitleToolbar" parent="Base.TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:layout_width">match_parent</item>
@@ -27,6 +27,28 @@
         <item name="com.cube.hmils:contentInsetStart">0dp</item>
         <item name="com.cube.hmils:contentInsetStartWithNavigation">0dp</item>
         <item name="com.cube.hmils:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+    </style>
+
+    <style name="CommonTab">
+        <item name="com.cube.hmils:tabIndicatorColor">@color/white</item>
+        <item name="com.cube.hmils:tabIndicatorHeight">3dp</item>
+        <item name="com.cube.hmils:tabSelectedTextColor">@color/white</item>
+        <item name="com.cube.hmils:tabTextAppearance">@style/TabTextAppearance</item>
+    </style>
+
+    <style name="TabTextAppearance">
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/whiteLight</item>
+    </style>
+
+    <style name="ButtonLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">49dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@drawable/bg_radius_accent_light</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

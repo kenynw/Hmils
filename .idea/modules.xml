@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Hmils.iml" filepath="$PROJECT_DIR$/Hmils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Operation.iml" filepath="$PROJECT_DIR$/Operation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/chain/chain.iml" filepath="$PROJECT_DIR$/chain/chain.iml" />
     </modules>

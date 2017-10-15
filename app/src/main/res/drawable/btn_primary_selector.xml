@@ -13,7 +13,7 @@
             <corners android:radius="25dp" />
 
             <gradient
-                android:startColor="@color/colorPrimaryDark"
+                android:startColor="@color/colorPrimary"
                 android:endColor="#59B570"
                 />
 

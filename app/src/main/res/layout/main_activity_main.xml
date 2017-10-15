@@ -29,8 +29,6 @@
         app:tabBackground="@color/white"
         app:tabIndicatorHeight="0dp"
         app:tabMode="fixed"
-        app:tabPaddingBottom="2dp"
-        app:tabPaddingTop="6dp"
         app:tabSelectedTextColor="@color/colorPrimary"
         />
 

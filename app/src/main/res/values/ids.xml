@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="btn_dialog_negative" type="id" />
+    <item name="btn_dialog_positive" type="id" />
+
+</resources>

@@ -1,11 +1,40 @@
 <resources>
     <string name="app_name">赫曼斯</string>
 
+    <string name="text_client_order">客户订单</string>
+    <string name="text_my_client">我的客户</string>
+    <string name="text_my_services">我的售后</string>
+    <string name="text_me">个人中心</string>
     <string name="text_login">登录</string>
     <string name="text_register">注册账号</string>
     <string name="text_forgot">忘记密码</string>
+    <string name="text_username">用户名</string>
+    <string name="text_contact">联系方式</string>
+    <string name="text_address">用户地址</string>
+    <string name="text_order_time">订单时间：%s</string>
+    <string name="text_order_detail">订单详情</string>
+    <string name="text_view_order">查看订单</string>
+    <string name="text_room_num">房间数量</string>
+    <string name="text_steady_room">规则房间</string>
+    <string name="text_unsteady_room">不规则房间</string>
+    <string name="text_bedroom_name">主卧名称</string>
+    <string name="text_device_type">设备选型</string>
+    <string name="text_room_width">房&#160;&#160;间&#160;&#160;长</string>
+    <string name="text_room_height">房&#160;&#160;间&#160;&#160;宽</string>
+    <string name="text_add_area">增加附加面积</string>
+    <string name="text_minus_area">减少附加面积</string>
 
     <string name="hint_username">请输入您的账号</string>
     <string name="hint_password">请输入您的密码</string>
+    <string name="hint_search">客户名或手机号</string>
+
+    <string name="btn_next">下一步</string>
+    <string name="btn_confirm_info">确认信息</string>
+
+    <string-array name="text_order_tabs">
+        <item>未处理</item>
+        <item>未完成</item>
+        <item>已完成</item>
+    </string-array>
 
 </resources>
