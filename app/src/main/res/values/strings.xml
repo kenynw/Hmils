@@ -6,8 +6,8 @@
     <string name="text_my_services">我的售后</string>
     <string name="text_me">个人中心</string>
     <string name="text_login">登录</string>
-    <string name="text_register">注册账号</string>
     <string name="text_forgot">忘记密码</string>
+    <string name="text_reset_pwd">修改初始密码</string>
     <string name="text_username">用户名</string>
     <string name="text_contact">联系方式</string>
     <string name="text_address">用户地址</string>
@@ -21,20 +21,57 @@
     <string name="text_device_type">设备选型</string>
     <string name="text_room_width">房&#160;&#160;间&#160;&#160;长</string>
     <string name="text_room_height">房&#160;&#160;间&#160;&#160;宽</string>
-    <string name="text_add_area">增加附加面积</string>
-    <string name="text_minus_area">减少附加面积</string>
+    <string name="text_add_area">增附加面积</string>
+    <string name="text_minus_area">减附加面积</string>
+    <string name="text_square_metres">m<sup>2</sup></string>
+    <string name="text_room_a_width">&#160;A房间长</string>
+    <string name="text_room_b_height">&#160;B房间宽</string>
+    <string name="text_name">名称</string>
+    <string name="text_spec_model">规格型号</string>
+    <string name="text_count">数量</string>
+    <string name="text_rp">额定功率</string>
+    <string name="text_price">价格</string>
 
     <string name="hint_username">请输入您的账号</string>
     <string name="hint_password">请输入您的密码</string>
+    <string name="hint_pwd_confirm">请您再次输入密码</string>
     <string name="hint_search">客户名或手机号</string>
 
     <string name="btn_next">下一步</string>
     <string name="btn_confirm_info">确认信息</string>
+    <string name="btn_cancel">取&#160;&#160;消</string>
+    <string name="btn_ok">确&#160;&#160;定</string>
+    <string name="btn_save">保&#160;&#160;存</string>
+
+    <string name="error_password_simply">您输入的密码过于简单</string>
 
     <string-array name="text_order_tabs">
         <item>未处理</item>
         <item>未完成</item>
         <item>已完成</item>
+    </string-array>
+
+    <string-array name="letters">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
     </string-array>
 
 </resources>

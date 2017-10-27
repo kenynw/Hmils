@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="spacing_huge">45dp</dimen>
+    <dimen name="spacing_huge">40dp</dimen>
     <dimen name="spacing_large">20dp</dimen>
     <dimen name="spacing_normal">15dp</dimen>
     <dimen name="spacing_small">10dp</dimen>

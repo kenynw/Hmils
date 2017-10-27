@@ -3,6 +3,7 @@
     <color name="colorPrimary">#11989C</color>
     <color name="colorPrimaryDark">#12999C</color>
     <color name="colorPrimaryLight">#D6F1F2</color>
+    <color name="colorPrimaryDisable">#E7F4F4</color>
     <color name="colorAccent">#5DBA68</color>
     <color name="colorAccentLight">#C3E1CB</color>
     
@@ -13,10 +14,12 @@
     <color name="textPrimary">#333333</color>
     <color name="textSecondary">#727171</color>
     <color name="textTertiary">#C9CACA</color>
+    <color name="textWarning">#F78181</color>
 
     <color name="divPrimary">#FFDCDDDD</color>
 
     <color name="white">#FFFFFFFF</color>
     <color name="whiteLight">#6CFFFFFF</color>
+    <color name="pink">#FEDFDF</color>
 
 </resources>

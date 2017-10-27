@@ -1,5 +1,6 @@
 package com.cube.hmils.module.order;
 
+import android.content.Intent;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -50,7 +51,7 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
         mTvUsername.setText("张明");
         mTvContact.setText("15375870891");
         mTvAddress.setText("厦门思明区软件园望");
-
+        itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), RoomParamsActivity.class)));
     }
 
 }

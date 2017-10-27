@@ -51,4 +51,13 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="ButtonMedium">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">39dp</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_normal</item>
+        <item name="android:layout_marginRight">@dimen/spacing_normal</item>
+        <item name="android:textSize">@dimen/text_size_body</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

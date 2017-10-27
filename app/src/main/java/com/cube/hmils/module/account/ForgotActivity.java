@@ -1,8 +1,8 @@
 package com.cube.hmils.module.account;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -18,33 +18,32 @@ import com.dsk.chain.bijection.ChainBaseActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends ChainBaseActivity<LoginPresenter> implements TextWatcher {
+public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implements TextWatcher {
 
-    @BindView(R.id.et_login_username)
+    @BindView(R.id.et_forgot_password)
     EditText mEtUsername;
 
-    @BindView(R.id.et_login_password)
+    @BindView(R.id.et_forgot_confirm)
     EditText mEtPassword;
 
-    @BindView(R.id.iv_login_visibility)
+    @BindView(R.id.tv_forgot_error_pwd)
+    TextView mTvErrorPwd;
+
+    @BindView(R.id.iv_forgot_visibility)
     ImageView mIvVisibility;
 
-    @BindView(R.id.btn_login_login)
-    Button mBtnLogin;
-
-    @BindView(R.id.tv_login_forgot)
-    TextView mTvForgot;
+    @BindView(R.id.btn_forgot_save)
+    Button mBtnSave;
 
     private boolean mIsVisibility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_activity_login);
+        setContentView(R.layout.user_activity_forgot);
         ButterKnife.bind(this);
 
-        new UserTextWatcher(mBtnLogin, mEtUsername, mEtPassword);
-        mEtPassword.addTextChangedListener(this);
+        new UserTextWatcher(mBtnSave, mEtUsername, mEtPassword);
         mIvVisibility.setOnClickListener(v -> {
             if (mIsVisibility) {
                 mEtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -54,11 +53,15 @@ public class LoginActivity extends ChainBaseActivity<LoginPresenter> implements 
                 mIsVisibility = true;
             }
         });
-        mTvForgot.setOnClickListener(v -> startActivity(new Intent(this, ForgotActivity.class)));
-        mBtnLogin.setOnClickListener(v -> getPresenter().login(
-                mEtUsername.getText().toString().trim(),
-                mEtPassword.getText().toString().trim()
-        ));
+        mEtPassword.addTextChangedListener(this);
+        mBtnSave.setOnClickListener(v -> checkInput());
+    }
+
+    private void checkInput() {
+        String pwdText = mEtPassword.getText().toString().trim();
+        if (!TextUtils.isEmpty(pwdText) && pwdText.equals("123456")) {
+            mTvErrorPwd.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -75,5 +78,4 @@ public class LoginActivity extends ChainBaseActivity<LoginPresenter> implements 
     public void afterTextChanged(Editable s) {
 
     }
-
 }

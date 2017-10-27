@@ -33,30 +33,54 @@
         android:layout_marginRight="@dimen/spacing_normal"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
-        app:contentPaddingBottom="50dp"
-        app:contentPaddingLeft="40dp"
-        app:contentPaddingRight="40dp"
-        app:contentPaddingTop="50dp"
+        app:contentPadding="40dp"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
             >
 
-            <EditText
-                android:id="@+id/et_login_username"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_reset_pwd"
+                android:textColor="@color/textSecondary"
+                android:textSize="@dimen/text_size_body"
+                />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="17dp"
-                android:background="@color/white"
-                android:drawableLeft="@mipmap/icon_username"
-                android:drawablePadding="17dp"
-                android:drawableStart="@mipmap/icon_username"
-                android:hint="@string/hint_username"
-                android:inputType="text"
-                android:textSize="@dimen/text_size_body_material"
-                />
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/et_forgot_password"
+                    android:layout_width="0dp"
+                    android:layout_height="17dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:drawableLeft="@mipmap/icon_password"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:drawableStart="@mipmap/icon_password"
+                    android:hint="@string/hint_password"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/text_size_body_material"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_forgot_visibility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_pwd_visible"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -65,36 +89,36 @@
                 android:background="@color/divPrimary"
                 />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_forgot_error_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:drawableLeft="@mipmap/ic_warning"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:drawableStart="@mipmap/ic_warning"
+                android:gravity="center_vertical"
+                android:text="@string/error_password_simply"
+                android:textColor="@color/textWarning"
+                android:textSize="@dimen/text_size_caption_material"
+                />
+
+            <EditText
+                android:id="@+id/et_forgot_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="17dp"
-                android:layout_marginTop="40dp"
-                android:orientation="horizontal"
-                >
-
-                <EditText
-                    android:id="@+id/et_login_password"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:drawableLeft="@mipmap/icon_password"
-                    android:drawablePadding="17dp"
-                    android:drawableStart="@mipmap/icon_password"
-                    android:hint="@string/hint_password"
-                    android:inputType="textPassword"
-                    android:textSize="@dimen/text_size_body_material"
-                    android:visibility="visible"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_login_visibility"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_pwd_visible"
-                    />
-
-            </LinearLayout>
+                android:layout_marginTop="30dp"
+                android:background="@color/white"
+                android:drawableLeft="@mipmap/icon_password"
+                android:drawablePadding="@dimen/spacing_normal"
+                android:drawableStart="@mipmap/icon_password"
+                android:hint="@string/hint_pwd_confirm"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_size_body_material"
+                android:visibility="visible"
+                />
 
             <View
                 android:layout_width="match_parent"
@@ -104,14 +128,14 @@
                 />
 
             <Button
-                android:id="@+id/btn_login_login"
+                android:id="@+id/btn_forgot_save"
                 android:layout_width="match_parent"
                 android:layout_height="49dp"
                 android:layout_marginTop="54dp"
                 android:background="@drawable/btn_primary_selector"
                 android:enabled="false"
                 android:gravity="center"
-                android:text="@string/text_login"
+                android:text="@string/btn_save"
                 android:textColor="@color/white2primary"
                 android:textSize="15sp"
                 />
@@ -119,18 +143,5 @@
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
-    <TextView
-        android:id="@+id/tv_login_forgot"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginLeft="36.5dp"
-        android:layout_marginRight="36.5dp"
-        android:background="@drawable/bg_radius_bottom_login"
-        android:gravity="center"
-        android:text="@string/text_forgot"
-        android:textColor="@color/textSecondary"
-        android:textSize="@dimen/text_size_body_material"
-        />
 
 </LinearLayout>

@@ -24,6 +24,10 @@
         </activity>
         <activity android:name=".module.order.RoomParamsActivity">
         </activity>
+        <activity android:name=".module.order.OrderConfirmActivity">
+        </activity>
+        <activity android:name=".module.account.ForgotActivity">
+        </activity>
     </application>
 
 </manifest>
