@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.user.EditAddressActivity">
+
+    <include layout="@layout/include_toolbar"/>
+
+    <FrameLayout
+        android:id="@+id/fl_edit_address_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_large"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_area"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_edit_address_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:drawableEnd="@mipmap/ic_right"
+            android:drawablePadding="@dimen/spacing_normal"
+            android:drawableRight="@mipmap/ic_right"
+            android:gravity="center"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="福建省厦门市思明区"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_edit_address_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        android:paddingTop="@dimen/spacing_large"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_street"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_edit_address_street"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:drawableEnd="@mipmap/ic_right"
+            android:drawablePadding="@dimen/spacing_normal"
+            android:drawableRight="@mipmap/ic_right"
+            android:gravity="center"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="禾山街道"
+            />
+
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/et_edit_address_detail"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+        android:gravity="start"
+        android:hint="@string/hint_address_detail"
+        android:padding="@dimen/spacing_normal"
+        android:textSize="@dimen/text_size_body"
+        />
+
+</LinearLayout>

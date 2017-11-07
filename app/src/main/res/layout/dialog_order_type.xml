@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/colorPrimaryLight"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:id="@+id/iv_order_type_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/spacing_normal"
+            android:src="@mipmap/ic_close"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/text_choose_order_type"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_order_type_new"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="37.5dp"
+        android:background="@drawable/btn_radius_stroke_white2light_selector"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/tv_order_type_new"
+            android:layout_toStartOf="@id/tv_order_type_new"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_cb_hook"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_type_new"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:paddingRight="@dimen/spacing_tiny"
+            android:text="@string/text_order_new"
+            android:textColor="@color/primary2text_primary"
+            android:textSize="@dimen/text_size_subhead"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_order_type_old"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@drawable/btn_radius_stroke_white2light_selector"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/tv_order_type_old"
+            android:layout_toStartOf="@id/tv_order_type_old"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_cb_hook"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_type_old"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:paddingRight="@dimen/spacing_tiny"
+            android:text="@string/text_order_old"
+            android:textColor="@color/primary2text_primary"
+            android:textSize="@dimen/text_size_subhead"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_order_type_change"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@drawable/btn_radius_stroke_white2light_selector"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/tv_order_type_change"
+            android:layout_toStartOf="@id/tv_order_type_change"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_cb_hook"
+            />
+
+        <TextView
+            android:id="@+id/tv_order_type_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/text_change_thermostat"
+            android:paddingLeft="@dimen/spacing_tiny"
+            android:paddingRight="@dimen/spacing_tiny"
+            android:textColor="@color/primary2text_primary"
+            android:textSize="@dimen/text_size_subhead"
+            />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_order_type_ok"
+        style="@style/ButtonLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_radius_accent_selector"
+        android:text="@string/btn_ok"
+        />
+
+</LinearLayout>

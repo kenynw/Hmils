@@ -14,10 +14,12 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.dsk.chain.bijection.ChainBaseActivity;
+import com.dsk.chain.bijection.RequiresPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@RequiresPresenter(LoginPresenter.class)
 public class LoginActivity extends ChainBaseActivity<LoginPresenter> implements TextWatcher {
 
     @BindView(R.id.et_login_username)

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:id="@id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_gradient_primary"
+        />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@id/toolbar"
+        style="@style/TitleToolbar"
+        android:background="@drawable/bg_gradient_primary"
+        >
+
+        <TextView
+            android:id="@id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/text_me"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_body"
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_me_profile"
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@color/white"
+        android:paddingLeft="30dp"
+        android:paddingRight="22.5dp"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/dv_me_avatar"
+            style="@style/BaseAvatarImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/bgWindow"
+            />
+
+        <TextView
+            android:id="@+id/tv_me_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="25dp"
+            android:textAppearance="@style/TextSubhead"
+            app:layout_constraintLeft_toRightOf="@id/dv_me_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="王丽成"
+            />
+
+        <TextView
+            android:id="@+id/tv_me_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_large"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="5dp"
+            android:textAppearance="@style/TextCaption"
+            app:layout_constraintLeft_toRightOf="@id/dv_me_avatar"
+            app:layout_constraintTop_toBottomOf="@id/tv_me_name"
+            tools:text="18728374653"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_right"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tv_me_qr_code"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="1dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/ic_right"
+        android:drawableLeft="@mipmap/icon_password"
+        android:drawablePadding="@dimen/spacing_small"
+        android:drawableRight="@mipmap/ic_right"
+        android:drawableStart="@mipmap/icon_password"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="22.5dp"
+        android:text="@string/text_my_qr_code"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/text_size_body"
+        />
+
+    <TextView
+        android:id="@+id/tv_me_reset_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:drawableEnd="@mipmap/ic_right"
+        android:drawableLeft="@mipmap/icon_password"
+        android:drawablePadding="@dimen/spacing_small"
+        android:drawableRight="@mipmap/ic_right"
+        android:drawableStart="@mipmap/icon_password"
+        android:gravity="center_vertical"
+        android:paddingLeft="30dp"
+        android:paddingRight="22.5dp"
+        android:text="@string/text_change_pwd"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/text_size_body"
+        />
+
+    <TextView
+        android:id="@+id/tv_me_logout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/text_logout"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/text_size_body"
+        />
+
+</LinearLayout>

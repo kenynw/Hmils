@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.user.ProfileActivity"
+    >
+
+    <include layout="@layout/include_toolbar"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="30dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_avatar"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/dv_profile_avatar"
+            style="@style/BaseAvatarImage"
+            android:layout_gravity="end"
+            tools:background="@color/bgWindow"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/spacing_normal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_full_name"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_profile_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="周杰伦"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/spacing_normal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_full_name"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_profile_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="1434234453"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_profile_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/spacing_normal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_address"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_profile_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:maxWidth="240dp"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="厦门市思明区软件园二期望海路31-2号291"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_profile_cooperation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/spacing_normal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="@dimen/spacing_normal"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/text_cooperation_time"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <TextView
+            android:id="@+id/tv_profile_cooperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:maxWidth="240dp"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            tools:text="2016-12-28"
+            />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_profile_save"
+        style="@style/ButtonLarge"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/btn_radius_accent_selector"
+        android:text="@string/btn_save_modify"
+        />
+
+</LinearLayout>

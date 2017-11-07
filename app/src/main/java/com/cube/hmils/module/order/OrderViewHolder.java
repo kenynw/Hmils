@@ -1,9 +1,9 @@
 package com.cube.hmils.module.order;
 
 import android.content.Intent;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,8 +22,6 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
 
     @BindView(R.id.tv_order_time)
     TextView mTvTime;
-    @BindView(R.id.iv_order_line)
-    ImageView mIvLine;
     @BindView(R.id.ll_order_header)
     LinearLayout mLlHeader;
     @BindView(R.id.tv_order_username)
@@ -38,10 +36,13 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
     Button mBtnDetail;
     @BindView(R.id.tv_order_state)
     TextView mTvState;
+    @BindView(R.id.iv_order_line)
+    View mIvLine;
 
     public OrderViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_list_order);
         ButterKnife.bind(this, itemView);
+        mIvLine.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override

@@ -2,7 +2,7 @@ ext {
 
     android = [
             compileSdkVersion: 26,
-            buildToolsVersion: "26.0.0",
+            buildToolsVersion: "26.0.2",
             minSdkVersion    : 15,
             targetSdkVersion : 26,
             versionCode      : 1,
@@ -28,7 +28,7 @@ ext {
             // view
             "butterknife"              : "com.jakewharton:butterknife:${version["butterknife"]}",
             "butterknife-compiler"     : "com.jakewharton:butterknife-compiler:${version["butterknife"]}",
-            "pickerview"               : "com.contrarywind:Android-PickerView:3.2.2",
+            "pickerview"               : "com.contrarywind:Android-PickerView:3.2.6",
             "swipelayout"              : "com.daimajia.swipelayout:library:1.2.0@aar",
             "photoview"                : "com.github.chrisbanes:PhotoView:2.0.0",
 

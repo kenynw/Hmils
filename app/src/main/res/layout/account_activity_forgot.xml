@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingBottom="40dp"
+    android:paddingTop="88dp"
+    tools:context=".module.account.LoginActivity"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_logo"
+        />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp"
+        app:contentPaddingBottom="50dp"
+        app:contentPaddingLeft="40dp"
+        app:contentPaddingRight="40dp"
+        app:contentPaddingTop="50dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="17dp"
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/et_forgot_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="17dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:drawableLeft="@mipmap/icon_password"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:drawableStart="@mipmap/icon_password"
+                    android:hint="@string/hint_phone"
+                    android:inputType="phone"
+                    android:textSize="@dimen/text_size_body_material"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_forgot_visibility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_pwd_visible"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/divPrimary"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="34dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+
+                    <EditText
+                        android:id="@+id/et_forgot_captcha"
+                        android:layout_width="match_parent"
+                        android:layout_height="33dp"
+                        android:background="@color/white"
+                        android:drawableLeft="@mipmap/icon_password"
+                        android:drawablePadding="@dimen/spacing_normal"
+                        android:drawableStart="@mipmap/icon_password"
+                        android:hint="@string/hint_pwd_confirm"
+                        android:inputType="textPassword"
+                        android:textSize="@dimen/text_size_body_material"
+                        android:visibility="visible"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/divPrimary"
+                        />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_forgot_captcha"
+                    android:layout_width="94dp"
+                    android:layout_height="34dp"
+                    android:layout_marginLeft="@dimen/spacing_large"
+                    android:layout_marginStart="@dimen/spacing_large"
+                    android:background="@drawable/btn_radius_accent_selector"
+                    android:enabled="false"
+                    android:text="@string/btn_captcha"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_body"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_forgot_save"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_marginTop="54dp"
+                android:background="@drawable/btn_primary_selector"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="@string/btn_next"
+                android:textColor="@color/white2primary"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

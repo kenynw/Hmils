@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.user.ClientDetailActivity"
+    >
+
+    <include layout="@layout/include_toolbar"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@drawable/bg_gradient_primary"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/dv_client_detail_avatar"
+            style="@style/BaseAvatarImage"
+            android:layout_marginTop="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_client_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_subhead"
+            app:layout_constraintLeft_toLeftOf="@+id/dv_client_detail_avatar"
+            app:layout_constraintRight_toRightOf="@+id/dv_client_detail_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/dv_client_detail_avatar"
+            tools:text="周杰伦"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_client_detail_name"
+            app:layout_constraintRight_toRightOf="@+id/tv_client_detail_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_client_detail_name"
+            tools:text="14324342343"
+            />
+
+        <View
+            android:id="@+id/view_client_detail_bg"
+            android:layout_width="0dp"
+            android:layout_height="105dp"
+            android:layout_marginTop="150dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_client_address_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/text_address_label"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_body_material"
+            app:layout_constraintLeft_toLeftOf="@+id/view_client_detail_bg"
+            app:layout_constraintTop_toTopOf="@+id/view_client_detail_bg"
+            />
+
+        <TextView
+            android:id="@+id/tv_client_detail_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="45dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintLeft_toRightOf="@+id/tv_client_address_label"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_client_address_label"
+            tools:text="厦门市思明区软件园二期望海路31-2号291海路31-2号291"
+            />
+
+        <TextView
+            android:id="@+id/tv_client_cooperat_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_cooperation_label"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_client_address_label"
+            app:layout_constraintTop_toBottomOf="@+id/tv_client_detail_address"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textPrimary"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_client_detail_address"
+            app:layout_constraintTop_toTopOf="@+id/tv_client_cooperat_label"
+            tools:text="2014-12-28"
+            />
+
+        <Button
+            android:id="@+id/btn_client_detail_view"
+            style="@style/ButtonLarge"
+            android:layout_width="0dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_radius_white"
+            android:text="@string/text_view_order"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_body"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_client_detail_bg"
+            />
+
+        <Button
+            android:id="@+id/btn_client_detail_create"
+            style="@style/ButtonLarge"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/bg_radius_white"
+            android:text="@string/text_create_order"
+            android:textColor="@color/textOrange"
+            android:textSize="@dimen/text_size_body"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_client_detail_view"
+            />
+
+    </android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

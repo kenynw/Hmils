@@ -1,8 +1,12 @@
 package com.cube.hmils.module.order;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.ViewGroup;
 
 import com.cube.hmils.model.bean.Order;
+import com.cube.hmils.module.main.ServiceViewHolder;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.list.BaseListFragment;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -13,9 +17,30 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 @RequiresPresenter(OrderListPresenter.class)
 public class OrderListFragment extends BaseListFragment<OrderListPresenter, Order> {
 
+    public static final String EXTRA_TYPE = "type";
+
+    public static OrderListFragment newInstance(int type) {
+        OrderListFragment fragment = new OrderListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_TYPE, type);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    private int mType;
+
     @Override
     public BaseViewHolder<Order> createViewHolder(ViewGroup parent, int viewType) {
-        return new OrderViewHolder(parent);
+        return mType == 0 ? new OrderViewHolder(parent) : new ServiceViewHolder(parent);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mType = getArguments().getInt(EXTRA_TYPE);
+
+        getListView().setClipToPadding(false);
+        getListView().setRecyclerPadding(0, LUtils.dp2px(10), 0, 0);
     }
 
 }

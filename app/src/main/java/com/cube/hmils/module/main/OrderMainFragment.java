@@ -23,6 +23,7 @@ import butterknife.Unbinder;
 
 /**
  * Created by Carol on 2017/10/15.
+ * 客户订单
  */
 @RequiresPresenter(OrderMainPresenter.class)
 public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
@@ -52,7 +53,7 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
         for (int i=0; i<3; i++) {
-            OrderListFragment fragment = new OrderListFragment();
+            OrderListFragment fragment = OrderListFragment.newInstance(0);
             list.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());
         }
@@ -63,6 +64,18 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void setMenuVisibility(boolean menuVisible) {
+        super.setMenuVisibility(menuVisible);
+        if (getView() != null) {
+            if (menuVisible) {
+                getView().setVisibility(View.VISIBLE);
+            } else {
+                getView().setVisibility(View.INVISIBLE);
+            }
+        }
     }
 
 }

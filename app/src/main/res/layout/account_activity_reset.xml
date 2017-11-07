@@ -103,6 +103,7 @@
                 android:text="@string/error_password_simply"
                 android:textColor="@color/textWarning"
                 android:textSize="@dimen/text_size_caption_material"
+                android:visibility="invisible"
                 />
 
             <EditText
