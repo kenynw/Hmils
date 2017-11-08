@@ -148,6 +148,32 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/text_remark"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="@dimen/text_size_body_material"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:maxWidth="230dp"
+                    android:textColor="@color/textPrimary"
+                    tools:text="0298-93847162"
+                    />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_large"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="@string/text_service_phone"
                     android:textColor="@color/textSecondary"
                     android:textSize="@dimen/text_size_body_material"
@@ -209,5 +235,53 @@
         </LinearLayout>
 
     </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/spacing_large"
+        android:paddingTop="30dp"
+        >
+
+        <View
+            android:id="@+id/v_service_detail_marker_one"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/ic_marker_timeline_selected"
+            />
+
+        <View
+            android:id="@+id/v_service_detail_line_one"
+            android:layout_width="115dp"
+            android:layout_height="2dp"
+            android:background="#89CBCB"
+            />
+
+        <View
+            android:id="@+id/v_service_detail_marker_two"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/ic_marker_timeline_selected"
+            />
+
+        <View
+            android:id="@+id/v_service_detail_line_two"
+            android:layout_width="115dp"
+            android:layout_height="2dp"
+            android:background="#89CBCB"
+            />
+
+        <View
+            android:id="@+id/v_service_detail_marker_third"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/ic_marker_timeline_normal"
+            />
+
+    </LinearLayout>
 
 </LinearLayout>
