@@ -5,7 +5,6 @@ import android.util.Log;
 import com.cube.hmils.utils.LUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,17 +37,12 @@ public class WrapperResponseBodyConverter<T> implements Converter<ResponseBody, 
             LUtils.log(TAG, data.toString());
 
             int status = data.getInt("status");
-            if (status != 1) {
-                throw new ServiceException(status, data.getString("msg"));
+            if (status != 200) {
+                throw new ServiceException(status, data.getString("message"));
             }
 
             String result = "";
-            if (TypeToken.get(mType).toString().contains("EntityRoot")) {
-                return new Gson().fromJson(data.toString(), mType);
-            } else if (data.has("msg")) {
-                if (!data.isNull("msg")) result = data.opt("msg").toString();
-                else return null;
-            } else if (data.has("data")) {
+            if (data.has("data")) {
                 if (!data.isNull("data")) result = data.opt("data").toString();
                 else return null;
             } else {

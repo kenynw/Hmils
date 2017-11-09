@@ -1,5 +1,8 @@
 package com.cube.hmils.module.account;
 
+import com.cube.hmils.model.AccountModel;
+import com.cube.hmils.model.bean.User;
+import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
 
 /**
@@ -8,8 +11,13 @@ import com.dsk.chain.bijection.Presenter;
 
 public class LoginPresenter extends Presenter<LoginActivity> {
 
-    public void login(String username, String password) {
+    public void login(String mobile, String password) {
+        AccountModel.getInstance().login(mobile, password).unsafeSubscribe(new ServicesResponse<User>() {
+            @Override
+            public void onNext(User user) {
 
+            }
+        });
     }
 
 }
