@@ -12,10 +12,11 @@ import com.dsk.chain.bijection.Presenter;
 public class LoginPresenter extends Presenter<LoginActivity> {
 
     public void login(String mobile, String password) {
-        AccountModel.getInstance().login(mobile, password).unsafeSubscribe(new ServicesResponse<User>() {
+        AccountModel.getInstance().doLogin(mobile, password).unsafeSubscribe(new ServicesResponse<User>() {
             @Override
             public void onNext(User user) {
-
+                getView().getExpansionDelegate().hideProgressBar();
+                getView().finish();
             }
         });
     }

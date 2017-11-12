@@ -1,14 +1,16 @@
 package com.cube.hmils.module.account;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.utils.LUtils;
+import com.cube.hmils.widget.SendValidateButton;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 
@@ -16,7 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @RequiresPresenter(ForgotPresenter.class)
-public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implements TextWatcher {
+public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implements TextWatcher, SendValidateButton.SendValidateButtonListener  {
 
     @BindView(R.id.et_forgot_phone)
     EditText mEtPhone;
@@ -28,7 +30,7 @@ public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implement
     EditText mEtCaptcha;
 
     @BindView(R.id.btn_forgot_captcha)
-    Button mBtnCaptcha;
+    SendValidateButton mBtnCaptcha;
 
     @BindView(R.id.btn_forgot_save)
     Button mBtnSave;
@@ -41,7 +43,23 @@ public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implement
 
         mEtPhone.addTextChangedListener(this);
         new UserTextWatcher(mBtnSave, mEtPhone, mEtCaptcha);
-        mBtnSave.setOnClickListener(v -> startActivity(new Intent(this, ResetPwdActivity.class)));
+        mBtnCaptcha.setOnClickListener(v -> checkMobile());
+        mBtnCaptcha.setListener(this);
+        mBtnCaptcha.setmEnableColor(getResources().getColor(R.color.white));
+        mBtnCaptcha.setmEnableString("获取验证码");
+        mBtnCaptcha.setmDisableColor(getResources().getColor(R.color.white));
+        mBtnSave.setOnClickListener(v -> getPresenter().checkCaptcha(
+                mEtPhone.getText().toString().trim(),
+                mEtCaptcha.getText().toString().trim()
+        ));
+    }
+
+    public void checkMobile() {
+        if (mEtPhone.getText().length() <= 0) {
+            LUtils.toast("请输入手机号");
+            return;
+        }
+        getPresenter().sendCaptcha(mEtPhone.getText().toString().trim());
     }
 
     @Override
@@ -56,6 +74,21 @@ public class ForgotActivity extends ChainBaseActivity<ForgotPresenter> implement
 
     @Override
     public void afterTextChanged(Editable s) {
+
+    }
+
+    @Override
+    public void onClickSendValidateButton() {
+
+    }
+
+    @Override
+    public void onTick() {
+        mBtnCaptcha.setEnabled(!TextUtils.isEmpty(mEtPhone.getText()) && !mBtnCaptcha.isDisable());
+    }
+
+    @Override
+    public void onTickStop() {
 
     }
 

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.cube.hmils">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".base.App"
         android:allowBackup="true"
@@ -40,6 +42,8 @@
         <activity android:name=".module.user.ClientDetailActivity">
         </activity>
         <activity android:name=".module.order.ServiceDetailActivity">
+        </activity>
+        <activity android:name=".module.order.OrderSearchActivity">
         </activity>
     </application>
 

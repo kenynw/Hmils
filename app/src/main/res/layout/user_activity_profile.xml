@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -86,7 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/text_full_name"
+            android:text="@string/text_phone"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
             />
@@ -147,7 +146,6 @@
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
         android:paddingTop="@dimen/spacing_normal"
-        android:visibility="gone"
         >
 
         <TextView

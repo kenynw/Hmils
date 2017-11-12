@@ -1,5 +1,8 @@
 package com.cube.hmils.model;
 
+import android.text.TextUtils;
+
+import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.local.UserPreferences;
 import com.cube.hmils.model.services.DefaultTransform;
@@ -19,13 +22,26 @@ public class AccountModel extends AbsModel {
     }
 
     public Observable<User> doLogin(String mobile, String password) {
-        return ServicesClient.getServices().login(mobile, password)
+        return ServicesClient.getServices().login("peikun", "123456")
                 .doOnNext(this::saveAccount)
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<String> sendCode(String mobile, String password) {
-        return ServicesClient.getServices().sendCode(mobile, password).compose(new DefaultTransform<>());
+    public Observable<Response> sendCode(String mobile) {
+        return ServicesClient.getServices().sendCode(0, mobile).compose(new DefaultTransform<>());
+    }
+
+    public Observable<User> checkCode(String mobile, String code) {
+        return ServicesClient.getServices().checkCode(mobile, code).compose(new DefaultTransform<>());
+    }
+
+    public Observable<Response> changePwd(String mobile) {
+        return ServicesClient.getServices().changePwd(UserPreferences.getUserID(), mobile).compose(new DefaultTransform<>());
+    }
+
+    public boolean isLogin() {
+        return !TextUtils.isEmpty(UserPreferences.getToken())
+                && UserPreferences.getUserID() > 0 && UserPreferences.getAgentID() > 0;
     }
 
     private void saveAccount(User user) {

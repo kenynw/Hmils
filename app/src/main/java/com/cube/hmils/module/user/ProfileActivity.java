@@ -2,11 +2,13 @@ package com.cube.hmils.module.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.Client;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -48,8 +50,17 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> {
         setToolbarTitle(R.string.text_profile);
         ButterKnife.bind(this);
 
-        mFlAddress.setOnClickListener(v -> startActivity(new Intent(this, EditAddressActivity.class)));
+        mFlAddress.setVisibility(View.GONE);
+        mFlCooperation.setVisibility(View.GONE);
         mBtnSave.setOnClickListener(v -> startActivity(new Intent(this, ClientDetailActivity.class)));
+    }
+
+    public void setData(Client client) {
+        mTvFullName.setText(client.getCustName());
+        mTvPhone.setText(client.getContTel());
+        mFlAddress.setVisibility(View.VISIBLE);
+        mFlAddress.setOnClickListener(v -> startActivity(new Intent(this, EditAddressActivity.class)));
+        mFlCooperation.setVisibility(View.VISIBLE);
     }
 
 }

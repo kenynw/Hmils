@@ -55,6 +55,7 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> {
 
         mClProfile.setOnClickListener(v -> startActivity(new Intent(getActivity(), ProfileActivity.class)));
         mTvQrCode.setOnClickListener(v -> startActivity(new Intent(getActivity(), QRCodeActivity.class)));
+        mTvLogout.setOnClickListener(v -> getPresenter().logout());
 
         return view;
     }

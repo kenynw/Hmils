@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="4.5dp"
+    >
+
+    <TextView
+        android:id="@+id/tv_client_header_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:drawableLeft="@drawable/ic_oval_green"
+        android:drawablePadding="6dp"
+        android:drawableStart="@drawable/ic_oval_green"
+        android:paddingBottom="@dimen/spacing_small"
+        android:paddingTop="@dimen/spacing_normal"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/text_size_caption"
+        tools:text="来自18734885928客户的绑定"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginRight="@dimen/spacing_normal"
+        android:background="@drawable/bg_radius_white"
+        android:orientation="horizontal"
+        >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:text="@string/text_username"
+                android:textAppearance="@style/TextCaption"
+                />
+
+            <TextView
+                android:id="@+id/tv_client_header_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_body_material"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_small"
+                android:text="@string/text_phone"
+                android:textAppearance="@style/TextCaption"
+                />
+
+            <TextView
+                android:id="@+id/tv_client_header_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textPrimary"
+                android:textSize="@dimen/text_size_body_material"
+                tools:text="18734885928"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_client_header_complete"
+            android:layout_width="84dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_normal"
+            android:background="@drawable/btn_radius_accent_selector"
+            android:text="@string/btn_complete_profile"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_body_material"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

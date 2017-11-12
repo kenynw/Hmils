@@ -1,5 +1,6 @@
 package com.cube.hmils.module.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,9 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.module.order.OrderListFragment;
+import com.cube.hmils.module.order.OrderSearchActivity;
 import com.dsk.chain.bijection.ChainFragment;
 import com.dsk.chain.bijection.RequiresPresenter;
 
@@ -36,13 +39,17 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
 
     Unbinder unbinder;
 
+    @BindView(R.id.tv_main_order_search)
+    TextView mTvSearch;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment_order, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        TitlePagerAdapter adapter = new TitlePagerAdapter(getActivity(),R.array.text_order_tabs,
+        mTvSearch.setOnClickListener(v -> startActivity(new Intent(getActivity(), OrderSearchActivity.class)));
+        TitlePagerAdapter adapter = new TitlePagerAdapter(getActivity(), R.array.text_order_tabs,
                 getFragments(), getChildFragmentManager());
         mVpOrder.setAdapter(adapter);
         mTlOrder.setupWithViewPager(mVpOrder);
@@ -52,7 +59,7 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
 
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
-        for (int i=0; i<3; i++) {
+        for (int i = 0; i < 3; i++) {
             OrderListFragment fragment = OrderListFragment.newInstance(0);
             list.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());

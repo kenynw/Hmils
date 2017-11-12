@@ -23,6 +23,7 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
     private View mRootView;
 
     private EasyRecyclerView mListView;
+    private LinearLayoutManager mLayoutManager;
 
     @Nullable
     @Override
@@ -52,7 +53,8 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
 
     private void findRecycleView() {
         mListView = mRootView.findViewById(R.id.recycle);
-        mListView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mListView.setLayoutManager(mLayoutManager);
     }
 
     private void initListView() {
@@ -116,6 +118,10 @@ public abstract class BaseListFragment<P extends BaseListFragmentPresenter, M> e
 
     public ListConfig getListConfig() {
         return ListConfig.DEFAULT.clone();
+    }
+
+    public LinearLayoutManager getLayoutManager() {
+        return mLayoutManager;
     }
 
     public int getLayout() {

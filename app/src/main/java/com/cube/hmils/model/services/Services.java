@@ -1,6 +1,8 @@
 package com.cube.hmils.model.services;
 
 
+import com.cube.hmils.model.bean.ClientList;
+import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
 
 import retrofit2.http.Field;
@@ -19,18 +21,33 @@ public interface Services {
     @FormUrlEncoded
     @POST("operator/login")
     Observable<User> login(
-            @Field("telPhone") String telPhone,
+            @Field("userName") String userName,
             @Field("passWd") String passWd
     );
 
     @FormUrlEncoded
     @POST("operator/getValidateCode/")
-    Observable<String> sendCode(
-            @Field("mark") String mark,
+    Observable<Response> sendCode(
+            @Field("mark") int mark,
             @Field("telPhone") String telPhone
     );
 
+    @FormUrlEncoded
+    @POST("operator/checkValidateCode/")
+    Observable<User> checkCode(
+            @Field("phoneNum") String phoneNum,
+            @Field("validateCode") String code
+    );
+
+    @FormUrlEncoded
+    @POST("operator/changePwd/")
+    Observable<Response> changePwd(
+            @Field("userId") int userId,
+            @Field("passWord") String passWord
+    );
+
     /**
+     * 客户列表
      *
      * @param nameTel 客户名/用户电话
      * @param userId 用户Id
@@ -38,9 +55,9 @@ public interface Services {
      */
     @FormUrlEncoded
     @POST("operator/getCustList/")
-    Observable<String> sendCode(
-            @Field("nameTel") String nameTel,
-            @Field("userId") int userId
+    Observable<ClientList> getCustList(
+            @Field("userId") int userId,
+            @Field("nameTel") String nameTel
     );
 
 }

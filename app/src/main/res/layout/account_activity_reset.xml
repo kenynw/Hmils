@@ -72,11 +72,12 @@
                     android:textSize="@dimen/text_size_body_material"
                     />
 
-                <ImageView
-                    android:id="@+id/iv_forgot_visibility"
+                <CheckBox
+                    android:id="@+id/cb_forgot_pwd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_pwd_visible"
+                    android:background="@color/white"
+                    android:button="@drawable/cb_password_selector"
                     android:visibility="gone"
                     />
 
@@ -106,20 +107,37 @@
                 android:visibility="invisible"
                 />
 
-            <EditText
-                android:id="@+id/et_forgot_confirm"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="17dp"
                 android:layout_marginTop="30dp"
-                android:background="@color/white"
-                android:drawableLeft="@mipmap/icon_password"
-                android:drawablePadding="@dimen/spacing_normal"
-                android:drawableStart="@mipmap/icon_password"
-                android:hint="@string/hint_pwd_confirm"
-                android:inputType="textPassword"
-                android:textSize="@dimen/text_size_body_material"
-                android:visibility="visible"
-                />
+                android:orientation="horizontal"
+                >
+
+                <EditText
+                    android:id="@+id/et_forgot_confirm"
+                    android:layout_width="0dp"
+                    android:layout_height="17dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:drawableLeft="@mipmap/icon_password"
+                    android:drawablePadding="@dimen/spacing_normal"
+                    android:drawableStart="@mipmap/icon_password"
+                    android:hint="@string/hint_pwd_confirm"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/text_size_body_material"
+                    />
+
+                <CheckBox
+                    android:id="@+id/cb_forgot_confirm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:button="@drawable/cb_password_selector"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

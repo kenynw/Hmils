@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_gradient_primary"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingLeft="@dimen/spacing_normal"
+        android:paddingRight="@dimen/spacing_normal"
+        >
+
+        <EditText
+            android:id="@+id/et_client_list_search"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:background="@drawable/bg_round_white"
+            android:gravity="center"
+            android:hint="@string/hint_search"
+            android:inputType="text"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.jude.easyrecyclerview.EasyRecyclerView
+            android:id="@+id/recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+        <com.cube.hmils.widget.ScrollIndexer
+            android:id="@+id/indexer_client_list"
+            android:layout_width="27dp"
+            android:layout_height="388dp"
+            android:layout_gravity="end"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="58dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_client_list_index"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:visibility="gone"
+            tools:text="A"
+            />
+
+    </FrameLayout>
+
+</LinearLayout>

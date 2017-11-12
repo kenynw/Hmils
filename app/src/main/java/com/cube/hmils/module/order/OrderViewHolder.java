@@ -52,7 +52,7 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
         mTvUsername.setText("张明");
         mTvContact.setText("15375870891");
         mTvAddress.setText("厦门思明区软件园望");
-        itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), RoomParamsActivity.class)));
+        itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), RoomNumActivity.class)));
     }
 
 }

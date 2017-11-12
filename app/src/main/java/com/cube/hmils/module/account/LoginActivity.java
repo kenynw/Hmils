@@ -57,10 +57,10 @@ public class LoginActivity extends ChainBaseActivity<LoginPresenter> implements 
             }
         });
         mTvForgot.setOnClickListener(v -> startActivity(new Intent(this, ForgotActivity.class)));
-        mBtnLogin.setOnClickListener(v -> getPresenter().login(
-                mEtUsername.getText().toString().trim(),
-                mEtPassword.getText().toString().trim()
-        ));
+        mBtnLogin.setOnClickListener(v -> {
+            getExpansionDelegate().showProgressBar();
+            getPresenter().login(mEtUsername.getText().toString().trim(), mEtPassword.getText().toString().trim());
+        });
     }
 
     @Override

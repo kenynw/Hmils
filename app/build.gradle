@@ -33,10 +33,14 @@ dependencies {
     compile project(':chain')
     // support
     compile rootProject.ext.dependencies["constraint-layout"]
+
     // view
+    compile 'org.greenrobot:eventbus:3.0.0'
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     compile 'com.jude:exgridview:1.1.5'
+    compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
+
     // network
     compile rootProject.ext.dependencies["retrofit"]
     compile rootProject.ext.dependencies["retrofit-converter-gson"]

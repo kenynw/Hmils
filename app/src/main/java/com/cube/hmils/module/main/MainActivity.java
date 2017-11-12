@@ -1,11 +1,14 @@
 package com.cube.hmils.module.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.AccountModel;
+import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 
@@ -42,14 +45,15 @@ public class MainActivity extends ChainBaseActivity<MainPresenter> implements Ta
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-//        if (tab.getPosition() != 3) {
+        if (tab.getPosition() == 3 && !AccountModel.getInstance().isLogin()) {
+            startActivity(new Intent(this, LoginActivity.class));
+            mTlIndicator.getTabAt(0).select();
+        } else {
             int position = tab.getPosition();
             Fragment fragment = (Fragment) mPagerAdapter.instantiateItem(mFlContainer, position);
             mPagerAdapter.setPrimaryItem(mFlContainer, position, fragment);
             mPagerAdapter.finishUpdate(mFlContainer);
-//        } else {
-//            startActivity(new Intent(this, LoginActivity.class));
-//        }
+        }
     }
 
     @Override
@@ -60,6 +64,13 @@ public class MainActivity extends ChainBaseActivity<MainPresenter> implements Ta
     @Override
     public void onTabReselected(TabLayout.Tab tab) {
 
+    }
+
+    public void setCurrentItem(int position) {
+        TabLayout.Tab tab = mTlIndicator.getTabAt(position);
+        if (tab != null) {
+            tab.select();
+        }
     }
 
 }

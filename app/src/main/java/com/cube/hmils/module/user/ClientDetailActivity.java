@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.module.dialog.OrderTypeDialog;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -43,6 +44,10 @@ public class ClientDetailActivity extends ChainBaseActivity<ClientDetailPresente
         mTypeDialog = new OrderTypeDialog(this);
 
         mBtnCreate.setOnClickListener(v -> mTypeDialog.show());
+    }
+
+    public void setData(Client client) {
+
     }
 
 }

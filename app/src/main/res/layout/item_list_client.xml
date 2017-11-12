@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/tv_client_letter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:paddingBottom="9dp"
+        android:paddingLeft="14dp"
+        android:paddingTop="18dp"
+        android:textColor="#666"
+        android:textSize="@dimen/text_size_body"
+        tools:text="A"
+        />
+
+    <TextView
+        android:id="@+id/tv_client_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal"
+        android:textAppearance="@style/TextBody"
+        tools:text="艾丽娅"
+        android:background="@color/white"
+        />
+
+</LinearLayout>

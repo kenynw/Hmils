@@ -1,8 +1,6 @@
 package com.cube.hmils.model.services;
 
 
-import com.cube.hmils.utils.LUtils;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -25,6 +23,7 @@ public class ServicesClient {
     private static OkHttpClient createClient() {
         if (okHttpClient == null) {
             okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(new EncryptInterceptor())
                     .build();
         }
         return okHttpClient;
@@ -32,7 +31,7 @@ public class ServicesClient {
 
     private static Retrofit createRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl(LUtils.isDebug ? Services.DEBUG_BASE_URL : Services.BASE_URL)
+                .baseUrl(Services.BASE_URL)
                 .addConverterFactory(WrapperConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(createClient())

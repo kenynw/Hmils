@@ -10,14 +10,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 
+import com.cube.hmils.utils.LUtils;
+
 /**
  * Copyright (c) 2017/3/28. LiaoPeiKun Inc. All rights reserved.
  */
 
 public class ScrollIndexer extends View {
 
-    private String[] letters = new String[]{"#", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-            "T", "U", "V", "W", "X", "Y", "Z", "#"};
+    private String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+            "T", "U", "V", "W", "X", "Y", "Z"};
 
     private Paint mPaint;
 
@@ -48,7 +50,7 @@ public class ScrollIndexer extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(0xff666666);
-        mPaint.setTextSize(32);
+        mPaint.setTextSize(LUtils.dp2px(13));
         mBound = new Rect();
 
         mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
