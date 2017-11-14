@@ -181,11 +181,6 @@ public class ClientListFragment extends BaseListFragment<ClientListPresenter, Cl
         }
 
     }
-//
-//    @Override
-//    public int[] getHideSoftViewIds() {
-//        return new int[]{R.id.et_brand_list_search};
-//    }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {

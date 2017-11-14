@@ -2,6 +2,7 @@ package com.cube.hmils.module.user;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -57,10 +58,13 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> {
 
     public void setData(Client client) {
         mTvFullName.setText(client.getCustName());
-        mTvPhone.setText(client.getContTel());
+        mTvPhone.setText(client.getPhoneNo());
         mFlAddress.setVisibility(View.VISIBLE);
+        mTvAddress.setText(client.getFullAddress());
         mFlAddress.setOnClickListener(v -> startActivity(new Intent(this, EditAddressActivity.class)));
         mFlCooperation.setVisibility(View.VISIBLE);
+        if (!TextUtils.isEmpty(client.getCreatTime()))
+            mTvCooperation.setText(client.getCreatTime().substring(0, 11));
     }
 
 }

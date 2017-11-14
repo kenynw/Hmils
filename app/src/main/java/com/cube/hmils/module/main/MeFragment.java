@@ -1,4 +1,4 @@
-package com.cube.hmils.module.user;
+package com.cube.hmils.module.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.User;
+import com.cube.hmils.module.account.ForgotActivity;
+import com.cube.hmils.module.user.ProfileActivity;
+import com.cube.hmils.module.user.QRCodeActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -42,10 +45,11 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> {
 
     @BindView(R.id.tv_me_reset_pwd)
     TextView mTvResetPwd;
-    Unbinder unbinder;
 
     @BindView(R.id.tv_me_logout)
     TextView mTvLogout;
+
+    Unbinder unbinder;
 
     @Nullable
     @Override
@@ -56,12 +60,15 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> {
         mClProfile.setOnClickListener(v -> startActivity(new Intent(getActivity(), ProfileActivity.class)));
         mTvQrCode.setOnClickListener(v -> startActivity(new Intent(getActivity(), QRCodeActivity.class)));
         mTvLogout.setOnClickListener(v -> getPresenter().logout());
+        mTvResetPwd.setOnClickListener(v -> startActivity(new Intent(getActivity(), ForgotActivity.class)));
 
         return view;
     }
 
     @Override
     public void setData(User user) {
+        mTvName.setText(user.getUserName());
+        mTvPhone.setText(user.getTelPhone());
 
     }
 

@@ -1,6 +1,6 @@
-package com.cube.hmils.module.user;
+package com.cube.hmils.module.main;
 
-import com.cube.hmils.model.AccountModel;
+import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.event.LogoutEvent;
 import com.cube.hmils.model.local.UserPreferences;
@@ -14,11 +14,21 @@ import org.greenrobot.eventbus.EventBus;
 
 public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, User> {
 
+    @Override
+    protected void onCreateView(MeFragment view) {
+        super.onCreateView(view);
+        loadUser();
+    }
+
+    private void loadUser() {
+        UserModel.getInstance().getUserDetail().unsafeSubscribe(getSubscriber());
+    }
+
     public void logout() {
         UserPreferences.setToken("");
         UserPreferences.setUserID(0);
         UserPreferences.setAgentID(0);
-        if (!AccountModel.getInstance().isLogin()) {
+        if (!UserModel.getInstance().isLogin()) {
             EventBus.getDefault().post(new LogoutEvent());
         }
     }

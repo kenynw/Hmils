@@ -2,7 +2,9 @@ package com.cube.hmils.module.user;
 
 import android.os.Bundle;
 
+import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
 
 /**
@@ -26,7 +28,17 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
         super.onCreateView(view);
         if (mClient != null) {
             getView().setData(mClient);
+            loadData(mClient.getCustId(), mClient.getProjectId());
         }
+    }
+
+    private void loadData(int clientId, int projectId) {
+        ClientModel.getInstance().getClientDetail(clientId, projectId).subscribe(new ServicesResponse<Client>() {
+            @Override
+            public void onNext(Client client) {
+                getView().setData(client);
+            }
+        });
     }
 
 }

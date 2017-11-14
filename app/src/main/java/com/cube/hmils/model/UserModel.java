@@ -15,10 +15,10 @@ import rx.Observable;
  * Created by Carol on 2017/11/10.
  */
 
-public class AccountModel extends AbsModel {
+public class UserModel extends AbsModel {
 
-    public static AccountModel getInstance() {
-        return getInstance(AccountModel.class);
+    public static UserModel getInstance() {
+        return getInstance(UserModel.class);
     }
 
     public Observable<User> doLogin(String mobile, String password) {
@@ -37,6 +37,14 @@ public class AccountModel extends AbsModel {
 
     public Observable<Response> changePwd(String mobile) {
         return ServicesClient.getServices().changePwd(UserPreferences.getUserID(), mobile).compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 个人中心信息
+     * @return
+     */
+    public Observable<User> getUserDetail() {
+        return ServicesClient.getServices().userDetail(UserPreferences.getUserID()).compose(new DefaultTransform<>());
     }
 
     public boolean isLogin() {

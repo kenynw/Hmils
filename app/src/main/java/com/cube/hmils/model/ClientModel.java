@@ -1,7 +1,7 @@
 package com.cube.hmils.model;
 
+import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
-import com.cube.hmils.model.local.UserPreferences;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
 import com.cube.hmils.utils.StringUtil;
@@ -22,7 +22,7 @@ public class ClientModel extends AbsModel {
     }
 
     public Observable<ClientList> getClientList(String keywords) {
-        return ServicesClient.getServices().getCustList(UserPreferences.getUserID(), keywords)
+        return ServicesClient.getServices().getCustList(20, keywords)
                 .map(clientList -> {
                     if (!clientList.getCustList().isEmpty()) {
                         Collections.sort(clientList.getCustList(), (clientFirst, clientSecond) ->
@@ -32,6 +32,11 @@ public class ClientModel extends AbsModel {
                     }
                     return clientList;
                 })
+                .compose(new DefaultTransform<>());
+    }
+
+    public Observable<Client> getClientDetail(int clientId, int projectId) {
+        return ServicesClient.getServices().getClientDetail(20, clientId, projectId)
                 .compose(new DefaultTransform<>());
     }
 

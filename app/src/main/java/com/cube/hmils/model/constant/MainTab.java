@@ -2,9 +2,9 @@ package com.cube.hmils.model.constant;
 
 import com.cube.hmils.R;
 import com.cube.hmils.module.main.ClientListFragment;
+import com.cube.hmils.module.main.MeFragment;
 import com.cube.hmils.module.main.OrderMainFragment;
 import com.cube.hmils.module.main.ServiceMainFragment;
-import com.cube.hmils.module.user.MeFragment;
 
 /**
  * Copyright (c) 2017/3/17. LiaoPeiKun Inc. All rights reserved.

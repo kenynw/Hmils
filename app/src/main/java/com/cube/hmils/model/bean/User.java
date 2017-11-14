@@ -8,11 +8,18 @@ import android.os.Parcelable;
  */
 
 public class User implements Parcelable {
-    private int agentId;
 
     private String token;
 
+    private int agentId;
+
     private int userId;
+
+    private String custImg;
+
+    private String telPhone;
+
+    private String userName;
 
     public int getAgentId() {
         return agentId;
@@ -38,6 +45,30 @@ public class User implements Parcelable {
         this.userId = userId;
     }
 
+    public String getCustImg() {
+        return custImg;
+    }
+
+    public void setCustImg(String custImg) {
+        this.custImg = custImg;
+    }
+
+    public String getTelPhone() {
+        return telPhone;
+    }
+
+    public void setTelPhone(String telPhone) {
+        this.telPhone = telPhone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public User() {
     }
 
@@ -48,15 +79,21 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.agentId);
         dest.writeString(this.token);
+        dest.writeInt(this.agentId);
         dest.writeInt(this.userId);
+        dest.writeString(this.custImg);
+        dest.writeString(this.telPhone);
+        dest.writeString(this.userName);
     }
 
     protected User(Parcel in) {
-        this.agentId = in.readInt();
         this.token = in.readString();
+        this.agentId = in.readInt();
         this.userId = in.readInt();
+        this.custImg = in.readString();
+        this.telPhone = in.readString();
+        this.userName = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -70,5 +107,4 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
-
 }

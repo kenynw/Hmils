@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
 import com.cube.hmils.R;
-import com.cube.hmils.model.AccountModel;
+import com.cube.hmils.model.UserModel;
 import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -45,7 +45,7 @@ public class MainActivity extends ChainBaseActivity<MainPresenter> implements Ta
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-        if (tab.getPosition() == 3 && !AccountModel.getInstance().isLogin()) {
+        if (tab.getPosition() == 3 && !UserModel.getInstance().isLogin()) {
             startActivity(new Intent(this, LoginActivity.class));
             mTlIndicator.getTabAt(0).select();
         } else {

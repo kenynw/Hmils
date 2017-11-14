@@ -13,13 +13,94 @@ public class Client implements Parcelable {
      * custId : 81330
      * custName : 测试内容lf18
      * projectId : 测试内容usp7
+     * city : 测试内容11yw
+     * creatTime : 测试内容xt2b
+     * custId : 25728
+     * custImg : 测试内容5515
+     * custName : 测试内容cqn4
+     * detailAddr : 测试内容28uv
+     * district : 测试内容x9z6
+     * phoneNo : 测试内容xy84
+     * projectId : 42722
+     * province : 测试内容7ov5
+     * street : 测试内容55bx
      */
-
     private String contTel;
     private int custId;
     private String custName;
-    private String projectId;
+    private int projectId;
+    private String city;
+    private String creatTime;
+    private String custImg;
+    private String detailAddr;
+    private String district;
+    private String phoneNo;
+    private String province;
+    private String street;
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCreatTime() {
+        return creatTime;
+    }
+
+    public void setCreatTime(String creatTime) {
+        this.creatTime = creatTime;
+    }
+
+    public String getCustImg() {
+        return custImg;
+    }
+
+    public void setCustImg(String custImg) {
+        this.custImg = custImg;
+    }
+
+    public String getDetailAddr() {
+        return detailAddr;
+    }
+
+    public void setDetailAddr(String detailAddr) {
+        this.detailAddr = detailAddr;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
     public String getContTel() {
         return contTel;
     }
@@ -44,12 +125,19 @@ public class Client implements Parcelable {
         this.custName = custName;
     }
 
-    public String getProjectId() {
+    public int getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(int projectId) {
         this.projectId = projectId;
+    }
+
+    public String getFullAddress() {
+        return getProvince() + getCity() + getDistrict() + getDetailAddr();
+    }
+
+    public Client() {
     }
 
     @Override
@@ -62,17 +150,30 @@ public class Client implements Parcelable {
         dest.writeString(this.contTel);
         dest.writeInt(this.custId);
         dest.writeString(this.custName);
-        dest.writeString(this.projectId);
-    }
-
-    public Client() {
+        dest.writeInt(this.projectId);
+        dest.writeString(this.city);
+        dest.writeString(this.creatTime);
+        dest.writeString(this.custImg);
+        dest.writeString(this.detailAddr);
+        dest.writeString(this.district);
+        dest.writeString(this.phoneNo);
+        dest.writeString(this.province);
+        dest.writeString(this.street);
     }
 
     protected Client(Parcel in) {
         this.contTel = in.readString();
         this.custId = in.readInt();
         this.custName = in.readString();
-        this.projectId = in.readString();
+        this.projectId = in.readInt();
+        this.city = in.readString();
+        this.creatTime = in.readString();
+        this.custImg = in.readString();
+        this.detailAddr = in.readString();
+        this.district = in.readString();
+        this.phoneNo = in.readString();
+        this.province = in.readString();
+        this.street = in.readString();
     }
 
     public static final Creator<Client> CREATOR = new Creator<Client>() {
