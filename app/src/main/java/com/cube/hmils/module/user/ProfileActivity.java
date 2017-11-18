@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.User;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -53,10 +54,18 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> {
 
         mFlAddress.setVisibility(View.GONE);
         mFlCooperation.setVisibility(View.GONE);
-        mBtnSave.setOnClickListener(v -> startActivity(new Intent(this, ClientDetailActivity.class)));
     }
 
-    public void setData(Client client) {
+    public void setProfile(User user) {
+        mDvAvatar.setImageURI(user.getCustImg());
+        mTvFullName.setText(user.getUserName());
+        mTvPhone.setText(user.getTelPhone());
+        mBtnSave.setOnClickListener(v -> {
+
+        });
+    }
+
+    public void setClientInfo(Client client) {
         mTvFullName.setText(client.getCustName());
         mTvPhone.setText(client.getPhoneNo());
         mFlAddress.setVisibility(View.VISIBLE);
@@ -65,6 +74,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> {
         mFlCooperation.setVisibility(View.VISIBLE);
         if (!TextUtils.isEmpty(client.getCreatTime()))
             mTvCooperation.setText(client.getCreatTime().substring(0, 11));
+        mBtnSave.setOnClickListener(v -> startActivity(new Intent(this, ClientDetailActivity.class)));
     }
 
 }

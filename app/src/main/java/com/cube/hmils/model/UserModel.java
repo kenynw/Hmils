@@ -47,6 +47,10 @@ public class UserModel extends AbsModel {
         return ServicesClient.getServices().userDetail(UserPreferences.getUserID()).compose(new DefaultTransform<>());
     }
 
+//    public Observable<Response> editUserInfo() {
+//        return ServicesClient.getServices().editUserInfo()
+//    }
+
     public boolean isLogin() {
         return !TextUtils.isEmpty(UserPreferences.getToken())
                 && UserPreferences.getUserID() > 0 && UserPreferences.getAgentID() > 0;

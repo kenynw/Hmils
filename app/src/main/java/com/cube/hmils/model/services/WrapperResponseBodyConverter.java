@@ -32,19 +32,22 @@ public class WrapperResponseBodyConverter<T> implements Converter<ResponseBody, 
     @Override
     public T convert(ResponseBody value) throws IOException {
         try {
-            JSONObject data = new JSONObject(value.string());
+            String result = value.string();
+
+            JSONObject data = new JSONObject(result);
 
             LUtils.log(TAG, data.toString());
 
-            int status = data.getInt("status");
-            if (status != 200) {
-                throw new ServiceException(status, data.getString("message"));
+            if (data.has("status")) {
+                int status = data.getInt("status");
+                if (status != 200) {
+                    throw new ServiceException(status, data.getString("message"));
+                }
             }
 
-            String result = "";
             if (data.has("data")) {
                 if (!data.isNull("data")) result = data.opt("data").toString();
-                else return null;
+                else return new Gson().fromJson(data.toString(), mType);
             } else {
                 return new Gson().fromJson(data.toString(), mType);
             }

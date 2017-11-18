@@ -72,7 +72,7 @@ public interface Services {
     );
 
     /**
-     * 更改密码
+     * 个人中心
      * @param userId 用户ID
      * @return
      */
@@ -80,6 +80,19 @@ public interface Services {
     @POST("operator/persionCenter/")
     Observable<User> userDetail(
             @Field("userId") int userId
+    );
+
+    /**
+     * 更改用户资料
+     * @param userId 用户ID
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/editUserInfo/")
+    Observable<User> editUserInfo(
+            @Field("userId") int userId,
+            @Field("telPhone") int telPhone,
+            @Field("userName") int userName
     );
 
     /**

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
 
@@ -15,20 +16,24 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
 
     public static final String EXTRA_CLIENT = "client"; // 完善客户资料
 
-    private Client mClient;
+    public static final String EXTRA_USER = "user"; // 完善客户资料
 
     @Override
     protected void onCreate(ProfileActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
-        mClient = getView().getIntent().getParcelableExtra(EXTRA_CLIENT);
     }
 
     @Override
     protected void onCreateView(ProfileActivity view) {
         super.onCreateView(view);
-        if (mClient != null) {
-            getView().setData(mClient);
-            loadData(mClient.getCustId(), mClient.getProjectId());
+        Client client = getView().getIntent().getParcelableExtra(EXTRA_CLIENT);
+        if (client != null) {
+            getView().setClientInfo(client);
+            loadData(client.getCustId(), client.getProjectId());
+        }
+        User user = getView().getIntent().getParcelableExtra(EXTRA_USER);
+        if (user != null) {
+            getView().setProfile(user);
         }
     }
 
@@ -36,9 +41,13 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
         ClientModel.getInstance().getClientDetail(clientId, projectId).subscribe(new ServicesResponse<Client>() {
             @Override
             public void onNext(Client client) {
-                getView().setData(client);
+                getView().setClientInfo(client);
             }
         });
+    }
+
+    public void saveProfile() {
+
     }
 
 }

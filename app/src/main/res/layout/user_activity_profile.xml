@@ -58,13 +58,14 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_profile_full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
+            android:background="@color/white"
             tools:text="周杰伦"
             />
 
