@@ -1,7 +1,6 @@
 package com.cube.hmils.module.order;
 
 import android.content.Intent;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -36,23 +35,24 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
     Button mBtnDetail;
     @BindView(R.id.tv_order_state)
     TextView mTvState;
-    @BindView(R.id.iv_order_line)
-    View mIvLine;
 
     public OrderViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_list_order);
         ButterKnife.bind(this, itemView);
-        mIvLine.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override
     public void setData(Order data) {
-        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getTime()));
-        mTvState.setText("未完成");
-        mTvUsername.setText("张明");
-        mTvContact.setText("15375870891");
-        mTvAddress.setText("厦门思明区软件园望");
-        itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), RoomNumActivity.class)));
+        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
+        mTvState.setText(data.getHandingStatus());
+        mTvUsername.setText(data.getCustName());
+        mTvContact.setText(data.getCustTel());
+        mTvAddress.setText(data.getCustAddr());
+        itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), RoomParamsActivity.class);
+            intent.putExtra("order", data);
+            getContext().startActivity(intent);
+        });
     }
 
 }

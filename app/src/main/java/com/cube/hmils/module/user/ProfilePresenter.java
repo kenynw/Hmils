@@ -3,10 +3,15 @@ package com.cube.hmils.module.user;
 import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
+import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
+
+import java.io.File;
 
 /**
  * Created by Carol on 2017/10/29.
@@ -46,8 +51,14 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
         });
     }
 
-    public void saveProfile() {
-
+    public void save(String filePath, String username, String phone) {
+        UserModel.getInstance().saveProfile(new File(filePath), username, phone)
+                .unsafeSubscribe(new ServicesResponse<Response>() {
+                    @Override
+                    public void onNext(Response response) {
+                        LUtils.toast("修改成功");
+                    }
+                });
     }
 
 }

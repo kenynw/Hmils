@@ -11,6 +11,7 @@
     <include layout="@layout/include_toolbar"/>
 
     <FrameLayout
+        android:id="@+id/fl_profile_avatar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -59,13 +60,14 @@
             />
 
         <EditText
-            android:id="@+id/tv_profile_full_name"
+            android:id="@+id/et_profile_full_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@color/white"
+            android:inputType="text"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
-            android:background="@color/white"
             tools:text="周杰伦"
             />
 
@@ -91,11 +93,13 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <TextView
-            android:id="@+id/tv_profile_phone"
+        <EditText
+            android:id="@+id/et_profile_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@color/white"
+            android:inputType="phone"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
             tools:text="1434234453"
@@ -124,11 +128,13 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <TextView
-            android:id="@+id/tv_profile_address"
+        <EditText
+            android:id="@+id/et_profile_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@color/white"
+            android:inputType="textMultiLine"
             android:maxWidth="240dp"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
@@ -158,8 +164,8 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <TextView
-            android:id="@+id/tv_profile_cooperation"
+        <EditText
+            android:id="@+id/et_profile_cooperation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -167,6 +173,8 @@
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
             tools:text="2016-12-28"
+            android:inputType="date"
+            android:background="@color/white"
             />
 
     </FrameLayout>

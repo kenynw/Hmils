@@ -49,11 +49,11 @@ public class ServiceViewHolder extends BaseViewHolder<Order> {
 
     @Override
     public void setData(Order data) {
-        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getTime()));
-        mTvState.setText("未完成");
-        mTvUsername.setText("张明");
-        mTvContact.setText("15375870891");
-        mTvAddress.setText("地址：厦门思明区软件园望");
+        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
+        mTvState.setText(data.getHandingStatus());
+        mTvUsername.setText(data.getCustName());
+        mTvContact.setText(data.getCustTel());
+        mTvAddress.setText(data.getCustAddr());
         itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), ServiceDetailActivity.class)));
     }
 

@@ -14,8 +14,8 @@ import com.dsk.chain.bijection.RequiresPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@RequiresPresenter(RoomNumPersenter.class)
-public class RoomNumActivity extends ChainBaseActivity<RoomNumPersenter> implements TextWatcher {
+@RequiresPresenter(RoomNumPresenter.class)
+public class RoomNumActivity extends ChainBaseActivity<RoomNumPresenter> implements TextWatcher {
 
     @BindView(R.id.et_room_num)
     EditText mEtNum;
@@ -38,7 +38,7 @@ public class RoomNumActivity extends ChainBaseActivity<RoomNumPersenter> impleme
             LUtils.toast("请输入房间数");
             return;
         }
-        RoomParamsPresenter.start(this, Integer.valueOf(mEtNum.getText().toString()));
+        getPresenter().addNum(mEtNum.getText().toString().trim());
     }
 
     @Override

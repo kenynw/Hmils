@@ -3,6 +3,7 @@
           package="com.cube.hmils">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".base.App"
@@ -44,6 +45,8 @@
         <activity android:name=".module.order.ServiceDetailActivity">
         </activity>
         <activity android:name=".module.order.OrderSearchActivity">
+        </activity>
+        <activity android:name=".module.order.OrderDetailActivity">
         </activity>
     </application>
 

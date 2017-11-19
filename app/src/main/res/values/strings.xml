@@ -26,6 +26,7 @@
     <string name="text_order_new">新客户新开单</string>
     <string name="text_order_old">老用户二次开单</string>
     <string name="text_change_thermostat">更换温控器</string>
+    <string name="text_previous">上一步</string>
 
     <string name="text_mission_detail">任务详情</string>
     <string name="text_client_owner">客户/业主</string>
@@ -51,9 +52,10 @@
     <string name="text_device_type">设备选型</string>
     <string name="text_room_width">房&#160;&#160;间&#160;&#160;长</string>
     <string name="text_room_height">房&#160;&#160;间&#160;&#160;宽</string>
+    <string name="text_extra_area">增加面积</string>
     <string name="text_add_area">增附加面积</string>
     <string name="text_minus_area">减附加面积</string>
-    <string name="text_square_metres">m<sup>2</sup></string>
+    <string name="text_square_metres">㎡</string>
     <string name="text_room_a_width">&#160;A房间长</string>
     <string name="text_room_b_height">&#160;B房间宽</string>
     <string name="text_name">名称</string>

@@ -9,6 +9,12 @@ import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
 import com.dsk.chain.model.AbsModel;
 
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import rx.Observable;
 
 /**
@@ -47,9 +53,16 @@ public class UserModel extends AbsModel {
         return ServicesClient.getServices().userDetail(UserPreferences.getUserID()).compose(new DefaultTransform<>());
     }
 
-//    public Observable<Response> editUserInfo() {
-//        return ServicesClient.getServices().editUserInfo()
-//    }
+    public Observable<Response> saveProfile(File file, String userName, String mobile) {
+        RequestBody photo = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        Map<String, RequestBody> params = new HashMap<>();
+        params.put("image\"; filename=\"" + file.getName() + "\"", photo);
+        params.put("userId", RequestBody.create(null, UserPreferences.getUserID() + ""));
+        params.put("userName", RequestBody.create(null, userName));
+        params.put("telPhone", RequestBody.create(null, mobile));
+
+        return ServicesClient.getServices().editUserInfo(params).compose(new DefaultTransform<>());
+    }
 
     public boolean isLogin() {
         return !TextUtils.isEmpty(UserPreferences.getToken())

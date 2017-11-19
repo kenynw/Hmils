@@ -9,24 +9,74 @@ import android.os.Parcelable;
 
 public class Order implements Parcelable {
 
-    private String time;
+    private int projectId;
 
-    private String clientName;
+    private int orderId;
 
-    public String getTime() {
-        return time;
+    private String orderTime;
+
+    private String custName;
+
+    private String custTel;
+
+    private String custAddr;
+
+    private String handingStatus;
+
+    public int getProjectId() {
+        return projectId;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
-    public String getClientName() {
-        return clientName;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getOrderTime() {
+        return orderTime;
+    }
+
+    public void setOrderTime(String orderTime) {
+        this.orderTime = orderTime;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+    public String getCustTel() {
+        return custTel;
+    }
+
+    public void setCustTel(String custTel) {
+        this.custTel = custTel;
+    }
+
+    public String getCustAddr() {
+        return custAddr;
+    }
+
+    public void setCustAddr(String custAddr) {
+        this.custAddr = custAddr;
+    }
+
+    public String getHandingStatus() {
+        return handingStatus;
+    }
+
+    public void setHandingStatus(String handingStatus) {
+        this.handingStatus = handingStatus;
     }
 
     @Override
@@ -36,16 +86,26 @@ public class Order implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.time);
-        dest.writeString(this.clientName);
+        dest.writeInt(this.projectId);
+        dest.writeInt(this.orderId);
+        dest.writeString(this.orderTime);
+        dest.writeString(this.custName);
+        dest.writeString(this.custTel);
+        dest.writeString(this.custAddr);
+        dest.writeString(this.handingStatus);
     }
 
     public Order() {
     }
 
     protected Order(Parcel in) {
-        this.time = in.readString();
-        this.clientName = in.readString();
+        this.projectId = in.readInt();
+        this.orderId = in.readInt();
+        this.orderTime = in.readString();
+        this.custName = in.readString();
+        this.custTel = in.readString();
+        this.custAddr = in.readString();
+        this.handingStatus = in.readString();
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
