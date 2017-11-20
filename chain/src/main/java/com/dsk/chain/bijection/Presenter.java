@@ -3,10 +3,17 @@ package com.dsk.chain.bijection;
 import android.content.Intent;
 import android.os.Bundle;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 /**
  * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
  */
 public class Presenter<ViewType> {
+    /**
+     * EventBus事件标识
+     */
+    public static final String EVENT_BUS_CODE = "event_bus_code";
 
     String mId;
 
@@ -19,6 +26,7 @@ public class Presenter<ViewType> {
     public void create(ViewType view, Bundle saveState) {
         this.view = view;
         onCreate(view, saveState);
+        EventBus.getDefault().register(this);
     }
 
     /**
@@ -42,7 +50,7 @@ public class Presenter<ViewType> {
     }
 
     protected void onDestroyView() {
-
+        EventBus.getDefault().unregister(this);
     }
 
     protected void onResume() {
@@ -59,6 +67,25 @@ public class Presenter<ViewType> {
 
     protected void onNewIntent(Intent intent) {
 
+    }
+
+    /**
+     * eventBus可以重写，用来处理接收消息，
+     * @param event
+     */
+    @Subscribe
+    public void onEventMainThread(Object event) {
+        if (event instanceof Bundle){
+            int eventCode = ((Bundle) event).getInt(EVENT_BUS_CODE);
+            onEventMainThread(eventCode, (Bundle) event);
+        }
+    }
+
+    /**
+     * eventBus可以重写，用来处理接收消息，
+     * @param eventCode
+     */
+    public void onEventMainThread(int eventCode, Bundle bundle) {
     }
 
 }

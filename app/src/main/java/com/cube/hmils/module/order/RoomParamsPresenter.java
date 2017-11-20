@@ -8,7 +8,6 @@ import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.services.ServicesResponse;
-import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
 
 /**
@@ -57,7 +56,11 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                 .subscribe(new ServicesResponse<Project>() {
                     @Override
                     public void onNext(Project project) {
-                        LUtils.toast("添加成功");
+                        if (isEnd.equals("end")) {
+                            getView().startActivity(new Intent(getView(), OrderDetailActivity.class));
+                        } else {
+                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mPosition++);
+                        }
                     }
                 });
     }

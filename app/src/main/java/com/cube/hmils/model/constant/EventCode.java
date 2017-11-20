@@ -1,0 +1,15 @@
+package com.cube.hmils.model.constant;
+
+/**
+ * Copyright (c) 2017/11/20. LiaoPeiKun Inc. All rights reserved.
+ */
+
+public interface EventCode {
+
+
+    /**
+     * 退出登录
+     */
+    int LOGOUT = 0x02;
+
+}

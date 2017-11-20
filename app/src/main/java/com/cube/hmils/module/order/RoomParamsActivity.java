@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -102,7 +101,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mTvMinus.setOnClickListener(v -> {
             mLlExtra.setVisibility(View.GONE);
             mEtExtra.setText("");
-            mClLayout.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            mClLayout.getLayoutParams().height = mClLayout.getHeight() - LUtils.dp2px(70);
         });
         mIbtAdd.setOnClickListener(v -> {
             View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
@@ -137,7 +136,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             EditText et = view.getRootView().findViewById(R.id.et_add_area_input);
             mLlExtra.setVisibility(View.VISIBLE);
             mEtExtra.setText(et.getText());
-            mClLayout.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            mClLayout.getLayoutParams().height = mClLayout.getHeight() + LUtils.dp2px(70);
         }
     }
 
@@ -165,7 +164,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             }
         }
         String roomSize = new Gson().toJson(mRooms);
-        LUtils.log("size: " + roomSize);
         getPresenter().saveParams("", roomName, roomSize, 0);
     }
 

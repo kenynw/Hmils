@@ -1,19 +1,23 @@
 package com.cube.hmils.module.order;
 
-import android.os.Bundle;
+import android.view.ViewGroup;
 
 import com.cube.hmils.R;
-import com.cube.hmils.model.bean.Order;
 import com.dsk.chain.bijection.RequiresPresenter;
-import com.dsk.chain.expansion.data.BaseDataActivity;
+import com.dsk.chain.expansion.list.BaseListActivity;
+import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 @RequiresPresenter(OrderDetailPresenter.class)
-public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, Order> {
+public class OrderDetailActivity extends BaseListActivity<OrderDetailPresenter> {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.order_activity_detail);
+    protected int getLayout() {
+        return R.layout.order_activity_detail;
+    }
+
+    @Override
+    protected BaseViewHolder createViewHolder(ViewGroup parent, int viewType) {
+        return null;
     }
 
 }

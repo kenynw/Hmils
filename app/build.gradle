@@ -25,7 +25,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -35,7 +34,6 @@ dependencies {
     compile rootProject.ext.dependencies["constraint-layout"]
 
     // view
-    compile 'org.greenrobot:eventbus:3.0.0'
     compile rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     compile 'com.jude:exgridview:1.1.5'

@@ -27,6 +27,10 @@ public class UserModel extends AbsModel {
         return getInstance(UserModel.class);
     }
 
+    public Observable<Response> getMessage() {
+        return ServicesClient.getServices().getMessage().compose(new DefaultTransform<>());
+    }
+
     public Observable<User> doLogin(String mobile, String password) {
         return ServicesClient.getServices().login("peikun", "123456")
                 .doOnNext(this::saveAccount)
