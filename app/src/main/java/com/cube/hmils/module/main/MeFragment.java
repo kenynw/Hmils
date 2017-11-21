@@ -14,7 +14,6 @@ import com.cube.hmils.model.bean.User;
 import com.cube.hmils.module.account.ForgotActivity;
 import com.cube.hmils.module.user.ProfileActivity;
 import com.cube.hmils.module.user.ProfilePresenter;
-import com.cube.hmils.module.user.QRCodeActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -58,7 +57,7 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> {
         View view = inflater.inflate(R.layout.user_fragment_me, null);
         unbinder = ButterKnife.bind(this, view);
 
-        mTvQrCode.setOnClickListener(v -> startActivity(new Intent(getActivity(), QRCodeActivity.class)));
+//        mTvQrCode.setOnClickListener(v -> startActivity(new Intent(getActivity(), QRCodeActivity.class)));
         mTvLogout.setOnClickListener(v -> getPresenter().logout());
         mTvResetPwd.setOnClickListener(v -> startActivity(new Intent(getActivity(), ForgotActivity.class)));
 

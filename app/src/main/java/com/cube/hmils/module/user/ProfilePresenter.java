@@ -1,5 +1,6 @@
 package com.cube.hmils.module.user;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
@@ -51,8 +52,8 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
         });
     }
 
-    public void save(String filePath, String username, String phone) {
-        UserModel.getInstance().saveProfile(new File(filePath), username, phone)
+    public void save(Uri uri, String username, String phone) {
+        UserModel.getInstance().saveProfile(uri == null ? null : new File(uri.getPath()), username, phone)
                 .unsafeSubscribe(new ServicesResponse<Response>() {
                     @Override
                     public void onNext(Response response) {

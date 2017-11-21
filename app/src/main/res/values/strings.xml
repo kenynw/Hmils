@@ -58,11 +58,17 @@
     <string name="text_square_metres">㎡</string>
     <string name="text_room_a_width">&#160;A房间长</string>
     <string name="text_room_b_height">&#160;B房间宽</string>
-    <string name="text_name">名称</string>
+    <string name="text_material_title">part A-材料清单</string>
+    <string name="text_heating_title">part B-温控器清单</string>
     <string name="text_spec_model">规格型号</string>
     <string name="text_count">数量</string>
     <string name="text_rp">额定功率</string>
     <string name="text_price">价格</string>
+    <string name="text_spec_model_unit">（㎡/pcs）</string>
+    <string name="text_count_unit">（pcs）</string>
+    <string name="text_rp_unit">（w/pcs）</string>
+    <string name="text_price_unit">（元）</string>
+    <string name="text_count_product">共%d件产品</string>
 
     <string name="hint_phone">请输入您的手机号</string>
     <string name="hint_captcha">请输入6位验证码</string>

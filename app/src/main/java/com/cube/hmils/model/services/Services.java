@@ -6,6 +6,7 @@ import com.cube.hmils.model.bean.ClientList;
 import com.cube.hmils.model.bean.OrderList;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
+import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.model.bean.User;
 
 import java.util.Map;
@@ -24,7 +25,7 @@ import rx.Observable;
 
 public interface Services {
 
-    String BASE_URL = "http://106.14.116.138:8090/hms-api/";
+    String BASE_URL = "http://interface.ihmils.com:8090/hms-api/";
 
     /**
      * 每次启动都要调用一次才能显示正常的状态  我也不知道干嘛用的
@@ -130,6 +131,20 @@ public interface Services {
             @Field("userId") int userId,
             @Field("nameTel") String nameTel,
             @Field("handingStatus") String state
+    );
+
+    /**
+     * 客户订单列表
+     *
+     * @param custId 客户名/用户电话
+     * @param projectId  项目Id
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/getOrderDetail/")
+    Observable<RoomOrder> orderDetail(
+            @Field("custId") int custId,
+            @Field("projectId") int projectId
     );
 
     /**

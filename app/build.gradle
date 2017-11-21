@@ -38,6 +38,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     compile 'com.jude:exgridview:1.1.5'
     compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
+    compile 'com.dsk:imageprovider:2.2.1'
 
     // network
     compile rootProject.ext.dependencies["retrofit"]
