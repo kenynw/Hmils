@@ -134,7 +134,12 @@ public class Client implements Parcelable {
     }
 
     public String getFullAddress() {
-        return getProvince() + getCity() + getDistrict() + getDetailAddr();
+        StringBuilder builder = new StringBuilder();
+        builder.append(getProvince() == null ? "" : getProvince());
+        builder.append(getCity() == null ? "" : getCity());
+        builder.append(getDistrict() == null ? "" : getDistrict());
+        builder.append(getDetailAddr() == null ? "" : getDetailAddr());
+        return builder.toString();
     }
 
     public Client() {

@@ -77,6 +77,8 @@
     <string name="hint_pwd_confirm">请您再次输入密码</string>
     <string name="hint_search">客户名或手机号</string>
     <string name="hint_address_detail">请输入详情地址</string>
+    <string name="hint_name">请输入名字</string>
+    <string name="hint_mobile">请输入电话</string>
 
     <string name="btn_captcha">获取验证码</string>
     <string name="btn_next">下一步</string>

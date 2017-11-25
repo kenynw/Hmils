@@ -68,6 +68,7 @@
             android:inputType="text"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
+            android:hint="@string/hint_name"
             tools:text="周杰伦"
             />
 

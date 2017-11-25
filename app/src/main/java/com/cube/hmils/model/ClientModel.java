@@ -31,7 +31,7 @@ public class ClientModel extends AbsModel {
      * @return
      */
     public Observable<ClientList> getClientList(String keywords) {
-        return ServicesClient.getServices().getCustList(20, keywords)
+        return ServicesClient.getServices().getCustList(7, keywords)
                 .map(clientList -> {
                     if (!clientList.getCustList().isEmpty()) {
                         Collections.sort(clientList.getCustList(), (clientFirst, clientSecond) ->
@@ -52,12 +52,12 @@ public class ClientModel extends AbsModel {
      * @return
      */
     public Observable<Client> getClientDetail(int clientId, int projectId) {
-        return ServicesClient.getServices().getClientDetail(20, clientId, projectId)
+        return ServicesClient.getServices().getClientDetail(7, clientId, projectId)
                 .compose(new DefaultTransform<>());
     }
 
     public Observable<OrderList> getOrderList(String search, String state) {
-        return ServicesClient.getServices().orderList(20, search, state)
+        return ServicesClient.getServices().orderList(7, search, state)
                 .compose(new DefaultTransform<>());
     }
 

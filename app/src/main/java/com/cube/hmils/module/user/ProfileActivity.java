@@ -91,6 +91,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     }
 
     public void setClientInfo(Client client) {
+        if (client == null) return;
         mEtFullName.setText(client.getCustName());
         mEtPhone.setText(client.getPhoneNo());
         mFlAddress.setVisibility(View.VISIBLE);
