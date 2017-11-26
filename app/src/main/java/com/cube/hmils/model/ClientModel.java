@@ -4,6 +4,7 @@ import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
 import com.cube.hmils.model.bean.OrderList;
 import com.cube.hmils.model.bean.Project;
+import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
@@ -53,6 +54,16 @@ public class ClientModel extends AbsModel {
      */
     public Observable<Client> getClientDetail(int clientId, int projectId) {
         return ServicesClient.getServices().getClientDetail(7, clientId, projectId)
+                .compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 完善该用户信息
+     *
+     */
+    public Observable<Response> saveClientInfo(int projectId, String clientName, String phone, String province,
+                                               String city, String district, String detailAddr) {
+        return ServicesClient.getServices().saveClientInfo(projectId, clientName, phone, province, city, district, detailAddr)
                 .compose(new DefaultTransform<>());
     }
 

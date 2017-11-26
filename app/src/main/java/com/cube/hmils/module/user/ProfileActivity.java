@@ -37,8 +37,8 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     @BindView(R.id.et_profile_phone)
     TextView mEtPhone;
 
-    @BindView(R.id.et_profile_address)
-    TextView mEtAddress;
+    @BindView(R.id.tv_profile_address)
+    TextView mTvAddress;
 
     @BindView(R.id.et_profile_cooperation)
     TextView mEtCooperation;
@@ -95,18 +95,20 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         mEtFullName.setText(client.getCustName());
         mEtPhone.setText(client.getPhoneNo());
         mFlAddress.setVisibility(View.VISIBLE);
-        mEtAddress.setText(client.getFullAddress());
+        mTvAddress.setText(client.getFullAddress());
         mFlAddress.setOnClickListener(v -> startActivity(new Intent(this, EditAddressActivity.class)));
         mFlCooperation.setVisibility(View.VISIBLE);
         if (!TextUtils.isEmpty(client.getCreatTime()))
             mEtCooperation.setText(client.getCreatTime().substring(0, 11));
-        mBtnSave.setOnClickListener(v -> startActivity(new Intent(this, ClientDetailActivity.class)));
+        mBtnSave.setOnClickListener(v -> {
+
+        });
     }
 
     private void checkProfile() {
         String username = mEtFullName.getText().toString().trim();
         String mobile = mEtPhone.getText().toString().trim();
-        getPresenter().save(mUri, username, mobile);
+        getPresenter().saveProfile(mUri, username, mobile);
     }
 
     @Override
@@ -158,5 +160,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     public void onError() {
 
     }
+
+
 
 }

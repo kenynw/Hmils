@@ -65,10 +65,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@color/white"
+            android:gravity="end"
             android:inputType="text"
+            android:minWidth="50dp"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
-            android:hint="@string/hint_name"
             tools:text="周杰伦"
             />
 
@@ -100,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@color/white"
+            android:ems="11"
+            android:gravity="end"
             android:inputType="phone"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
@@ -129,14 +132,13 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <EditText
-            android:id="@+id/et_profile_address"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tv_profile_address"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@color/white"
-            android:inputType="textMultiLine"
-            android:maxWidth="240dp"
+            android:gravity="end"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
             tools:text="厦门市思明区软件园二期望海路31-2号291"
@@ -170,12 +172,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:background="@color/white"
+            android:gravity="end"
+            android:inputType="date"
             android:maxWidth="240dp"
+            android:minWidth="100dp"
             android:textColor="@color/textSecondary"
             android:textSize="@dimen/text_size_body"
             tools:text="2016-12-28"
-            android:inputType="date"
-            android:background="@color/white"
             />
 
     </FrameLayout>

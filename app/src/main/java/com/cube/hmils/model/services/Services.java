@@ -206,4 +206,29 @@ public interface Services {
             @Field("projectId") int projectId
     );
 
+    /**
+     *
+     * 完善/修改客户信息
+     *
+     * @param projectId 项目Id
+     * @param custName 	用户名
+     * @param phone 手机号
+     * @param province 省
+     * @param city 市
+     * @param district 县
+     * @param detailAddr 详细地址
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/editCustInfo/")
+    Observable<Response> saveClientInfo(
+            @Field("projectId") int projectId,
+            @Field("custName") String custName,
+            @Field("phoneNo") String phone,
+            @Field("province") String province,
+            @Field("city") String city,
+            @Field("district") String district,
+            @Field("detailAddr") String detailAddr
+    );
+
 }

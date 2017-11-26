@@ -6,10 +6,14 @@ package com.cube.hmils.model.constant;
 
 public interface EventCode {
 
-
     /**
      * 退出登录
      */
     int LOGOUT = 0x02;
+
+    /**
+     * 编辑地址
+     */
+    int EDIT_ADDRESS = 0x03;
 
 }

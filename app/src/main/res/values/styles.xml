@@ -37,7 +37,7 @@
         <item name="com.cube.hmils:contentInsetLeft">0dp</item>
         <item name="com.cube.hmils:contentInsetStart">0dp</item>
         <item name="com.cube.hmils:contentInsetStartWithNavigation">0dp</item>
-        <item name="com.cube.hmils:popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="com.cube.hmils:popupTheme">@style/PopupTheme</item>
         <item name="com.cube.hmils:theme">@style/PopupTheme</item>
     </style>
     <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
