@@ -167,8 +167,8 @@
             android:textSize="@dimen/text_size_body"
             />
 
-        <EditText
-            android:id="@+id/et_profile_cooperation"
+        <TextView
+            android:id="@+id/tv_profile_cooperation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

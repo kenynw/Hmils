@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
-import com.dsk.chain.bijection.Presenter;
+import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
 
 /**
  * Created by Carol on 2017/10/30.
  */
 
-public class ClientDetailPresenter extends Presenter<ClientDetailActivity> {
+public class ClientDetailPresenter extends BaseDataActivityPresenter<ClientDetailActivity, Client> {
 
     public static final String EXTRA_CLIENT = "client";
 
@@ -32,7 +33,12 @@ public class ClientDetailPresenter extends Presenter<ClientDetailActivity> {
     @Override
     protected void onCreateView(ClientDetailActivity view) {
         super.onCreateView(view);
-        getView().setData(mClient);
+        loadData();
+    }
+
+    private void loadData() {
+        ClientModel.getInstance().getClientDetail(mClient.getCustId(), mClient.getProjectId())
+                .unsafeSubscribe(getDataSubscriber());
     }
 
 }

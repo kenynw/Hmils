@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.module.user.ClientDetailPresenter;
 import com.cube.hmils.utils.StringUtil;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
@@ -38,6 +39,7 @@ public class ClientViewHolder extends BaseViewHolder<Client> {
             mTvLetter.setVisibility(View.GONE);
         }
         mTvName.setText(data.getCustName());
+        itemView.setOnClickListener(v -> ClientDetailPresenter.start(getContext(), data));
     }
 
 }

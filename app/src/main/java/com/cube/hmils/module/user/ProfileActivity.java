@@ -12,15 +12,21 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.User;
+import com.cube.hmils.utils.LUtils;
 import com.cube.hmils.utils.PermissionUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.library.imageprovider.ImageProvider;
 import com.jude.library.imageprovider.OnImageSelectListener;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,8 +46,8 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     @BindView(R.id.tv_profile_address)
     TextView mTvAddress;
 
-    @BindView(R.id.et_profile_cooperation)
-    TextView mEtCooperation;
+    @BindView(R.id.tv_profile_cooperation)
+    TextView mTvCooperation;
 
     @BindView(R.id.fl_profile_address)
     FrameLayout mFlAddress;
@@ -98,17 +104,63 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         mTvAddress.setText(client.getFullAddress());
         mFlAddress.setOnClickListener(v -> startActivity(new Intent(this, EditAddressActivity.class)));
         mFlCooperation.setVisibility(View.VISIBLE);
+        mFlCooperation.setOnClickListener(v -> showPickerTime());
         if (!TextUtils.isEmpty(client.getCreatTime()))
-            mEtCooperation.setText(client.getCreatTime().substring(0, 11));
+            mTvCooperation.setText(client.getCreatTime().substring(0, 11));
         mBtnSave.setOnClickListener(v -> {
-
+            checkClientInfo();
         });
+    }
+
+    public void setAddress(String address) {
+        mTvAddress.setText(address);
     }
 
     private void checkProfile() {
         String username = mEtFullName.getText().toString().trim();
         String mobile = mEtPhone.getText().toString().trim();
         getPresenter().saveProfile(mUri, username, mobile);
+    }
+
+    private void checkClientInfo() {
+        String name = mEtFullName.getText().toString().trim();
+        String phone = mEtPhone.getText().toString().trim();
+        String address = mTvAddress.getText().toString().trim();
+        String time = mTvCooperation.getText().toString().trim();
+
+        if (TextUtils.isEmpty(name)) {
+            LUtils.toast("名字不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(phone)) {
+            LUtils.toast("手机号不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(address)) {
+            LUtils.toast("地址不能为空");
+            return;
+        }
+        if (TextUtils.isEmpty(time)) {
+            LUtils.toast("合作时间不能为空");
+            return;
+        }
+
+        getPresenter().saveClient(name, phone);
+    }
+
+    private void showPickerTime() {
+        new TimePickerView.Builder(this, (date, v) -> {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+            mTvCooperation.setText(format.format(date));
+        }).setType(new boolean[] {true, true, true, false, false, false})
+                .setSubmitText("完成")
+                .setSubmitColor(getResources().getColor(R.color.colorPrimary))
+                .setCancelColor(getResources().getColor(R.color.textSecondary))
+                .setLabel("", "", "", "", "", "")
+                .setDate(Calendar.getInstance())
+                .setRangDate(null, Calendar.getInstance())
+                .build()
+                .show();
     }
 
     @Override
@@ -160,7 +212,5 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     public void onError() {
 
     }
-
-
 
 }

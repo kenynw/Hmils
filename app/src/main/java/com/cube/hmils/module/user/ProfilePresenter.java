@@ -30,30 +30,20 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     @Override
     protected void onCreate(ProfileActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
+        mClient = getView().getIntent().getParcelableExtra(EXTRA_CLIENT);
     }
 
     @Override
     protected void onCreateView(ProfileActivity view) {
         super.onCreateView(view);
-        mClient = getView().getIntent().getParcelableExtra(EXTRA_CLIENT);
         if (mClient != null) {
             getView().setClientInfo(mClient);
-            loadData();
+//            loadData();
         }
         User user = getView().getIntent().getParcelableExtra(EXTRA_USER);
         if (user != null) {
             getView().setProfile(user);
         }
-    }
-
-    private void loadData() {
-        ClientModel.getInstance().getClientDetail(mClient.getCustId(), mClient.getProjectId())
-                .subscribe(new ServicesResponse<Client>() {
-                    @Override
-                    public void onNext(Client client) {
-                        getView().setClientInfo(client);
-                    }
-                });
     }
 
     public void saveProfile(Uri uri, String username, String phone) {
@@ -66,17 +56,15 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
                 });
     }
 
-    public void saveClient(String name, String phone, String province, String city, String district, String address) {
-        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone, province, city, district, address)
+    public void saveClient(String name, String phone) {
+        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone,mClient.getProvince(),
+                mClient.getCustImg(), mClient.getDistrict(), mClient.getDetailAddr())
                 .subscribe(new ServicesResponse<Response>() {
                     @Override
                     public void onNext(Response response) {
                         LUtils.toast("修改成功");
                         mClient.setCustName(name);
                         mClient.setPhoneNo(phone);
-                        mClient.setCity(city);
-                        mClient.setDistrict(district);
-                        mClient.setDetailAddr(address);
                         ClientDetailPresenter.start(getView(), mClient);
                     }
 
@@ -93,9 +81,12 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
             String province = bundle.getString("province");
             String city = bundle.getString("city");
             String district = bundle.getString("district");
+            String address = bundle.getString("address");
             mClient.setProvince(province);
             mClient.setCity(city);
             mClient.setDistrict(district);
+            mClient.setDetailAddr(address);
+            getView().setAddress(mClient.getFullAddress());
         }
     }
 
