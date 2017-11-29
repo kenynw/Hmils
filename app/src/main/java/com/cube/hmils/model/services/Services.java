@@ -3,6 +3,7 @@ package com.cube.hmils.model.services;
 
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
+import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.model.bean.OrderList;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
@@ -134,7 +135,7 @@ public interface Services {
     );
 
     /**
-     * 客户订单列表
+     * 订单详情
      *
      * @param custId 客户名/用户电话
      * @param projectId  项目Id
@@ -145,6 +146,22 @@ public interface Services {
     Observable<RoomOrder> orderDetail(
             @Field("custId") int custId,
             @Field("projectId") int projectId
+    );
+
+    /**
+     * 客户订单列表
+     *
+     * @param custId 客户名/用户电话
+     * @param projectId  项目Id
+     * @param busiType  类型
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/creatOrder/")
+    Observable<Order> createOrder(
+            @Field("custId") int custId,
+            @Field("projectId") int projectId,
+            @Field("busiType") int busiType
     );
 
     /**
@@ -174,6 +191,17 @@ public interface Services {
             @Field("roomName") String roomName,
             @Field("roomSize") String roomSize,
             @Field("roomType") int roomType
+    );
+
+    /**
+     * 填写房间数量
+     * @param projectId
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/getTotalOrder/")
+    Observable<RoomOrder> getTotalOrder(
+            @Field("projectId") int projectId
     );
 
     /**

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.model.bean.Project;
+import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
 
@@ -45,7 +46,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     @Override
     protected void onCreateView(RoomParamsActivity view) {
         super.onCreateView(view);
-//        view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
+        view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
     }
 
     public void saveParams(String addArea, String roomName, String roomSize, int roomType) {
@@ -57,12 +58,18 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                     @Override
                     public void onNext(Project project) {
                         if (isEnd.equals("end")) {
-                            getView().startActivity(new Intent(getView(), OrderDetailActivity.class));
+                            OrderDetailPresenter.start(getView(), mOrder.getProjectId());
                         } else {
-                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mPosition++);
+                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, ++ mPosition);
                         }
                     }
                 });
     }
 
+    @Override
+    public void onEventMainThread(int eventCode, Bundle bundle) {
+        if (eventCode == EventCode.ROOM_PARAMS_FINISH) {
+            getView().finish();
+        }
+    }
 }

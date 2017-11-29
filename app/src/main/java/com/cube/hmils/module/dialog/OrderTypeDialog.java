@@ -2,16 +2,21 @@ package com.cube.hmils.module.dialog;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.cube.hmils.R;
-import com.cube.hmils.module.order.RoomParamsActivity;
+import com.cube.hmils.model.ClientModel;
+import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.Order;
+import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.module.order.RoomNumPresenter;
+import com.cube.hmils.utils.LUtils;
 import com.gyf.barlibrary.ImmersionBar;
 
 import butterknife.BindView;
@@ -33,10 +38,13 @@ public class OrderTypeDialog extends BottomSheetDialog {
     @BindView(R.id.btn_order_type_ok)
     Button mBtnOk;
 
+    private Client mClient;
+
     private int mSelectedIndex;
 
-    public OrderTypeDialog(@NonNull Context context) {
+    public OrderTypeDialog(@NonNull Context context, Client client) {
         super(context);
+        mClient = client;
         View view = View.inflate(context, R.layout.dialog_order_type, null);
         ButterKnife.bind(this, view);
         ImmersionBar bar = ImmersionBar
@@ -64,8 +72,19 @@ public class OrderTypeDialog extends BottomSheetDialog {
         });
         mIvClose.setOnClickListener(close -> dismiss());
         mBtnOk.setOnClickListener(ok -> {
-            dismiss();
-            context.startActivity(new Intent(context, RoomParamsActivity.class));
+            ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mSelectedIndex)
+                    .subscribe(new ServicesResponse<Order>() {
+                        @Override
+                        public void onNext(Order order) {
+                            dismiss();
+                            RoomNumPresenter.start(context, order);
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            LUtils.log(Log.getStackTraceString(e));
+                        }
+                    });
         });
     }
 

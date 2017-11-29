@@ -3,6 +3,8 @@ package com.cube.hmils.model.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -21,21 +23,23 @@ public class RoomOrder implements Parcelable {
      * totalPrice : 测试内容2t8l
      */
 
-    private List<RoomOrder> roomOrder;
+    private RoomOrder roomOrder;
     private int hGoods;
     private int itemId;
     private int mGoods;
     private String roomName;
     private int totalGoods;
     private String totalPrice;
+    @SerializedName(alternate = "heatingList", value = "HeatingList")
     private List<Device> heatingList;
     private List<Device> materialList;
+    private InstallInfo installInfo;
 
-    public List<RoomOrder> getRoomOrder() {
+    public RoomOrder getRoomOrder() {
         return roomOrder;
     }
 
-    public void setRoomOrder(List<RoomOrder> roomOrder) {
+    public void setRoomOrder(RoomOrder roomOrder) {
         this.roomOrder = roomOrder;
     }
 
@@ -103,6 +107,14 @@ public class RoomOrder implements Parcelable {
         this.materialList = materialList;
     }
 
+    public InstallInfo getInstallInfo() {
+        return installInfo;
+    }
+
+    public void setInstallInfo(InstallInfo installInfo) {
+        this.installInfo = installInfo;
+    }
+
     public RoomOrder() {
     }
 
@@ -113,7 +125,7 @@ public class RoomOrder implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.roomOrder);
+        dest.writeParcelable(this.roomOrder, flags);
         dest.writeInt(this.hGoods);
         dest.writeInt(this.itemId);
         dest.writeInt(this.mGoods);
@@ -122,10 +134,11 @@ public class RoomOrder implements Parcelable {
         dest.writeString(this.totalPrice);
         dest.writeTypedList(this.heatingList);
         dest.writeTypedList(this.materialList);
+        dest.writeParcelable(this.installInfo, flags);
     }
 
     protected RoomOrder(Parcel in) {
-        this.roomOrder = in.createTypedArrayList(RoomOrder.CREATOR);
+        this.roomOrder = in.readParcelable(RoomOrder.class.getClassLoader());
         this.hGoods = in.readInt();
         this.itemId = in.readInt();
         this.mGoods = in.readInt();
@@ -134,6 +147,7 @@ public class RoomOrder implements Parcelable {
         this.totalPrice = in.readString();
         this.heatingList = in.createTypedArrayList(Device.CREATOR);
         this.materialList = in.createTypedArrayList(Device.CREATOR);
+        this.installInfo = in.readParcelable(InstallInfo.class.getClassLoader());
     }
 
     public static final Creator<RoomOrder> CREATOR = new Creator<RoomOrder>() {

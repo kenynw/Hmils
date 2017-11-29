@@ -8,6 +8,7 @@ import com.cube.hmils.model.bean.Device;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Carol on 2017/11/22.
@@ -26,6 +27,7 @@ public class DeviceViewHolder extends BaseViewHolder<Device> {
 
     public DeviceViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_list_device);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override

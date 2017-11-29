@@ -15,8 +15,7 @@ public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragm
 
     @Override
     public void onRefresh() {
-        ClientModel.getInstance().getOrderList("", "")
-                .map(OrderList::getCustOrderList)
+        ClientModel.getInstance().getOrderList("", "").map(OrderList::getCustOrderList)
                 .unsafeSubscribe(getRefreshSubscriber());
     }
 

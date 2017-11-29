@@ -56,4 +56,8 @@ public class RoomNumActivity extends ChainBaseActivity<RoomNumPresenter> impleme
 
     }
 
+    @Override
+    public int[] getHideSoftViewIds() {
+        return new int[] {R.id.et_room_num};
+    }
 }

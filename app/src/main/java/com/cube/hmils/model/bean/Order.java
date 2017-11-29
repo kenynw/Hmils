@@ -3,12 +3,15 @@ package com.cube.hmils.model.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Carol on 2017/10/14.
  */
 
 public class Order implements Parcelable {
 
+    @SerializedName(alternate = "projectId", value = "project")
     private int projectId;
 
     private int orderId;

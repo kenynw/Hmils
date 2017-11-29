@@ -99,9 +99,11 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mToolbarBackText.setText("上一步");
         mTvAdd.setOnClickListener(v -> showAddDialog());
         mTvMinus.setOnClickListener(v -> {
-            mLlExtra.setVisibility(View.GONE);
-            mEtExtra.setText("");
-            mClLayout.getLayoutParams().height = mClLayout.getHeight() - LUtils.dp2px(70);
+            if (mLlExtra.getVisibility() == View.VISIBLE) {
+                mLlExtra.setVisibility(View.GONE);
+                mEtExtra.setText("");
+                mClLayout.getLayoutParams().height = mClLayout.getHeight() - LUtils.dp2px(70);
+            }
         });
         mIbtAdd.setOnClickListener(v -> {
             View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
@@ -134,9 +136,12 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     public void onPositiveClick(@NonNull View view) {
         if (getSupportFragmentManager().findFragmentByTag(TAG_ADD_AREA) != null) {
             EditText et = view.getRootView().findViewById(R.id.et_add_area_input);
-            mLlExtra.setVisibility(View.VISIBLE);
             mEtExtra.setText(et.getText());
-            mClLayout.getLayoutParams().height = mClLayout.getHeight() + LUtils.dp2px(70);
+            LUtils.closeKeyboard(et);
+            if (mLlExtra.getVisibility() == View.GONE) {
+                mLlExtra.setVisibility(View.VISIBLE);
+                mClLayout.getLayoutParams().height = mClLayout.getHeight() + LUtils.dp2px(70);
+            }
         }
     }
 
@@ -149,6 +154,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         String roomName = mEtBedroom.getText().toString().trim();
         String roomWidth = mEtWidth.getText().toString().trim();
         String roomHeight = mEtHeight.getText().toString().trim();
+        String extraArea = mEtExtra.getText().toString().trim();
         mRooms.clear();
         addRoom(roomWidth, roomHeight);
         if (mLlAdd.getChildCount() > 0) {
@@ -164,7 +170,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             }
         }
         String roomSize = new Gson().toJson(mRooms);
-        getPresenter().saveParams("", roomName, roomSize, 0);
+
+        getPresenter().saveParams(extraArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
     }
 
     private void addRoom(String width, String height) {
@@ -172,6 +179,12 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         room.setWidth(width);
         room.setHeight(height);
         mRooms.add(room);
+    }
+
+    @Override
+    public int[] getHideSoftViewIds() {
+        return new int[] {R.id.et_room_param_bedroom, R.id.et_room_param_extra,
+                R.id.et_room_param_width,  R.id.et_room_param_height};
     }
 
 }

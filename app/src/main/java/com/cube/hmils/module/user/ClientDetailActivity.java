@@ -35,17 +35,12 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
     @BindView(R.id.btn_client_detail_create)
     Button mBtnCreate;
 
-    private OrderTypeDialog mTypeDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_activity_client_detail);
         setToolbarTitle(R.string.text_client_detail);
         ButterKnife.bind(this);
-
-        mTypeDialog = new OrderTypeDialog(this);
-        mBtnCreate.setOnClickListener(v -> mTypeDialog.show());
     }
 
     @Override
@@ -54,6 +49,7 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
         mTvName.setText(client.getCustName());
         mTvAddress.setText(client.getFullAddress());
         mTvCooperatTime.setText(client.getCreatTime());
+        mBtnCreate.setOnClickListener(v -> new OrderTypeDialog(ClientDetailActivity.this, client).show());
     }
 
 }

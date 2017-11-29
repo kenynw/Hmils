@@ -16,4 +16,9 @@ public interface EventCode {
      */
     int EDIT_ADDRESS = 0x03;
 
+    /**
+     * 关闭房间参数页面
+     */
+    int ROOM_PARAMS_FINISH = 0x04;
+
 }

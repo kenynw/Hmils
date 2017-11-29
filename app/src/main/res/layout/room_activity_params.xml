@@ -286,6 +286,7 @@
             <Button
                 android:id="@+id/btn_room_params_save"
                 style="@style/ButtonLarge"
+                android:layout_marginBottom="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_large"
                 android:text="@string/btn_confirm_info"
                 />

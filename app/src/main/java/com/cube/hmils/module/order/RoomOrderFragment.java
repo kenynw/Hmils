@@ -56,19 +56,19 @@ public class RoomOrderFragment extends BaseDataFragment<RoomOrderFragmentPresent
             if (mPosition > 0) mPosition -= mPosition;
             setData(getPresenter().getRoomOrder());
         });
-        mIvRight.setOnClickListener(v -> {
-            if (mPosition < getPresenter().getRoomOrder().getRoomOrder().size())
-                mPosition += mPosition;
-            setData(getPresenter().getRoomOrder());
-        });
+//        mIvRight.setOnClickListener(v -> {
+//            if (mPosition < getPresenter().getRoomOrder().getRoomOrder().size())
+//                mPosition += mPosition;
+//            setData(getPresenter().getRoomOrder());
+//        });
 
         return view;
     }
 
     @Override
     public void setData(RoomOrder roomOrders) {
-        mTvPosition.setText(String.format("%1$d of %2$d", mPosition, roomOrders.getRoomOrder().size()));
-        RoomOrder roomOrder = roomOrders.getRoomOrder().get(mPosition);
+//        mTvPosition.setText(String.format("%1$d of %2$d", mPosition, roomOrders.getRoomOrder().size()));
+        RoomOrder roomOrder = roomOrders.getRoomOrder();
         mTvCountMaterial.setText(String.format(getString(R.string.text_count_product), roomOrder.getMGoods()));
         mTvCountHeating.setText(String.format(getString(R.string.text_count_product), roomOrder.getHGoods()));
         mRvHeating.setAdapter( new DeviceRecyclerAdapter(getActivity(), roomOrder.getHeatingList()));

@@ -19,7 +19,7 @@ public class RoomNumPresenter extends Presenter<RoomNumActivity> {
     private Order mOrder;
 
     public static void start(Context context, Order order) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(context, RoomNumActivity.class);
         intent.putExtra("order", order);
         context.startActivity(intent);
     }

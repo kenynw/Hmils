@@ -69,6 +69,7 @@
     <string name="text_rp_unit">（w/pcs）</string>
     <string name="text_price_unit">（元）</string>
     <string name="text_count_product">共%d件产品</string>
+    <string name="text_view_detail"><u>查看详情</u></string>
 
     <string name="hint_phone">请输入您的手机号</string>
     <string name="hint_captcha">请输入6位验证码</string>
