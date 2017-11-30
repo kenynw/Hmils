@@ -1,5 +1,6 @@
 package com.cube.hmils.module.main;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.constant.EventCode;
 import com.dsk.chain.expansion.list.BaseListFragmentPresenter;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
@@ -63,7 +65,12 @@ public class ClientListPresenter extends BaseListFragmentPresenter<ClientListFra
 
     public List<Client> getClients() {
         return mClients;
-
     }
 
+    @Override
+    public void onEventMainThread(int eventCode, Bundle bundle) {
+        if (eventCode == EventCode.CLIENT_LIST_UPDATE) {
+            onRefresh();
+        }
+    }
 }

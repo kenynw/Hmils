@@ -12,6 +12,7 @@ import com.cube.hmils.module.order.ServiceDetailActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
+import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -20,6 +21,9 @@ import butterknife.ButterKnife;
  */
 
 public class ServiceViewHolder extends BaseViewHolder<Order> {
+
+    @BindArray(R.array.order_status)
+    String[] mOrderStatus;
 
     @BindView(R.id.tv_order_time)
     TextView mTvTime;
@@ -50,7 +54,7 @@ public class ServiceViewHolder extends BaseViewHolder<Order> {
     @Override
     public void setData(Order data) {
         mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
-        mTvState.setText(data.getHandingStatus());
+        mTvState.setText(mOrderStatus[data.getHandingStatus() - 1]);
         mTvUsername.setText(data.getCustName());
         mTvContact.setText(data.getCustTel());
         mTvAddress.setText(data.getCustAddr());

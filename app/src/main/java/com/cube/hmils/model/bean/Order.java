@@ -24,10 +24,20 @@ public class Order implements Parcelable {
 
     private String custAddr;
 
-    private String handingStatus;
+    private int handingStatus;
+
+    private String appoTime; //上门时间
 
     public int getProjectId() {
         return projectId;
+    }
+
+    public String getAppoTime() {
+        return appoTime;
+    }
+
+    public void setAppoTime(String appoTime) {
+        this.appoTime = appoTime;
     }
 
     public void setProjectId(int projectId) {
@@ -74,12 +84,15 @@ public class Order implements Parcelable {
         this.custAddr = custAddr;
     }
 
-    public String getHandingStatus() {
+    public int getHandingStatus() {
         return handingStatus;
     }
 
-    public void setHandingStatus(String handingStatus) {
+    public void setHandingStatus(int handingStatus) {
         this.handingStatus = handingStatus;
+    }
+
+    public Order() {
     }
 
     @Override
@@ -95,10 +108,8 @@ public class Order implements Parcelable {
         dest.writeString(this.custName);
         dest.writeString(this.custTel);
         dest.writeString(this.custAddr);
-        dest.writeString(this.handingStatus);
-    }
-
-    public Order() {
+        dest.writeInt(this.handingStatus);
+        dest.writeString(this.appoTime);
     }
 
     protected Order(Parcel in) {
@@ -108,7 +119,8 @@ public class Order implements Parcelable {
         this.custName = in.readString();
         this.custTel = in.readString();
         this.custAddr = in.readString();
-        this.handingStatus = in.readString();
+        this.handingStatus = in.readInt();
+        this.appoTime = in.readString();
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {

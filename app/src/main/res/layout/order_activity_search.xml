@@ -43,16 +43,13 @@
                 android:textSize="@dimen/text_size_body"
                 />
 
-            <TextView
+            <ImageView
                 android:id="@+id/iv_search_close"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginRight="6dp"
-                android:background="@drawable/bg_round_input"
-                android:gravity="center"
-                android:text="x"
-                android:textSize="@dimen/text_size_subhead"
+                android:src="@mipmap/ic_search_close"
                 />
 
         </FrameLayout>

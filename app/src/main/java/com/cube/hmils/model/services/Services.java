@@ -15,6 +15,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
@@ -32,8 +33,7 @@ public interface Services {
      * 每次启动都要调用一次才能显示正常的状态  我也不知道干嘛用的
      *
      */
-    @FormUrlEncoded
-    @POST("operator/getMessage")
+    @GET("operator/getMessage")
     Observable<Response> getMessage();
 
     /**
@@ -131,7 +131,7 @@ public interface Services {
     Observable<OrderList> orderList(
             @Field("userId") int userId,
             @Field("nameTel") String nameTel,
-            @Field("handingStatus") String state
+            @Field("handingStatus") int state
     );
 
     /**
@@ -146,6 +146,20 @@ public interface Services {
     Observable<RoomOrder> orderDetail(
             @Field("custId") int custId,
             @Field("projectId") int projectId
+    );
+
+    /**
+     * 确认并发送给客户
+     *
+     * @param projectId  项目Id
+     * @param payType  0---线上支付，1---线下支付
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/comfirmOrder/")
+    Observable<RoomOrder> comfirmOrder(
+            @Field("projectId") int projectId,
+            @Field("payType") int payType
     );
 
     /**

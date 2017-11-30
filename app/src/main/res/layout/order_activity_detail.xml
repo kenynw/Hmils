@@ -68,6 +68,7 @@
                 android:id="@+id/fl_order_detail_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
                 />
 
             <LinearLayout
@@ -75,6 +76,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_normal"
                 android:layout_marginRight="@dimen/spacing_normal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 >
 
@@ -120,6 +123,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_order_detail_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/textOrange"
@@ -130,6 +134,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_order_detail_pay"
                 android:layout_width="match_parent"
                 android:layout_height="112dp"
                 android:layout_marginTop="22dp"
@@ -137,6 +142,7 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/spacing_normal"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -147,30 +153,69 @@
                     android:textSize="@dimen/text_size_body_material"
                     />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/rg_order_detail_pay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_normal"
                     android:orientation="horizontal"
                     >
 
-                    <TextView
+                    <RadioButton
+                        android:id="@+id/rbtn_order_detail_online"
                         android:layout_width="114dp"
                         android:layout_height="44dp"
                         android:layout_marginRight="@dimen/spacing_large"
-                        android:background="@drawable/btn_radius_stroke_secondary"
+                        android:background="@drawable/btn_pay_way_selector"
+                        android:button="@null"
+                        android:checked="true"
                         android:gravity="center"
                         android:text="线上支付"
-                        android:textColor="@color/textSecondary"
+                        android:textColor="@color/secondary2accent"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/rbtn_order_detail_offline"
+                        android:layout_width="114dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/btn_pay_way_selector"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="线下支付"
+                        android:textColor="@color/secondary2accent"
+                        />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="35dp"
+                android:paddingRight="35dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="175"
+                        android:text="订单时间"
+                        android:gravity="center"
                         />
 
                     <TextView
-                        android:layout_width="114dp"
-                        android:layout_height="44dp"
-                        android:background="@drawable/bg_radius_stroke_primary_dark"
-                        android:gravity="center"
-                        android:text="线下支付"
-                        android:textColor="@color/colorAccent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="130"
+                        android:text="订单时间"
                         />
 
                 </LinearLayout>
@@ -189,6 +234,7 @@
         android:text="确认并发送给用户"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_body"
+        android:visibility="gone"
         />
 
 </LinearLayout>

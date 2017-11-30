@@ -53,7 +53,7 @@ public class ServiceMainFragment extends ChainFragment<ServiceMainPresenter> {
     private List<Fragment> getFragments() {
         List<Fragment> list = new ArrayList<>();
         for (int i=0; i<4; i++) {
-            OrderListFragment fragment = OrderListFragment.newInstance(1);
+            OrderListFragment fragment = OrderListFragment.newInstance(1, 0);
             list.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());
         }

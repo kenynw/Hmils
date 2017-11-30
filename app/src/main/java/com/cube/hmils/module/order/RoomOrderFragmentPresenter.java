@@ -2,7 +2,6 @@ package com.cube.hmils.module.order;
 
 import android.os.Bundle;
 
-import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.dsk.chain.expansion.data.BaseDataFragmentPresenter;
 
@@ -24,22 +23,35 @@ public class RoomOrderFragmentPresenter extends BaseDataFragmentPresenter<RoomOr
         return fragment;
     }
 
+    public static RoomOrderFragment newInstance(RoomOrder roomOrder) {
+        RoomOrderFragment fragment = new RoomOrderFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("roomOrder", roomOrder);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     protected void onCreate(RoomOrderFragment view, Bundle saveState) {
         super.onCreate(view, saveState);
         if (view.getArguments() != null) {
             mProjectId = view.getArguments().getInt("projectId", 0);
+            mRoomOrder = view.getArguments().getParcelable("roomOrder");
         }
     }
 
     @Override
     protected void onCreateView(RoomOrderFragment view) {
         super.onCreateView(view);
-        loadData();
+        if (mRoomOrder != null) {
+            view.setData(mRoomOrder);
+        } else {
+            loadData();
+        }
     }
 
     private void loadData() {
-        ClientModel.getInstance().getTotalOrder(mProjectId).unsafeSubscribe(getSubscriber());
+
 
 //        ClientModel.getInstance().getOrderDetail(5, 115)
 //                .doOnNext(roomOrder -> mRoomOrder = roomOrder)

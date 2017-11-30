@@ -89,6 +89,7 @@
     <string name="btn_save">保&#160;&#160;存</string>
     <string name="btn_save_modify">保存修改</string>
     <string name="btn_complete_profile">完善资料</string>
+    <string name="btn_modify_order">修改订单</string>
 
     <string name="error_password_simply">您输入的密码过于简单</string>
 
@@ -126,6 +127,14 @@
         <item>R</item>
         <item>S</item>
         <item>T</item>
+    </string-array>
+
+    <string-array name="order_status">
+        <item>待处理</item>
+        <item>待支付</item>
+        <item>待发货</item>
+        <item>待安装</item>
+        <item>已完成</item>
     </string-array>
 
 </resources>

@@ -69,7 +69,7 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<OrderList> getOrderList(String search, String state) {
+    public Observable<OrderList> getOrderList(String search, int state) {
         return ServicesClient.getServices().orderList(UserPreferences.getUserID(), search, state)
                 .compose(new DefaultTransform<>());
     }
@@ -114,6 +114,17 @@ public class ClientModel extends AbsModel {
      */
     public Observable<RoomOrder> getTotalOrder(int projectId) {
         return ServicesClient.getServices().getTotalOrder(projectId)
+                .compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 获取总订单
+     *
+     * @param projectId
+     * @return
+     */
+    public Observable<RoomOrder> comfirmOrder(int projectId, int type) {
+        return ServicesClient.getServices().comfirmOrder(projectId, type)
                 .compose(new DefaultTransform<>());
     }
 

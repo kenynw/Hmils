@@ -21,4 +21,14 @@ public interface EventCode {
      */
     int ROOM_PARAMS_FINISH = 0x04;
 
+    /**
+     * 刷新订单列表
+     */
+    int ORDER_LIST_UPDATE = 0x05;
+
+    /**
+     * 刷新客户列表
+     */
+    int CLIENT_LIST_UPDATE = 0x05;
+
 }
