@@ -10,7 +10,18 @@ import java.util.List;
  */
 
 public class OrderList implements Parcelable {
+
+    private List<Order> orderList; // 售后列表
+
     private List<Order> custOrderList;
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 
     public List<Order> getCustOrderList() {
         return custOrderList;
@@ -20,6 +31,9 @@ public class OrderList implements Parcelable {
         this.custOrderList = custOrderList;
     }
 
+    public OrderList() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -27,13 +41,12 @@ public class OrderList implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(this.orderList);
         dest.writeTypedList(this.custOrderList);
     }
 
-    public OrderList() {
-    }
-
     protected OrderList(Parcel in) {
+        this.orderList = in.createTypedArrayList(Order.CREATOR);
         this.custOrderList = in.createTypedArrayList(Order.CREATOR);
     }
 

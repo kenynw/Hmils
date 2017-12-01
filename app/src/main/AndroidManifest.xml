@@ -26,40 +26,100 @@
                 android:resource="@xml/file_paths"/>
         </provider>
 
-        <activity android:name=".module.main.MainActivity">
+        <activity
+            android:name=".module.main.LauncherActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/LaunchTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                    android:host="yjy.app"
+                    android:pathPrefix="/openwith"
+                    android:scheme="yjyappscheme"/>
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".module.main.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".module.account.LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".module.order.RoomNumActivity">
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".module.order.RoomNumActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.RoomParamsActivity">
+        <activity
+            android:name=".module.order.RoomParamsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.OrderConfirmActivity">
+        <activity
+            android:name=".module.order.OrderConfirmActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.account.ResetPwdActivity">
+        <activity
+            android:name=".module.account.ResetPwdActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.account.ForgotActivity">
+        <activity
+            android:name=".module.account.ForgotActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.user.QRCodeActivity">
+        <activity
+            android:name=".module.user.QRCodeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.user.ProfileActivity">
+        <activity
+            android:name=".module.user.ProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.user.EditAddressActivity">
+        <activity
+            android:name=".module.user.EditAddressActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.user.ClientDetailActivity">
+        <activity
+            android:name=".module.user.ClientDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.ServiceDetailActivity">
+        <activity
+            android:name=".module.order.ServiceDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.OrderSearchActivity">
+        <activity
+            android:name=".module.order.OrderSearchActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.OrderDetailActivity">
+        <activity
+            android:name=".module.order.OrderDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

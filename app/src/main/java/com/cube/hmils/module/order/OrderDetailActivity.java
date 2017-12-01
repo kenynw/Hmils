@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.InstallInfo;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
@@ -49,6 +50,21 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     Button mBtnConfirm;
     @BindView(R.id.ll_order_detail_pay)
     LinearLayout mLlPay;
+    @BindView(R.id.ll_order_detail_state)
+    LinearLayout mLlState;
+    @BindView(R.id.btn_order_detail_contact)
+    Button mBtnContact;
+    @BindView(R.id.btn_order_detail_log)
+    Button mBtnLog;
+
+    @BindView(R.id.ll_order_detail_install)
+    LinearLayout mLlInstall;
+    @BindView(R.id.tv_order_install_label)
+    TextView mTvInstallLabel;
+    @BindView(R.id.tv_order_install_info)
+    TextView mTvInstallInfo;
+    @BindView(R.id.btn_order_install_contact)
+    Button mBtnInstallContact;
 
     private int mState;
 
@@ -70,12 +86,19 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                 mBtnConfirm.setVisibility(View.VISIBLE);
                 break;
             case 2:
+                mLlState.setVisibility(View.VISIBLE);
+                mBtnLog.setVisibility(View.GONE);
                 break;
             case 3:
+                mLlState.setVisibility(View.VISIBLE);
                 break;
             case 4:
+                mLlState.setVisibility(View.VISIBLE);
+                mBtnContact.setVisibility(View.GONE);
                 break;
             case 5:
+                mLlState.setVisibility(View.VISIBLE);
+                mBtnContact.setVisibility(View.GONE);
                 break;
         }
     }
@@ -89,6 +112,13 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         mTvPrice.setText(roomOrder.getRoomOrder().getTotalPrice());
         mTvNum.setText(String.format(getString(R.string.text_count_product), roomOrder.getRoomOrder().getTotalGoods()));
         mBtnConfirm.setOnClickListener(v -> getPresenter().confirm(mRbtnOnline.isChecked() ? 0 : 1));
+        if (roomOrder.getInstallInfo() != null) {
+            InstallInfo install = roomOrder.getInstallInfo();
+            mLlInstall.setVisibility(View.VISIBLE);
+            String installStr = "%1$s\n%2$s\n%3$s\n<font color=\"#5DBA68\">%4$s</font>";
+            mTvInstallInfo.setText(String.format(installStr, install.getMobile(), install.getName(),
+                    install.getAppoTime(), install.getOrderStatus()));
+        }
     }
 
     @Override

@@ -18,6 +18,11 @@
 
     <style name="AppTheme" parent="AppTheme.Base"/>
 
+    <style name="LaunchTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/bg_launch</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="TextTitle" parent="TextAppearance.AppCompat.Title">
         <item name="android:textSize">@dimen/text_size_title</item>
     </style>

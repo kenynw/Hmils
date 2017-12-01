@@ -249,6 +249,18 @@ public interface Services {
     );
 
     /**
+     * 售后列表
+     *
+     * @param userId    用户Id
+     */
+    @FormUrlEncoded
+    @POST("operator/afterSaleList/")
+    Observable<OrderList> servicesList(
+            @Field("userId") int userId,
+            @Field("handingStatus") int state
+    );
+
+    /**
      *
      * 完善/修改客户信息
      *

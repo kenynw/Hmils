@@ -31,17 +31,15 @@ public class OrderListFragment extends BaseListFragment<OrderListPresenter, Orde
         return fragment;
     }
 
-    private int mType;
-
     @Override
     public BaseViewHolder<Order> createViewHolder(ViewGroup parent, int viewType) {
-        return mType == 0 ? new OrderViewHolder(parent) : new ServiceViewHolder(parent);
+        return getPresenter().mType == 0 ? new OrderViewHolder(parent) : new ServiceViewHolder(parent);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mType = getArguments().getInt(EXTRA_TYPE);
+
 
         getListView().setClipToPadding(false);
         getListView().setRecyclerPadding(0, LUtils.dp2px(10), 0, 0);

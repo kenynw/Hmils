@@ -28,6 +28,10 @@ public class Order implements Parcelable {
 
     private String appoTime; //上门时间
 
+    private String procCode; //处理环节代码
+
+    private String time; //指派时间
+
     public int getProjectId() {
         return projectId;
     }
@@ -92,6 +96,22 @@ public class Order implements Parcelable {
         this.handingStatus = handingStatus;
     }
 
+    public String getProcCode() {
+        return procCode;
+    }
+
+    public void setProcCode(String procCode) {
+        this.procCode = procCode;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public Order() {
     }
 
@@ -110,6 +130,8 @@ public class Order implements Parcelable {
         dest.writeString(this.custAddr);
         dest.writeInt(this.handingStatus);
         dest.writeString(this.appoTime);
+        dest.writeString(this.procCode);
+        dest.writeString(this.time);
     }
 
     protected Order(Parcel in) {
@@ -121,6 +143,8 @@ public class Order implements Parcelable {
         this.custAddr = in.readString();
         this.handingStatus = in.readInt();
         this.appoTime = in.readString();
+        this.procCode = in.readString();
+        this.time = in.readString();
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {

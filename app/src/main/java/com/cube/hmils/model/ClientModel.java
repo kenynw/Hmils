@@ -74,6 +74,15 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
+    /**
+     * 我的售后列表
+     * @return
+     */
+    public Observable<OrderList> getServiceList(int state) {
+        return ServicesClient.getServices().servicesList(UserPreferences.getUserID(), state)
+                .compose(new DefaultTransform<>());
+    }
+
     public Observable<RoomOrder> getOrderDetail(int custId, int projectId) {
         return ServicesClient.getServices().orderDetail(custId, projectId)
                 .compose(new DefaultTransform<>());
