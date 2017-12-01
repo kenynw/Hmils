@@ -214,7 +214,7 @@
                         android:layout_marginStart="@dimen/spacing_normal"
                         android:layout_weight="1"
                         android:background="@drawable/bg_radius_input"
-                        android:inputType="text"
+                        android:inputType="number"
                         tools:ignore="TextFields"
                         />
 

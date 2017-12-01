@@ -1,6 +1,7 @@
 package com.cube.hmils.module.order;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.InstallInfo;
 import com.cube.hmils.model.bean.RoomOrder;
+import com.cube.hmils.module.dialog.BaseAlertDialog;
+import com.cube.hmils.module.dialog.DialogCallback;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
 
@@ -26,7 +29,7 @@ import butterknife.ButterKnife;
  *         总订单详情
  */
 @RequiresPresenter(OrderDetailPresenter.class)
-public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, RoomOrder> {
+public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, RoomOrder> implements DialogCallback {
 
     @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
@@ -65,6 +68,10 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     TextView mTvInstallInfo;
     @BindView(R.id.btn_order_install_contact)
     Button mBtnInstallContact;
+    @BindView(R.id.tv_order_detail_time)
+    TextView mTvTime;
+    @BindView(R.id.tv_order_detail_state)
+    TextView mTvState;
 
     private int mState;
 
@@ -88,6 +95,7 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
             case 2:
                 mLlState.setVisibility(View.VISIBLE);
                 mBtnLog.setVisibility(View.GONE);
+//                mTvState.setText();
                 break;
             case 3:
                 mLlState.setVisibility(View.VISIBLE);
@@ -111,14 +119,20 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                 .commit();
         mTvPrice.setText(roomOrder.getRoomOrder().getTotalPrice());
         mTvNum.setText(String.format(getString(R.string.text_count_product), roomOrder.getRoomOrder().getTotalGoods()));
-        mBtnConfirm.setOnClickListener(v -> getPresenter().confirm(mRbtnOnline.isChecked() ? 0 : 1));
-        if (roomOrder.getInstallInfo() != null) {
+        mBtnConfirm.setOnClickListener(v -> showConfirmDialog());
+
+        if (roomOrder.getInstallInfo() != null && roomOrder.getInstallInfo().getOrderStatus().equals("待安装")) {
             InstallInfo install = roomOrder.getInstallInfo();
             mLlInstall.setVisibility(View.VISIBLE);
             String installStr = "%1$s\n%2$s\n%3$s\n<font color=\"#5DBA68\">%4$s</font>";
             mTvInstallInfo.setText(String.format(installStr, install.getMobile(), install.getName(),
                     install.getAppoTime(), install.getOrderStatus()));
         }
+    }
+
+    private void showConfirmDialog() {
+        BaseAlertDialog.newInstance(R.layout.dialog_order_confirm, this)
+                .show(getSupportFragmentManager(), "confirm");
     }
 
     @Override
@@ -129,7 +143,20 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        ParamListPresenter.start(this, getPresenter().getData());
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onPositiveClick(@NonNull View view) {
+        if (getSupportFragmentManager().findFragmentByTag("confirm") != null) {
+            getPresenter().confirm(mRbtnOnline.isChecked() ? 0 : 1);
+        }
+    }
+
+    @Override
+    public void onNegativeClick(@NonNull View view) {
+
     }
 
 }

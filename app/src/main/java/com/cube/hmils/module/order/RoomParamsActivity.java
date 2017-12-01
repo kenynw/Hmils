@@ -171,7 +171,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         }
         String roomSize = new Gson().toJson(mRooms);
 
-        getPresenter().saveParams(extraArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
+        getPresenter().saveParams(!TextUtils.isEmpty(extraArea) ? Integer.valueOf(extraArea) : 0,
+                roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
     }
 
     private void addRoom(String width, String height) {

@@ -49,7 +49,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
         view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
     }
 
-    public void saveParams(String addArea, String roomName, String roomSize, int roomType) {
+    public void saveParams(int addArea, String roomName, String roomSize, int roomType) {
         String isEnd = mPosition == mRoomIds.length - 1 ? "end" : "";
 
         ClientModel.getInstance().saveRoomParams(addArea, isEnd, mRoomIds[0], mOrder.getProjectId(),
@@ -60,7 +60,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         if (isEnd.equals("end")) {
                             OrderDetailPresenter.start(getView(), mOrder.getProjectId(), 1);
                         } else {
-                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, ++ mPosition);
+                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mPosition + 1);
                         }
                     }
                 });

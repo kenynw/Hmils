@@ -14,13 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.cube.hmils.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <!--元数据-->
+
+            <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"/>
@@ -36,7 +36,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -48,9 +47,7 @@
                     android:pathPrefix="/openwith"
                     android:scheme="yjyappscheme"/>
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".module.main.MainActivity"
             android:configChanges="orientation"
@@ -59,8 +56,7 @@
         <activity
             android:name=".module.account.LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".module.order.RoomNumActivity"
             android:configChanges="orientation"
@@ -120,6 +116,8 @@
             android:name=".module.order.OrderDetailActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".module.order.ParamListActivity">
         </activity>
     </application>
 

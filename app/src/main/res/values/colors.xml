@@ -20,7 +20,9 @@
     <color name="divPrimary">#FFDCDDDD</color>
 
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#ff000000</color>
     <color name="whiteLight">#6CFFFFFF</color>
     <color name="pink">#FEDFDF</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

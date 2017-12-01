@@ -42,10 +42,10 @@
         <item name="com.cube.hmils:contentInsetLeft">0dp</item>
         <item name="com.cube.hmils:contentInsetStart">0dp</item>
         <item name="com.cube.hmils:contentInsetStartWithNavigation">0dp</item>
-        <item name="com.cube.hmils:popupTheme">@style/PopupTheme</item>
-        <item name="com.cube.hmils:theme">@style/PopupTheme</item>
+        <item name="com.cube.hmils:popupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
+        <item name="com.cube.hmils:theme">@style/ThemeOverlay.AppCompat.Dark</item>
     </style>
-    <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Light">
+    <style name="PopupTheme" parent="ThemeOverlay.AppCompat.Dark">
         <item name="android:textColor">@color/white</item>
         <item name="android:actionMenuTextColor">@color/white</item>
     </style>

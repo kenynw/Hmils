@@ -83,6 +83,12 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
+    /**
+     * 订单详情（房间）
+     * @param custId
+     * @param projectId
+     * @return
+     */
     public Observable<RoomOrder> getOrderDetail(int custId, int projectId) {
         return ServicesClient.getServices().orderDetail(custId, projectId)
                 .compose(new DefaultTransform<>());
@@ -109,7 +115,7 @@ public class ClientModel extends AbsModel {
      * @param roomType 标准房间传1，不规则房间传0
      * @return
      */
-    public Observable<Project> saveRoomParams(String addArea, String addStatus, int itemId, int projectId,
+    public Observable<Project> saveRoomParams(int addArea, String addStatus, int itemId, int projectId,
                                               String roomName, String roomSize, int roomType) {
         return ServicesClient.getServices().saveRoomParams(addArea, addStatus, itemId, projectId, roomName, roomSize, roomType)
                 .compose(new DefaultTransform<>());

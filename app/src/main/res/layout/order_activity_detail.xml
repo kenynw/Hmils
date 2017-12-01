@@ -217,7 +217,7 @@
                         android:gravity="center"
                         android:text="订单时间"
                         android:textColor="@color/textSecondary"
-                        android:textSize="9sp"
+                        android:textSize="@dimen/text_size_body"
                         />
 
                     <TextView
@@ -227,7 +227,6 @@
                         android:gravity="center"
                         android:text="订单时间"
                         android:textColor="@color/textSecondary"
-                        android:textSize="9sp"
                         />
 
                 </LinearLayout>
@@ -242,22 +241,22 @@
                     >
 
                     <TextView
+                        android:id="@+id/tv_order_detail_time"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="175"
                         android:gravity="center"
                         android:textColor="@color/textPrimary"
-                        android:textSize="9sp"
                         tools:text="2017-09-01 12:21"
                         />
 
                     <TextView
+                        android:id="@+id/tv_order_detail_state"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="130"
                         android:gravity="center"
                         android:textColor="@color/colorAccent"
-                        android:textSize="9sp"
                         tools:text="待发货"
                         />
 
@@ -280,31 +279,29 @@
 
                     <Button
                         android:id="@+id/btn_order_detail_contact"
-                        android:layout_width="76dp"
-                        android:layout_height="22dp"
+                        android:layout_width="114dp"
+                        android:layout_height="34dp"
                         android:background="@drawable/btn_radius_stroke_divider"
                         android:drawableLeft="@mipmap/icon_tel_azry"
-                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:drawablePadding="7.7dp"
                         android:gravity="start|center_vertical"
-                        android:paddingLeft="@dimen/spacing_small"
+                        android:paddingLeft="@dimen/spacing_large"
                         android:text="联系用户"
                         android:textColor="@color/textSecondary"
-                        android:textSize="9sp"
                         />
 
                     <Button
                         android:id="@+id/btn_order_detail_log"
-                        android:layout_width="76dp"
-                        android:layout_height="22dp"
+                        android:layout_width="114dp"
+                        android:layout_height="34dp"
                         android:layout_marginLeft="@dimen/spacing_small"
                         android:background="@drawable/btn_radius_stroke_divider"
                         android:drawableLeft="@mipmap/icon_tel_azry"
-                        android:drawablePadding="@dimen/spacing_tiny"
+                        android:drawablePadding="7.7dp"
                         android:gravity="start|center_vertical"
-                        android:paddingLeft="@dimen/spacing_small"
+                        android:paddingLeft="@dimen/spacing_large"
                         android:text="查看物流"
                         android:textColor="@color/textSecondary"
-                        android:textSize="9sp"
                         />
 
                 </LinearLayout>
@@ -314,11 +311,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/spacing_small"
-                android:paddingRight="@dimen/spacing_small"
+                android:paddingLeft="@dimen/spacing_normal"
+                android:paddingRight="@dimen/spacing_normal"
                 android:visibility="gone"
                 >
 
@@ -326,11 +323,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:paddingBottom="7dp"
-                    android:paddingTop="@dimen/spacing_small"
+                    android:paddingBottom="@dimen/spacing_normal"
+                    android:paddingTop="@dimen/spacing_large"
                     android:text="安装信息"
                     android:textColor="@color/textTertiary"
-                    android:textSize="10sp"
+                    android:textSize="@dimen/text_size_body"
                     />
 
                 <View
@@ -343,11 +340,11 @@
                     android:id="@+id/ll_order_detail_install"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="14dp"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="@dimen/spacing_large"
+                    android:layout_marginTop="@dimen/spacing_large"
                     android:orientation="horizontal"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="35dp"
                     >
 
                     <TextView
@@ -358,7 +355,7 @@
                         android:lineSpacingExtra="@dimen/spacing_tiny"
                         android:text="联系电话\n姓名\n预约安装时间\n状态"
                         android:textColor="@color/textSecondary"
-                        android:textSize="10sp"
+                        android:textSize="@dimen/text_size_body"
                         />
 
                     <TextView
@@ -368,9 +365,9 @@
                         android:layout_weight="1"
                         android:gravity="end"
                         android:lineSpacingExtra="@dimen/spacing_tiny"
-                        android:text="联系电话\n姓名\n预约安装时间\n状态"
                         android:textColor="@color/textPrimary"
-                        android:textSize="10sp"
+                        android:textSize="@dimen/text_size_body"
+                        tools:text="联系电话\n姓名\n预约安装时间\n状态"
                         />
 
                 </LinearLayout>
@@ -383,19 +380,18 @@
 
                 <Button
                     android:id="@+id/btn_order_install_contact"
-                    android:layout_width="76dp"
-                    android:layout_height="22dp"
+                    android:layout_width="134dp"
+                    android:layout_height="34dp"
                     android:layout_gravity="end"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_small"
                     android:background="@drawable/btn_radius_stroke_divider"
                     android:drawableLeft="@mipmap/icon_tel_azry"
-                    android:drawablePadding="@dimen/spacing_tiny"
+                    android:drawablePadding="7.7dp"
                     android:gravity="start|center_vertical"
-                    android:paddingLeft="@dimen/spacing_small"
-                    android:text="联系用户"
+                    android:paddingLeft="@dimen/spacing_normal"
+                    android:text="联系安装人员"
                     android:textColor="@color/textSecondary"
-                    android:textSize="9sp"
                     />
 
             </LinearLayout>
