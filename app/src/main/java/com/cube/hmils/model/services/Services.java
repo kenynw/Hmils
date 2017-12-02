@@ -31,7 +31,6 @@ public interface Services {
 
     /**
      * 每次启动都要调用一次才能显示正常的状态  我也不知道干嘛用的
-     *
      */
     @GET("operator/getMessage")
     Observable<Response> getMessage();
@@ -137,8 +136,8 @@ public interface Services {
     /**
      * 订单详情
      *
-     * @param custId 客户名/用户电话
-     * @param projectId  项目Id
+     * @param custId    客户名/用户电话
+     * @param projectId 项目Id
      * @return
      */
     @FormUrlEncoded
@@ -149,10 +148,19 @@ public interface Services {
     );
 
     /**
+     * 修改订单详情
+     */
+    @FormUrlEncoded
+    @POST("operator/updateOrder/")
+    Observable<Response> updateOrder(
+            @Field("updatePara") String updatePara
+    );
+
+    /**
      * 确认并发送给客户
      *
-     * @param projectId  项目Id
-     * @param payType  0---线上支付，1---线下支付
+     * @param projectId 项目Id
+     * @param payType   0---线上支付，1---线下支付
      * @return
      */
     @FormUrlEncoded
@@ -165,8 +173,8 @@ public interface Services {
     /**
      * 客户订单列表
      *
-     * @param custId 客户名/用户电话
-     * @param projectId  项目Id
+     * @param custId    客户名/用户电话
+     * @param projectId 项目Id
      * @param busiType  类型
      * @return
      */
@@ -192,6 +200,7 @@ public interface Services {
 
     /**
      * 填写房间数量
+     *
      * @param roomType 标准房间传1，不规则房间传0
      * @return
      */
@@ -209,6 +218,7 @@ public interface Services {
 
     /**
      * 填写房间数量
+     *
      * @param projectId
      * @return
      */
@@ -251,7 +261,7 @@ public interface Services {
     /**
      * 售后列表
      *
-     * @param userId    用户Id
+     * @param userId 用户Id
      */
     @FormUrlEncoded
     @POST("operator/afterSaleList/")
@@ -261,15 +271,14 @@ public interface Services {
     );
 
     /**
-     *
      * 完善/修改客户信息
      *
-     * @param projectId 项目Id
-     * @param custName 	用户名
-     * @param phone 手机号
-     * @param province 省
-     * @param city 市
-     * @param district 县
+     * @param projectId  项目Id
+     * @param custName   用户名
+     * @param phone      手机号
+     * @param province   省
+     * @param city       市
+     * @param district   县
      * @param detailAddr 详细地址
      * @return
      */

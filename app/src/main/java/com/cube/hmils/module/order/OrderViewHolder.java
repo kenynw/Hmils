@@ -65,13 +65,10 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
         } else {
             mLlAppoTime.setVisibility(View.GONE);
         }
-        itemView.setOnClickListener(v -> {
-            if (data.getHandingStatus() == 1) {
-                RoomNumPresenter.start(getContext(), data);
-            } else {
-                OrderDetailPresenter.start(getContext(), data.getProjectId(), data.getHandingStatus());
-            }
-        });
+        mBtnDetail.setOnClickListener(v ->
+                ParamDetailPresenter.start(getContext(), data.getProjectId(), data.getHandingStatus() == 1 ? 0 : 1));
+        itemView.setOnClickListener(v ->
+                OrderDetailPresenter.start(getContext(), data.getProjectId(), data.getHandingStatus()));
     }
 
 }

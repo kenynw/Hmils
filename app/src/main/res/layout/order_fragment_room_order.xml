@@ -10,8 +10,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/spacing_normal"
-        android:paddingRight="@dimen/spacing_normal"
+        android:overScrollMode="never"
         android:scrollbars="none"
         >
 
@@ -19,51 +18,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="@dimen/spacing_normal"
+            android:paddingTop="@dimen/spacing_normal"
             >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingBottom="@dimen/spacing_normal"
-                android:paddingTop="@dimen/spacing_normal"
-                android:visibility="gone"
-                >
-
-                <ImageView
-                    android:id="@+id/iv_room_order_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/spacing_tiny"
-                    android:paddingLeft="@dimen/spacing_small"
-                    android:paddingRight="@dimen/spacing_small"
-                    android:paddingTop="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_left"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_room_order_position"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:textColor="@color/textSecondary"
-                    android:textSize="@dimen/text_size_body_material"
-                    tools:text="2 of 7"
-                    />
-
-                <ImageView
-                    android:id="@+id/iv_room_order_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/spacing_tiny"
-                    android:paddingLeft="@dimen/spacing_small"
-                    android:paddingRight="@dimen/spacing_small"
-                    android:paddingTop="@dimen/spacing_tiny"
-                    android:src="@mipmap/ic_right"
-                    />
-
-            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,6 +170,7 @@
                     android:id="@+id/rv_room_order_material"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     />
 
                 <View

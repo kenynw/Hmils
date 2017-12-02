@@ -37,4 +37,11 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
         }
     }
 
+    @Override
+    public void onEventMainThread(int eventCode, Bundle bundle) {
+        if (eventCode == EventCode.CODE_ME_UPDATE) {
+            loadUser();
+        }
+    }
+
 }

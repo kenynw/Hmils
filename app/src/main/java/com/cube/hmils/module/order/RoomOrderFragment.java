@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
@@ -25,12 +24,6 @@ import butterknife.Unbinder;
 @RequiresPresenter(RoomOrderFragmentPresenter.class)
 public class RoomOrderFragment extends BaseDataFragment<RoomOrderFragmentPresenter, RoomOrder> {
 
-    @BindView(R.id.iv_room_order_left)
-    ImageView mIvLeft;
-    @BindView(R.id.tv_room_order_position)
-    TextView mTvPosition;
-    @BindView(R.id.iv_room_order_right)
-    ImageView mIvRight;
     @BindView(R.id.rv_room_order_material)
     RecyclerView mRvMaterial;
     @BindView(R.id.tv_room_order_count_material)
@@ -41,8 +34,8 @@ public class RoomOrderFragment extends BaseDataFragment<RoomOrderFragmentPresent
     TextView mTvCountHeating;
 
     Unbinder unbinder;
-
-    private int mPosition = 0;
+    private DeviceRecyclerAdapter mHeatingAdapter;
+    private DeviceRecyclerAdapter mMaterialAdatper;
 
     @Nullable
     @Override
@@ -50,35 +43,42 @@ public class RoomOrderFragment extends BaseDataFragment<RoomOrderFragmentPresent
         View view = inflater.inflate(R.layout.order_fragment_room_order, null);
         unbinder = ButterKnife.bind(this, view);
 
+        boolean isEdit = getArguments().getBoolean("isEdit", false);
+
         mRvMaterial.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mMaterialAdatper = new DeviceRecyclerAdapter(getActivity(), isEdit);
+        mRvMaterial.setAdapter(mMaterialAdatper);
+
         mRvHeating.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mIvLeft.setOnClickListener(v -> {
-            if (mPosition > 0) mPosition -= mPosition;
-            setData(getPresenter().getRoomOrder());
-        });
-//        mIvRight.setOnClickListener(v -> {
-//            if (mPosition < getPresenter().getRoomOrder().getRoomOrder().size())
-//                mPosition += mPosition;
-//            setData(getPresenter().getRoomOrder());
-//        });
+        mHeatingAdapter = new DeviceRecyclerAdapter(getActivity(), isEdit);
+        mRvHeating.setAdapter(mHeatingAdapter);
 
         return view;
     }
 
     @Override
     public void setData(RoomOrder roomOrders) {
-//        mTvPosition.setText(String.format("%1$d of %2$d", mPosition, roomOrders.getRoomOrder().size()));
-        RoomOrder roomOrder = roomOrders.getRoomOrder();
+        RoomOrder roomOrder = roomOrders.getRoomOrder() == null ? roomOrders : roomOrders.getRoomOrder();
         mTvCountMaterial.setText(String.format(getString(R.string.text_count_product), roomOrder.getMGoods()));
         mTvCountHeating.setText(String.format(getString(R.string.text_count_product), roomOrder.getHGoods()));
-        mRvHeating.setAdapter( new DeviceRecyclerAdapter(getActivity(), roomOrder.getHeatingList()));
-        mRvMaterial.setAdapter(new DeviceRecyclerAdapter(getActivity(), roomOrder.getMaterialList()));
+        mHeatingAdapter.addAll(roomOrder.getHeatingList());
+        mMaterialAdatper.addAll(roomOrder.getMaterialList());
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    public RoomOrder getModifyList() {
+        RoomOrder roomOrder = getPresenter().getRoomOrder();
+        if (mMaterialAdatper.getModifyItem() != null && mMaterialAdatper.getModifyItem().size() > 0)
+            roomOrder.setMaterialList(mMaterialAdatper.getModifyItem());
+        if (mHeatingAdapter.getModifyItem() != null && mMaterialAdatper.getModifyItem().size() > 0) {
+            roomOrder.setHeatingList(mHeatingAdapter.getModifyItem());
+        }
+        return roomOrder;
     }
 
 }

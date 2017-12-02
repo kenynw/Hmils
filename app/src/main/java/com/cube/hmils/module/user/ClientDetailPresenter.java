@@ -19,6 +19,7 @@ public class ClientDetailPresenter extends BaseDataActivityPresenter<ClientDetai
     public static void start(Context context, Client client) {
         Intent intent = new Intent(context, ClientDetailActivity.class);
         intent.putExtra(EXTRA_CLIENT, client);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 
@@ -38,7 +39,19 @@ public class ClientDetailPresenter extends BaseDataActivityPresenter<ClientDetai
 
     private void loadData() {
         ClientModel.getInstance().getClientDetail(mClient.getCustId(), mClient.getProjectId())
+                .doOnNext(client -> mClient = client)
                 .unsafeSubscribe(getDataSubscriber());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mClient = intent.getParcelableExtra(EXTRA_CLIENT);
+        getView().setData(mClient);
+    }
+
+    public Client getClient() {
+        return mClient;
     }
 
 }

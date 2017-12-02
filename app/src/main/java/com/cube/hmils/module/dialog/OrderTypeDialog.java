@@ -2,7 +2,6 @@ package com.cube.hmils.module.dialog;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
 import android.util.Log;
@@ -15,13 +14,10 @@ import com.cube.hmils.R;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.Order;
-import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.module.order.RoomNumPresenter;
 import com.cube.hmils.utils.LUtils;
-import com.dsk.chain.bijection.Presenter;
 import com.gyf.barlibrary.ImmersionBar;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -81,11 +77,9 @@ public class OrderTypeDialog extends BottomSheetDialog {
                         @Override
                         public void onNext(Order order) {
                             dismiss();
-//                            RoomNumPresenter.start(context, order);
-                            Bundle bundle = new Bundle();
-                            bundle.putInt(Presenter.EVENT_BUS_CODE, EventCode.CLIENT_LIST_UPDATE);
-                            EventBus.getDefault().post(bundle);
-                            ((Activity) context).finish();
+                            order.setCustName(mClient.getCustName());
+                            order.setProjectId(mClient.getProjectId());
+                            RoomNumPresenter.start(context, order);
                         }
 
                         @Override

@@ -15,7 +15,7 @@ public class InstallInfo implements Parcelable {
 
     private String name;
 
-    private String orderCode;
+    private int orderCode;
 
     private String orderStatus;
 
@@ -43,11 +43,11 @@ public class InstallInfo implements Parcelable {
         this.name = name;
     }
 
-    public String getOrderCode() {
+    public int getOrderCode() {
         return orderCode;
     }
 
-    public void setOrderCode(String orderCode) {
+    public void setOrderCode(int orderCode) {
         this.orderCode = orderCode;
     }
 
@@ -57,6 +57,9 @@ public class InstallInfo implements Parcelable {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public InstallInfo() {
     }
 
     @Override
@@ -69,18 +72,15 @@ public class InstallInfo implements Parcelable {
         dest.writeString(this.appoTime);
         dest.writeString(this.mobile);
         dest.writeString(this.name);
-        dest.writeString(this.orderCode);
+        dest.writeInt(this.orderCode);
         dest.writeString(this.orderStatus);
-    }
-
-    public InstallInfo() {
     }
 
     protected InstallInfo(Parcel in) {
         this.appoTime = in.readString();
         this.mobile = in.readString();
         this.name = in.readString();
-        this.orderCode = in.readString();
+        this.orderCode = in.readInt();
         this.orderStatus = in.readString();
     }
 

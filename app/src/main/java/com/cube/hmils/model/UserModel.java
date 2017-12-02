@@ -58,9 +58,11 @@ public class UserModel extends AbsModel {
     }
 
     public Observable<Response> saveProfile(File file, String userName, String mobile) {
-        RequestBody photo = RequestBody.create(MediaType.parse("multipart/form-data"), file);
         Map<String, RequestBody> params = new HashMap<>();
-        params.put("image\"; filename=\"" + file.getName() + "\"", photo);
+        if (file != null) {
+            RequestBody photo = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            params.put("image\"; filename=\"" + file.getName() + "\"", photo);
+        }
         params.put("userId", RequestBody.create(null, UserPreferences.getUserID() + ""));
         params.put("userName", RequestBody.create(null, userName));
         params.put("telPhone", RequestBody.create(null, mobile));

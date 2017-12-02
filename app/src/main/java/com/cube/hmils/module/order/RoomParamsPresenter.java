@@ -58,7 +58,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                     @Override
                     public void onNext(Project project) {
                         if (isEnd.equals("end")) {
-                            OrderDetailPresenter.start(getView(), mOrder.getProjectId(), 1);
+                            ParamDetailPresenter.start(getView(), mOrder.getProjectId(), 0);
                         } else {
                             RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mPosition + 1);
                         }
@@ -72,4 +72,5 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
             getView().finish();
         }
     }
+
 }

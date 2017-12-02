@@ -117,7 +117,9 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".module.order.ParamListActivity">
+        <activity android:name=".module.order.ParamDetailActivity">
+        </activity>
+        <activity android:name=".module.order.ChangeDeviceActivity">
         </activity>
     </application>
 

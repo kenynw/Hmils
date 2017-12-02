@@ -31,4 +31,19 @@ public interface EventCode {
      */
     int CLIENT_LIST_UPDATE = 0x05;
 
+    /**
+     * 刷新个人中心
+     */
+    int CODE_ME_UPDATE = 0x05;
+
+    /**
+     * 刷新订单详情
+     */
+    int ORDER_DETAIL_UPDATE = 0x06;
+
+    /**
+     * 关闭参数详情页
+     */
+    int PARAM_DETAIL_FINISH = 0x07;
+
 }

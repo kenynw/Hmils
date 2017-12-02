@@ -1,5 +1,7 @@
 package com.cube.hmils.module.user;
 
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +14,8 @@ import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 
@@ -26,6 +30,20 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     public static final String EXTRA_USER = "user"; // 完善客户资料
 
     private Client mClient;
+
+    // 完善客户资料
+    public static final void start(Context context, Client client) {
+        Intent intent = new Intent(context, ProfileActivity.class);
+        intent.putExtra(EXTRA_CLIENT, client);
+        context.startActivity(intent);
+    }
+
+    // 修改个人资料
+    public static final void start(Context context, User user) {
+        Intent intent = new Intent(context, ProfileActivity.class);
+        intent.putExtra(EXTRA_USER, user);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(ProfileActivity view, Bundle saveState) {
@@ -51,6 +69,9 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
                 .unsafeSubscribe(new ServicesResponse<Response>() {
                     @Override
                     public void onNext(Response response) {
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(EVENT_BUS_CODE, EventCode.CODE_ME_UPDATE);
+                        EventBus.getDefault().post(bundle);
                         LUtils.toast("修改成功");
                     }
                 });

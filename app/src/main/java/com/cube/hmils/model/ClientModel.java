@@ -132,6 +132,10 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
+    public Observable<Response> updateOrder(String order) {
+        return ServicesClient.getServices().updateOrder(order).compose(new DefaultTransform<Response>());
+    }
+
     /**
      * 获取总订单
      *

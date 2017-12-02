@@ -3,6 +3,8 @@ package com.cube.hmils.model.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * Created by Carol on 2017/11/22.
  */
@@ -13,8 +15,10 @@ public class Device implements Parcelable {
 
     private String price;
 
+    @Expose
     private int qty;
 
+    @Expose
     private String spec;
 
     public String getPowerRating() {

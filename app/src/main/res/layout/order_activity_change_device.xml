@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.order.ChangeDeviceActivity"
+    >
+
+    <include layout="@layout/include_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_normal"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
+        android:paddingTop="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="温控器类型"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <EditText
+            android:id="@+id/et_device_type"
+            android:layout_width="180dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/bg_round_input"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_title_material"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:text="数量"
+            android:textColor="@color/textSecondary"
+            android:textSize="@dimen/text_size_body"
+            />
+
+        <EditText
+            android:id="@+id/et_device_num"
+            android:layout_width="180dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/spacing_large"
+            android:background="@drawable/bg_round_input"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_title_material"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_room_next"
+        style="@style/ButtonLarge"
+        android:enabled="false"
+        android:text="@string/btn_next"
+        />
+
+</LinearLayout>

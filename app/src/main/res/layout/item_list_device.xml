@@ -21,16 +21,41 @@
         tools:text="NQP001"
         />
 
-    <TextView
-        android:id="@+id/tv_device_count"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="@color/textPrimary"
-        android:textSize="@dimen/text_size_body_material"
-        tools:text="1"
-        />
+        android:layout_height="match_parent"
+        android:layout_weight="1.4"
+        android:paddingLeft="@dimen/spacing_tiny"
+        android:paddingRight="@dimen/spacing_tiny"
+        >
+
+        <Button
+            android:id="@+id/btn_item_device_minus"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@drawable/btn_minus_selector"
+            />
+
+        <TextView
+            android:id="@+id/tv_device_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_size_body_material"
+            android:singleLine="true"
+            tools:text="1"
+            />
+
+        <Button
+            android:id="@+id/btn_item_device_add"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@drawable/btn_add_selector"
+            />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_device_pr"

@@ -3,6 +3,7 @@ package com.cube.hmils.model.bean;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -24,14 +25,20 @@ public class RoomOrder implements Parcelable {
      */
 
     private RoomOrder roomOrder;
+    @Expose
+    private List<RoomOrder> roomPara;
     private int hGoods;
+    @Expose
     private int itemId;
     private int mGoods;
     private String roomName;
     private int totalGoods;
     private String totalPrice;
-    @SerializedName(alternate = "heatingList", value = "HeatingList")
+    @Expose
+    @SerializedName(value = "heating", alternate = "HeatingList")
     private List<Device> heatingList;
+    @Expose
+    @SerializedName(value = "material", alternate = "materialList")
     private List<Device> materialList;
     private InstallInfo installInfo;
 
@@ -41,6 +48,14 @@ public class RoomOrder implements Parcelable {
 
     public void setRoomOrder(RoomOrder roomOrder) {
         this.roomOrder = roomOrder;
+    }
+
+    public List<RoomOrder> getRoomPara() {
+        return roomPara;
+    }
+
+    public void setRoomPara(List<RoomOrder> roomPara) {
+        this.roomPara = roomPara;
     }
 
     public int getHGoods() {
@@ -126,6 +141,7 @@ public class RoomOrder implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.roomOrder, flags);
+        dest.writeTypedList(this.roomPara);
         dest.writeInt(this.hGoods);
         dest.writeInt(this.itemId);
         dest.writeInt(this.mGoods);
@@ -139,6 +155,7 @@ public class RoomOrder implements Parcelable {
 
     protected RoomOrder(Parcel in) {
         this.roomOrder = in.readParcelable(RoomOrder.class.getClassLoader());
+        this.roomPara = in.createTypedArrayList(RoomOrder.CREATOR);
         this.hGoods = in.readInt();
         this.itemId = in.readInt();
         this.mGoods = in.readInt();

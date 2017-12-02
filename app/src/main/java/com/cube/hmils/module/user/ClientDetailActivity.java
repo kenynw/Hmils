@@ -1,6 +1,8 @@
 package com.cube.hmils.module.user;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -50,6 +52,18 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
         mTvAddress.setText(client.getFullAddress());
         mTvCooperatTime.setText(client.getCreatTime());
         mBtnCreate.setOnClickListener(v -> new OrderTypeDialog(ClientDetailActivity.this, client).show());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_edit, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        ProfilePresenter.start(this, getPresenter().getClient());
+        return super.onOptionsItemSelected(item);
     }
 
 }

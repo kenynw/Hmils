@@ -40,6 +40,7 @@ public class RoomNumPresenter extends Presenter<RoomNumActivity> {
                     @Override
                     public void onNext(Project project) {
                         RoomParamsPresenter.start(getView(), mOrder, project.getItemId(), 0);
+                        getView().finish();
                     }
                 });
     }

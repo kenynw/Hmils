@@ -33,8 +33,6 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @BindView(R.id.toolbar_title)
     TextView mToolbarTitle;
-    @BindView(R.id.ll_order_detail_top)
-    LinearLayout mLlTop;
     @BindView(R.id.fl_order_detail_container)
     FrameLayout mFlContainer;
     @BindView(R.id.tv_order_detail_more)
@@ -73,6 +71,8 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     @BindView(R.id.tv_order_detail_state)
     TextView mTvState;
 
+    private int mType; // 0-总订单详情 1-其他订单
+
     private int mState;
 
     RoomOrderFragment mOrderFragment;
@@ -86,34 +86,44 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         setToolbarTitle("总订单详情");
 
         mState = getIntent().getIntExtra("state", 0);
+        mType = getIntent().getIntExtra("type", 0);
 
-        switch (mState) {
-            case 1:
-                mLlPay.setVisibility(View.VISIBLE);
-                mBtnConfirm.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                mLlState.setVisibility(View.VISIBLE);
-                mBtnLog.setVisibility(View.GONE);
-//                mTvState.setText();
-                break;
-            case 3:
-                mLlState.setVisibility(View.VISIBLE);
-                break;
-            case 4:
-                mLlState.setVisibility(View.VISIBLE);
-                mBtnContact.setVisibility(View.GONE);
-                break;
-            case 5:
-                mLlState.setVisibility(View.VISIBLE);
-                mBtnContact.setVisibility(View.GONE);
-                break;
+        if (mType == 0) {
+            mLlPay.setVisibility(View.VISIBLE);
+            mBtnConfirm.setVisibility(View.VISIBLE);
+        } else {
+            mLlPay.setVisibility(View.GONE);
+            mBtnConfirm.setVisibility(View.GONE);
+            mLlState.setVisibility(View.VISIBLE);
         }
+
+//        switch (mState) {
+//            case 1:
+//                mLlPay.setVisibility(View.VISIBLE);
+//                mBtnConfirm.setVisibility(View.VISIBLE);
+//                break;
+//            case 2:
+//                mLlState.setVisibility(View.VISIBLE);
+//                mBtnLog.setVisibility(View.GONE);
+////                mTvState.setText();
+//                break;
+//            case 3:
+//                mLlState.setVisibility(View.VISIBLE);
+//                break;
+//            case 4:
+//                mLlState.setVisibility(View.VISIBLE);
+//                mBtnContact.setVisibility(View.GONE);
+//                break;
+//            case 5:
+//                mLlState.setVisibility(View.VISIBLE);
+//                mBtnContact.setVisibility(View.GONE);
+//                break;
+//        }
     }
 
     @Override
     public void setData(RoomOrder roomOrder) {
-        mOrderFragment = RoomOrderFragmentPresenter.newInstance(roomOrder);
+        mOrderFragment = RoomOrderFragmentPresenter.newInstance(roomOrder, false);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fl_order_detail_container, mOrderFragment)
                 .commit();
@@ -121,12 +131,15 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         mTvNum.setText(String.format(getString(R.string.text_count_product), roomOrder.getRoomOrder().getTotalGoods()));
         mBtnConfirm.setOnClickListener(v -> showConfirmDialog());
 
-        if (roomOrder.getInstallInfo() != null && roomOrder.getInstallInfo().getOrderStatus().equals("待安装")) {
+        if (roomOrder.getInstallInfo() != null) {
             InstallInfo install = roomOrder.getInstallInfo();
             mLlInstall.setVisibility(View.VISIBLE);
             String installStr = "%1$s\n%2$s\n%3$s\n<font color=\"#5DBA68\">%4$s</font>";
             mTvInstallInfo.setText(String.format(installStr, install.getMobile(), install.getName(),
                     install.getAppoTime(), install.getOrderStatus()));
+
+            mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
+                    install.getOrderCode() == 8001 ? 0 : 1));
         }
     }
 
@@ -137,13 +150,15 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_modify_order, menu);
+        if (mType == 0) {
+            getMenuInflater().inflate(R.menu.menu_modify_order, menu);
+        }
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ParamListPresenter.start(this, getPresenter().getData());
+        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2);
         return super.onOptionsItemSelected(item);
     }
 
