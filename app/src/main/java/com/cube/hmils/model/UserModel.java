@@ -32,7 +32,7 @@ public class UserModel extends AbsModel {
     }
 
     public Observable<User> doLogin(String mobile, String password) {
-        return ServicesClient.getServices().login("peikun", "123456")
+        return ServicesClient.getServices().login(mobile, password)
                 .doOnNext(this::saveAccount)
                 .compose(new DefaultTransform<>());
     }
@@ -71,8 +71,7 @@ public class UserModel extends AbsModel {
     }
 
     public boolean isLogin() {
-        return !TextUtils.isEmpty(UserPreferences.getToken())
-                && UserPreferences.getUserID() > 0 && UserPreferences.getAgentID() > 0;
+        return !TextUtils.isEmpty(UserPreferences.getToken()) && UserPreferences.getUserID() > 0;
     }
 
     private void saveAccount(User user) {

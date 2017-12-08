@@ -52,10 +52,14 @@
             />
 
         <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/dv_qr_code"
             android:layout_width="0dp"
             android:layout_height="255dp"
             android:layout_marginBottom="7dp"
             android:layout_marginTop="30dp"
+            app:placeholderImageScaleType="centerCrop"
+            app:failureImageScaleType="centerCrop"
+            app:actualImageScaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

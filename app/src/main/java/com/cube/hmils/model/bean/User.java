@@ -21,6 +21,8 @@ public class User implements Parcelable {
 
     private String userName;
 
+    private String QRcode;
+
     public int getAgentId() {
         return agentId;
     }
@@ -69,6 +71,14 @@ public class User implements Parcelable {
         this.userName = userName;
     }
 
+    public String getQRcode() {
+        return QRcode;
+    }
+
+    public void setQRcode(String QRcode) {
+        this.QRcode = QRcode;
+    }
+
     public User() {
     }
 
@@ -85,6 +95,7 @@ public class User implements Parcelable {
         dest.writeString(this.custImg);
         dest.writeString(this.telPhone);
         dest.writeString(this.userName);
+        dest.writeString(this.QRcode);
     }
 
     protected User(Parcel in) {
@@ -94,6 +105,7 @@ public class User implements Parcelable {
         this.custImg = in.readString();
         this.telPhone = in.readString();
         this.userName = in.readString();
+        this.QRcode = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {

@@ -27,7 +27,7 @@ import rx.Observable;
 
 public interface Services {
 
-    String BASE_URL = "http://106.14.116.138:8090/hms-api/";
+    String BASE_URL = "http://106.14.116.138/hms-api/";
 
     /**
      * 每次启动都要调用一次才能显示正常的状态  我也不知道干嘛用的
