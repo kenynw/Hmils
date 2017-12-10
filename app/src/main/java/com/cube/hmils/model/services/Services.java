@@ -183,7 +183,7 @@ public interface Services {
     Observable<Order> createOrder(
             @Field("custId") int custId,
             @Field("projectId") int projectId,
-            @Field("busiType") int busiType
+            @Field("busiType") String busiType
     );
 
     /**

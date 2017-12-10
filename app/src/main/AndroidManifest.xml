@@ -121,6 +121,8 @@
         </activity>
         <activity android:name=".module.order.ChangeDeviceActivity">
         </activity>
+        <activity android:name=".module.order.PickMaterialActivity">
+        </activity>
     </application>
 
 </manifest>

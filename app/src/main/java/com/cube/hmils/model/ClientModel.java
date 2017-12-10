@@ -94,7 +94,7 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<Order> createOrder(int custId, int projectId, int type) {
+    public Observable<Order> createOrder(int custId, int projectId, String type) {
         return ServicesClient.getServices().createOrder(custId, projectId, type)
                 .compose(new DefaultTransform<>());
     }

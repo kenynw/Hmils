@@ -29,6 +29,8 @@ import butterknife.ButterKnife;
 
 public class OrderTypeDialog extends BottomSheetDialog {
 
+    private static final String[] mTypes = new String[]{"01", "02", "03"};
+
     @BindView(R.id.iv_order_type_close)
     ImageView mIvClose;
 
@@ -72,7 +74,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
         });
         mIvClose.setOnClickListener(close -> dismiss());
         mBtnOk.setOnClickListener(ok -> {
-            ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mSelectedIndex)
+            ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mTypes[mSelectedIndex])
                     .subscribe(new ServicesResponse<Order>() {
                         @Override
                         public void onNext(Order order) {
