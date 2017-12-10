@@ -41,6 +41,7 @@
             android:background="@drawable/bg_round_input"
             android:gravity="center"
             android:inputType="numberDecimal"
+            android:text="NQP001"
             android:textColor="@color/textPrimary"
             android:textSize="@dimen/text_size_title_material"
             />

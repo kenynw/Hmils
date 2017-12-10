@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.module.dialog.OrderTypeDialog;
+import com.cube.hmils.module.order.ChangeDevicePresenter;
+import com.cube.hmils.module.order.RoomNumPresenter;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -37,6 +39,8 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
     @BindView(R.id.btn_client_detail_create)
     Button mBtnCreate;
 
+    private OrderTypeDialog mTypeDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +55,18 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
         mTvName.setText(client.getCustName());
         mTvAddress.setText(client.getFullAddress());
         mTvCooperatTime.setText(client.getCreatTime());
-        mBtnCreate.setOnClickListener(v -> new OrderTypeDialog(ClientDetailActivity.this, client).show());
+        mBtnCreate.setOnClickListener(v -> {
+            if (mTypeDialog != null && mTypeDialog.getOrder() != null) {
+                if (mTypeDialog.getSelectedIndex() == 2) {
+                    ChangeDevicePresenter.start(ClientDetailActivity.this, mTypeDialog.getOrder());
+                } else {
+                    RoomNumPresenter.start(ClientDetailActivity.this, mTypeDialog.getOrder());
+                }
+            } else {
+                mTypeDialog = new OrderTypeDialog(ClientDetailActivity.this, client);
+                mTypeDialog.show();
+            }
+        });
     }
 
     @Override

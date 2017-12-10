@@ -15,6 +15,7 @@ import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.module.order.ChangeDevicePresenter;
 import com.cube.hmils.module.order.RoomNumPresenter;
 import com.cube.hmils.utils.LUtils;
 import com.gyf.barlibrary.ImmersionBar;
@@ -43,6 +44,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
     private Client mClient;
 
     private int mSelectedIndex;
+    private Order mOrder;
 
     public OrderTypeDialog(@NonNull Context context, Client client) {
         super(context);
@@ -72,6 +74,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
                 }
             });
         });
+        mRlTypes[0].setSelected(true);
         mIvClose.setOnClickListener(close -> dismiss());
         mBtnOk.setOnClickListener(ok -> {
             ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mTypes[mSelectedIndex])
@@ -81,7 +84,12 @@ public class OrderTypeDialog extends BottomSheetDialog {
                             dismiss();
                             order.setCustName(mClient.getCustName());
                             order.setProjectId(mClient.getProjectId());
-                            RoomNumPresenter.start(context, order);
+                            mOrder = order;
+                            if (mSelectedIndex == 2) {
+                                ChangeDevicePresenter.start(context, order);
+                            } else {
+                                RoomNumPresenter.start(context, order);
+                            }
                         }
 
                         @Override
@@ -90,6 +98,14 @@ public class OrderTypeDialog extends BottomSheetDialog {
                         }
                     });
         });
+    }
+
+    public Order getOrder() {
+        return mOrder;
+    }
+
+    public int getSelectedIndex() {
+        return mSelectedIndex;
     }
 
 }

@@ -22,6 +22,7 @@
             >
 
             <RadioGroup
+                android:id="@+id/rg_room_params_type"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginBottom="@dimen/spacing_normal"
@@ -53,7 +54,7 @@
                     android:background="@drawable/btn_rradius_primary_dark_selector"
                     android:button="@null"
                     android:gravity="center"
-                    android:text="@string/text_steady_room"
+                    android:text="@string/text_unsteady_room"
                     android:textColor="@color/primary2white"
                     />
 
@@ -187,38 +188,13 @@
                 <LinearLayout
                     android:id="@+id/ll_params_extra"
                     android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:visibility="gone"
+                    android:orientation="vertical"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_room_params_height"
-                    >
-
-                    <TextView
-                        android:id="@+id/tv_room_params_extra"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:text="@string/text_extra_area"
-                        android:textColor="@color/textSecondary"
-                        />
-
-                    <EditText
-                        android:id="@+id/et_room_param_extra"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="@dimen/spacing_normal"
-                        android:layout_marginStart="@dimen/spacing_normal"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_radius_input"
-                        android:inputType="number"
-                        tools:ignore="TextFields"
-                        />
-
-                </LinearLayout>
+                    />
 
                 <LinearLayout
                     android:id="@+id/ll_room_params_add"
@@ -237,6 +213,7 @@
                     android:layout_marginTop="@dimen/spacing_normal"
                     android:background="@color/colorPrimaryDisable"
                     android:src="@mipmap/ic_add"
+                    android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ll_room_params_add"

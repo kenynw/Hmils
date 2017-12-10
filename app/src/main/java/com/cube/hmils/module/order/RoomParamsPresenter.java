@@ -11,15 +11,14 @@ import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
 
+import static com.cube.hmils.model.constant.Extra.EXTRA_ORDER;
+import static com.cube.hmils.model.constant.Extra.EXTRA_ROOM_NUM;
+
 /**
  * Created by Carol on 2017/10/15.
  */
 
 public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
-
-    public static final String EXTRA_ROOM_NUM = "room_num";
-
-    public static final String EXTRA_ORDER = "order";
 
     private Order mOrder;
 
@@ -52,7 +51,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     public void saveParams(int addArea, String roomName, String roomSize, int roomType) {
         String isEnd = mPosition == mRoomIds.length - 1 ? "end" : "";
 
-        ClientModel.getInstance().saveRoomParams(addArea, isEnd, mRoomIds[0], mOrder.getProjectId(),
+        ClientModel.getInstance().saveRoomParams(addArea, isEnd, mRoomIds[mPosition], mOrder.getProjectId(),
                 roomName, roomSize, roomType)
                 .subscribe(new ServicesResponse<Project>() {
                     @Override
@@ -71,6 +70,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
         if (eventCode == EventCode.ROOM_PARAMS_FINISH) {
             getView().finish();
         }
+
     }
 
 }

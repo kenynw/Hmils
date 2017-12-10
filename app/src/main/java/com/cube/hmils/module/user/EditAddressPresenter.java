@@ -1,104 +1,74 @@
 package com.cube.hmils.module.user;
 
+import com.cube.hmils.model.bean.Address;
+import com.cube.hmils.model.bean.City;
+import com.cube.hmils.model.bean.Dist;
 import com.cube.hmils.model.bean.Province;
 import com.cube.hmils.model.services.DefaultTransform;
-import com.cube.hmils.utils.FileUtil;
-import com.dsk.chain.bijection.Presenter;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
+import com.cube.hmils.model.services.ServicesClient;
+import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
 
 import java.util.ArrayList;
-
-import rx.Observable;
-import rx.Subscriber;
+import java.util.List;
 
 /**
  * Created by Carol on 2017/10/29.
  */
 
-public class EditAddressPresenter extends Presenter<EditAddressActivity> {
+public class EditAddressPresenter extends BaseDataActivityPresenter<EditAddressActivity, Address> {
 
-    private ArrayList<Province> mOptions1Items = new ArrayList<>();
-    private ArrayList<ArrayList<String>> mOptions2Items = new ArrayList<>();
-    private ArrayList<ArrayList<ArrayList<String>>> mOptions3Items = new ArrayList<>();
+    List<Province> mOptions1Items = new ArrayList<>();
+    List<List<City>> mOptions2Items = new ArrayList<>();
+    List<List<List<Dist>>> mOptions3Items = new ArrayList<>();
 
-    public void parseData() {
-        Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
-                if (mOptions1Items == null || mOptions1Items.size() <= 0) {
-                    String JsonData = new FileUtil().getStringFromFile(getView(), "province.json");
-
-                    ArrayList<Province> jsonBean = parseData(JsonData);
-
-                    mOptions1Items = jsonBean;
-
-                    for (int i = 0; i < jsonBean.size(); i++) {//遍历省份
-                        ArrayList<String> CityList = new ArrayList<>();//该省的城市列表（第二级）
-                        ArrayList<ArrayList<String>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
-
-                        for (int c = 0; c < jsonBean.get(i).getCityList().size(); c++) {//遍历该省份的所有城市
-                            String CityName = jsonBean.get(i).getCityList().get(c).getName();
-                            CityList.add(CityName);//添加城市
-
-                            ArrayList<String> City_AreaList = new ArrayList<>();//该城市的所有地区列表
-
-                            //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
-                            if (jsonBean.get(i).getCityList().get(c).getArea() == null
-                                    || jsonBean.get(i).getCityList().get(c).getArea().size() == 0) {
-                                City_AreaList.add("");
-                            } else {
-
-                                for (int d = 0; d < jsonBean.get(i).getCityList().get(c).getArea().size(); d++) {//该城市对应地区所有数据
-                                    String AreaName = jsonBean.get(i).getCityList().get(c).getArea().get(d);
-
-                                    City_AreaList.add(AreaName);//添加该城市所有地区数据
-                                }
-                            }
-                            Province_AreaList.add(City_AreaList);//添加该省所有地区数据
-                        }
-
-                        mOptions2Items.add(CityList);
-
-                        mOptions3Items.add(Province_AreaList);
-                    }
-                }
-                subscriber.onNext("");
-            }
-        })
-                .compose(new DefaultTransform<>())
-                .subscribe(new Subscriber<String>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onNext(String s) {
-                        getView().showPickerView(mOptions1Items, mOptions2Items, mOptions3Items);
-                    }
-                });
+    @Override
+    protected void onCreateView(EditAddressActivity view) {
+        super.onCreateView(view);
+        load();
     }
 
-    private ArrayList<Province> parseData(String result) {//Gson 解析
-        ArrayList<Province> detail = new ArrayList<>();
-        try {
-            JSONArray data = new JSONArray(result);
-            Gson gson = new Gson();
-            for (int i = 0; i < data.length(); i++) {
-                Province entity = gson.fromJson(data.optJSONObject(i).toString(), Province.class);
-                detail.add(entity);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return detail;
+    private void load() {
+        ServicesClient.getServices().areaList().compose(new DefaultTransform<>())
+                .doOnNext(address -> {
+                    if (mOptions1Items == null || mOptions1Items.size() <= 0) {
+                        List<Province> provinceList = address.getProvince();
+
+                        mOptions1Items = provinceList;
+
+                        for (int i = 0; i < provinceList.size(); i++) {//遍历省份
+                            List<City> CityList = new ArrayList<>();//该省的城市列表（第二级）
+                            List<List<Dist>> Province_AreaList = new ArrayList<>();//该省的所有地区列表（第三极）
+
+                            Province province = provinceList.get(i);
+                            for (City city : address.getCity()) {
+                                if (city.getParentCode() == province.getProvinceCode()) {
+                                    CityList.add(city);//添加城市
+
+                                    ArrayList<Dist> City_AreaList = new ArrayList<>();//该城市的所有地区列表
+                                    //如果无地区数据，建议添加空字符串，防止数据为null 导致三个选项长度不匹配造成崩溃
+//                        if (jsonBean.get(i).getCityList().get(c).getCityName() == null
+//                                || jsonBean.get(i).getCityList().get(c).getDistList().size() == 0) {
+//                            City_AreaList.add("");
+//                        } else {
+                                    for (Dist dist : address.getDist()) {
+                                        if (dist.getParentCode() == city.getCityCode()) {
+                                            City_AreaList.add(dist);//添加该城市所有地区数据
+                                        }
+                                    }
+//                        }
+                                    if (City_AreaList.size() == 0) City_AreaList.add(new Dist());
+                                    Province_AreaList.add(City_AreaList);//添加该省所有地区数据
+                                }
+                            }
+                            if (CityList.size() == 0) CityList.add(new City());
+
+                            mOptions2Items.add(CityList);
+                            mOptions3Items.add(Province_AreaList);
+                        }
+
+                    }
+                })
+                .unsafeSubscribe(getDataSubscriber());
     }
 
 }

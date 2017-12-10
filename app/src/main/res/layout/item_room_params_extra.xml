@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/spacing_normal"
+    >
+
+    <TextView
+        android:id="@+id/tv_room_params_extra"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/text_extra_area"
+        android:textColor="@color/textSecondary"
+        />
+
+    <EditText
+        android:id="@+id/et_room_param_extra"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_weight="1"
+        android:background="@drawable/bg_radius_input"
+        android:inputType="number"
+        tools:ignore="TextFields"
+        />
+
+    <ImageView
+        android:id="@+id/iv_extra_area_delete"
+        android:layout_width="34dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/spacing_normal"
+        android:background="@drawable/bg_radius_pink"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_del"
+        />
+
+</LinearLayout>

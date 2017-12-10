@@ -107,7 +107,6 @@
     </string-array>
 
     <string-array name="letters">
-        <item>A</item>
         <item>B</item>
         <item>C</item>
         <item>D</item>
@@ -131,8 +130,6 @@
 
     <string-array name="order_status">
         <item>待处理</item>
-        <item>待支付</item>
-        <item>待发货</item>
         <item>待安装</item>
         <item>已完成</item>
     </string-array>

@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cube.hmils.module.order.PickMaterialActivity">
+    android:orientation="vertical"
+    tools:context="com.cube.hmils.module.order.PickMaterialActivity"
+    >
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/include_toolbar"/>
+
+    <RadioGroup
+        android:id="@+id/rg_order_detail_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp"
+        >
+
+        <RadioButton
+            android:id="@+id/rbtn_order_detail_online"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="@drawable/btn_pick_material_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:text="精英系列"
+            android:textColor="@color/secondary2accent"
+            android:textSize="@dimen/text_size_subhead"
+            />
+
+        <RadioButton
+            android:id="@+id/rbtn_order_detail_offline"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_radius_white"
+            android:button="@null"
+            android:gravity="center"
+            android:text="贵族系列"
+            android:textColor="@color/secondary2accent"
+            android:textSize="@dimen/text_size_subhead"
+            />
+
+    </RadioGroup>
+
+</LinearLayout>

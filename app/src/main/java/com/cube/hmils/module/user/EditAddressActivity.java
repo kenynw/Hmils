@@ -10,23 +10,23 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.Address;
+import com.cube.hmils.model.bean.City;
+import com.cube.hmils.model.bean.Dist;
 import com.cube.hmils.model.bean.Province;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.utils.LUtils;
-import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.Presenter;
 import com.dsk.chain.bijection.RequiresPresenter;
+import com.dsk.chain.expansion.data.BaseDataActivity;
 
 import org.greenrobot.eventbus.EventBus;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @RequiresPresenter(EditAddressPresenter.class)
-public class EditAddressActivity extends ChainBaseActivity<EditAddressPresenter> {
+public class EditAddressActivity extends BaseDataActivity<EditAddressPresenter, Address> {
 
     @BindView(R.id.tv_edit_address_area)
     TextView mTvAddress;
@@ -39,11 +39,11 @@ public class EditAddressActivity extends ChainBaseActivity<EditAddressPresenter>
 
     private OptionsPickerView mPvAddressPicker;
 
-    private String mProvince;
+    private Province mProvince;
 
-    private String mCity;
+    private City mCity;
 
-    private String mDistrict;
+    private Dist mDistrict;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,18 +51,19 @@ public class EditAddressActivity extends ChainBaseActivity<EditAddressPresenter>
         setContentView(R.layout.user_activity_edit_address);
         setToolbarTitle(R.string.text_edit_address);
         ButterKnife.bind(this);
-
-        mFlArea.setOnClickListener(v -> getPresenter().parseData());
     }
 
-    public void showPickerView(List<Province> options1Items, ArrayList<ArrayList<String>> options2Items,
-                               List<ArrayList<ArrayList<String>>> options3Items) {// 弹出选择器
+    @Override
+    public void setData(Address address) {
+        mFlArea.setOnClickListener(v -> showPickerView());
+    }
 
+    public void showPickerView() {// 弹出选择器
         mPvAddressPicker = new OptionsPickerView.Builder(this, (options1, options2, options3, v) -> {
-            mProvince = options1Items.get(options1).getName();
-            mCity = options2Items.get(options1).get(options2);
-            mDistrict = options3Items.get(options1).get(options2).get(options3);
-            mTvAddress.setText(mProvince + mCity + mDistrict);
+            mProvince = getPresenter().mOptions1Items.get(options1);
+            mCity = getPresenter().mOptions2Items.get(options1).get(options2);
+            mDistrict = getPresenter().mOptions3Items.get(options1).get(options2).get(options3);
+            mTvAddress.setText(mProvince.getProvinceName() + mCity.getCityName() + mDistrict.getDistName());
         })
                 .setLayoutRes(R.layout.dialog_province_picker, v -> {
                     TextView tvOk = v.findViewById(R.id.tv_province_ok);
@@ -79,7 +80,7 @@ public class EditAddressActivity extends ChainBaseActivity<EditAddressPresenter>
                 .setLineSpacingMultiplier(2.0f)
                 .build();
 
-        mPvAddressPicker.setPicker(options1Items, options2Items, options3Items);//三级选择器
+        mPvAddressPicker.setPicker(getPresenter().mOptions1Items, getPresenter().mOptions2Items, getPresenter().mOptions3Items);//三级选择器
         mPvAddressPicker.show();
     }
 
@@ -102,9 +103,9 @@ public class EditAddressActivity extends ChainBaseActivity<EditAddressPresenter>
 
         Bundle bundle = new Bundle();
         bundle.putInt(Presenter.EVENT_BUS_CODE, EventCode.EDIT_ADDRESS);
-        bundle.putString("province", mProvince);
-        bundle.putString("city", mCity);
-        bundle.putString("district", mDistrict);
+        bundle.putParcelable("province", mProvince);
+        bundle.putParcelable("city", mCity);
+        bundle.putParcelable("district", mDistrict);
         bundle.putString("address", mEtDetail.getText().toString().trim());
         EventBus.getDefault().post(bundle);
         finish();

@@ -1,7 +1,10 @@
 package com.cube.hmils.module.order;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.cube.hmils.model.bean.InstallInfo;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.module.dialog.BaseAlertDialog;
 import com.cube.hmils.module.dialog.DialogCallback;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
 
@@ -83,12 +87,11 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         setContentView(R.layout.order_activity_detail);
         ButterKnife.bind(this);
 
-        setToolbarTitle("总订单详情");
-
         mState = getIntent().getIntExtra("state", 0);
         mType = getIntent().getIntExtra("type", 0);
 
         if (mType == 0) {
+            setToolbarTitle("总订单详情");
             mLlPay.setVisibility(View.VISIBLE);
             mBtnConfirm.setVisibility(View.VISIBLE);
         } else {
@@ -96,29 +99,6 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
             mBtnConfirm.setVisibility(View.GONE);
             mLlState.setVisibility(View.VISIBLE);
         }
-
-//        switch (mState) {
-//            case 1:
-//                mLlPay.setVisibility(View.VISIBLE);
-//                mBtnConfirm.setVisibility(View.VISIBLE);
-//                break;
-//            case 2:
-//                mLlState.setVisibility(View.VISIBLE);
-//                mBtnLog.setVisibility(View.GONE);
-////                mTvState.setText();
-//                break;
-//            case 3:
-//                mLlState.setVisibility(View.VISIBLE);
-//                break;
-//            case 4:
-//                mLlState.setVisibility(View.VISIBLE);
-//                mBtnContact.setVisibility(View.GONE);
-//                break;
-//            case 5:
-//                mLlState.setVisibility(View.VISIBLE);
-//                mBtnContact.setVisibility(View.GONE);
-//                break;
-//        }
     }
 
     @Override
@@ -131,15 +111,30 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         mTvNum.setText(String.format(getString(R.string.text_count_product), roomOrder.getRoomOrder().getTotalGoods()));
         mBtnConfirm.setOnClickListener(v -> showConfirmDialog());
 
-        if (roomOrder.getInstallInfo() != null) {
-            InstallInfo install = roomOrder.getInstallInfo();
-            mLlInstall.setVisibility(View.VISIBLE);
-            String installStr = "%1$s\n%2$s\n%3$s\n<font color=\"#5DBA68\">%4$s</font>";
-            mTvInstallInfo.setText(String.format(installStr, install.getMobile(), install.getName(),
-                    install.getAppoTime(), install.getOrderStatus()));
 
-            mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
-                    install.getOrderCode() == 8001 ? 0 : 1));
+        InstallInfo install = roomOrder.getInstallInfo();
+        if (install != null) {
+            mTvTime.setText(install.getAppoTime());
+            mTvState.setText(install.getOrderStatus());
+
+            if (mType == 1) {
+                setToolbarTitle("订单详情-" + roomOrder.getInstallInfo().getOrderStatus());
+                LUtils.log("status: " + install.getOrderCode());
+                if (install.getOrderCode() == 8006) {
+                    mLlInstall.setVisibility(View.VISIBLE);
+                    String installStr = "%1$s<br>%2$s<br>%3$s<br><font color=\"#5DBA68\">%4$s</font>";
+                    mTvInstallInfo.setText(Html.fromHtml(String.format(installStr, install.getMobile(), install.getName(),
+                            install.getAppoTime(), install.getOrderStatus())));
+
+                    mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
+                            install.getOrderCode() == 8001 ? 0 : 1));
+                    mBtnInstallContact.setOnClickListener(v -> {
+                        Uri uri = Uri.parse("tel:" + install.getMobile());
+                        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                        startActivity(intent);
+                    });
+                }
+            }
         }
     }
 
@@ -158,7 +153,8 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2);
+//        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2);
+        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 0);
         return super.onOptionsItemSelected(item);
     }
 

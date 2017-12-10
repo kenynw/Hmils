@@ -7,7 +7,10 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.UserModel;
+import com.cube.hmils.model.bean.City;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.Dist;
+import com.cube.hmils.model.bean.Province;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
@@ -30,6 +33,13 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     public static final String EXTRA_USER = "user"; // 完善客户资料
 
     private Client mClient;
+
+    private Province mProvince;
+
+    private City mCity;
+
+    private Dist mDistrict;
+
 
     // 完善客户资料
     public static final void start(Context context, Client client) {
@@ -78,8 +88,8 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     }
 
     public void saveClient(String name, String phone) {
-        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone,mClient.getProvince(),
-                mClient.getCustImg(), mClient.getDistrict(), mClient.getDetailAddr())
+        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone,mProvince.getProvinceCode(),
+                mCity.getCityCode(), mDistrict.getDistCode(), mClient.getDetailAddr())
                 .subscribe(new ServicesResponse<Response>() {
                     @Override
                     public void onNext(Response response) {
@@ -99,13 +109,13 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     @Override
     public void onEventMainThread(int eventCode, Bundle bundle) {
         if (eventCode == EventCode.EDIT_ADDRESS) {
-            String province = bundle.getString("province");
-            String city = bundle.getString("city");
-            String district = bundle.getString("district");
+            mProvince = bundle.getParcelable("province");
+            mCity = bundle.getParcelable("city");
+            mDistrict = bundle.getParcelable("district");
             String address = bundle.getString("address");
-            mClient.setProvince(province);
-            mClient.setCity(city);
-            mClient.setDistrict(district);
+            mClient.setProvince(mProvince.getProvinceName());
+            mClient.setCity(mCity.getCityName());
+            mClient.setDistrict(mDistrict.getDistName());
             mClient.setDetailAddr(address);
             getView().setAddress(mClient.getFullAddress());
         }

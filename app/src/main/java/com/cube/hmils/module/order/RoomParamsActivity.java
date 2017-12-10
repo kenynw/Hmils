@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
@@ -30,13 +31,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 @RequiresPresenter(RoomParamsPresenter.class)
-public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> implements DialogCallback {
+public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> implements DialogCallback,
+        RadioGroup.OnCheckedChangeListener {
 
     public static final String TAG_ADD_AREA = "add_area";
 
     @BindArray(R.array.letters)
     String[] LETTERS;
 
+    @BindView(R.id.rg_room_params_type)
+    RadioGroup mRgType;
     @BindView(R.id.rb_room_params_steady)
     RadioButton mRbSteady;
     @BindView(R.id.rb_room_params_unsteady)
@@ -77,10 +81,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     @BindView(R.id.cl_params_layout)
     ConstraintLayout mClLayout;
-    @BindView(R.id.tv_room_params_extra)
-    TextView mTvExtra;
-    @BindView(R.id.et_room_param_extra)
-    EditText mEtExtra;
     @BindView(R.id.ll_params_extra)
     LinearLayout mLlExtra;
 
@@ -97,23 +97,19 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mToolbarBackIcon.setVisibility(View.GONE);
         mToolbarBackText.setVisibility(View.VISIBLE);
         mToolbarBackText.setText("上一步");
+
+        mRgType.setOnCheckedChangeListener(this);
         mTvAdd.setOnClickListener(v -> showAddDialog());
-        mTvMinus.setOnClickListener(v -> {
-            if (mLlExtra.getVisibility() == View.VISIBLE) {
-                mLlExtra.setVisibility(View.GONE);
-                mEtExtra.setText("");
-                mClLayout.getLayoutParams().height = mClLayout.getHeight() - LUtils.dp2px(70);
-            }
-        });
+        mTvMinus.setOnClickListener(v -> addAndMinusArea(1, ""));
         mIbtAdd.setOnClickListener(v -> {
             View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
             view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
             mLlAdd.addView(view);
 
-            ImageView iv = view.findViewById(R.id.iv_add_room_delete);
-            iv.setOnClickListener(view1 -> {
+            ImageView ivDelete = view.findViewById(R.id.iv_add_room_delete);
+            ivDelete.setOnClickListener(view1 -> {
                 mLlAdd.removeView(view);
-                mClLayout.getLayoutParams().height = mClLayout.getHeight() - view.getMeasuredHeight();
+                setLayoutHeight(-view.getMeasuredHeight());
             });
 
             TextView tvW = view.findViewById(R.id.tv_add_room_width);
@@ -122,7 +118,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             TextView tvH = view.findViewById(R.id.tv_add_room_height);
             tvH.setText(letter + getString(R.string.text_room_height));
 
-            mClLayout.getLayoutParams().height = mClLayout.getHeight() + view.getMeasuredHeight();
+            setLayoutHeight(view.getMeasuredHeight());
         });
         mBtnSave.setOnClickListener(v -> checkInput());
     }
@@ -136,12 +132,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     public void onPositiveClick(@NonNull View view) {
         if (getSupportFragmentManager().findFragmentByTag(TAG_ADD_AREA) != null) {
             EditText et = view.getRootView().findViewById(R.id.et_add_area_input);
-            mEtExtra.setText(et.getText());
+            addAndMinusArea(0, et.getText().toString().trim());
             LUtils.closeKeyboard(et);
-            if (mLlExtra.getVisibility() == View.GONE) {
-                mLlExtra.setVisibility(View.VISIBLE);
-                mClLayout.getLayoutParams().height = mClLayout.getHeight() + LUtils.dp2px(70);
-            }
         }
     }
 
@@ -154,7 +146,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         String roomName = mEtBedroom.getText().toString().trim();
         String roomWidth = mEtWidth.getText().toString().trim();
         String roomHeight = mEtHeight.getText().toString().trim();
-        String extraArea = mEtExtra.getText().toString().trim();
+        int extraArea = getArea();
         mRooms.clear();
         addRoom(roomWidth, roomHeight);
         if (mLlAdd.getChildCount() > 0) {
@@ -171,8 +163,9 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         }
         String roomSize = new Gson().toJson(mRooms);
 
-        getPresenter().saveParams(!TextUtils.isEmpty(extraArea) ? Integer.valueOf(extraArea) : 0,
-                roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
+        LUtils.log("room: " + roomSize);
+
+        getPresenter().saveParams(extraArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
     }
 
     private void addRoom(String width, String height) {
@@ -184,8 +177,63 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     @Override
     public int[] getHideSoftViewIds() {
-        return new int[] {R.id.et_room_param_bedroom, R.id.et_room_param_extra,
-                R.id.et_room_param_width,  R.id.et_room_param_height};
+        return new int[]{R.id.et_room_param_bedroom, R.id.et_room_param_extra,
+                R.id.et_room_param_width, R.id.et_room_param_height};
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.rb_room_params_steady:
+                mIbtAdd.setVisibility(View.GONE);
+                setLayoutHeight(-LUtils.dp2px(54));
+                mTvWidth.setText(getString(R.string.text_room_width));
+                mTvHeight.setText(getString(R.string.text_room_height));
+                mLlAdd.removeAllViews();
+                break;
+            case R.id.rb_room_params_unsteady:
+                mIbtAdd.setVisibility(View.VISIBLE);
+                setLayoutHeight(LUtils.dp2px(54));
+                mTvWidth.setText("A" + getString(R.string.text_room_width));
+                mTvHeight.setText("A" + getString(R.string.text_room_height));
+                break;
+        }
+    }
+
+    private void addAndMinusArea(int type, String area) {
+        View view = View.inflate(this, R.layout.item_room_params_extra, null);
+        TextView label = view.findViewById(R.id.tv_room_params_extra);
+        TextView etArea = view.findViewById(R.id.et_room_param_extra);
+        ImageView ivDelete = view.findViewById(R.id.iv_extra_area_delete);
+        label.setText(type == 0 ? "增加面积" : "减少面积");
+        if (!TextUtils.isEmpty(area)) etArea.setText(area);
+        mLlExtra.addView(view);
+        setLayoutHeight(LUtils.dp2px(55));
+        ivDelete.setOnClickListener(v -> {
+            mLlExtra.removeView(view);
+            setLayoutHeight(-view.getHeight());
+        });
+    }
+
+    private int getArea() {
+        int area = 0;
+        if (mLlExtra.getChildCount() > 0) {
+            for (int i = 0; i < mLlExtra.getChildCount(); i++) {
+                View view = mLlExtra.getChildAt(i);
+                TextView tvLabel = view.findViewById(R.id.tv_room_params_extra);
+                EditText etInput = view.findViewById(R.id.et_room_param_extra);
+                if (tvLabel.getText().toString().trim().equals("增加面积")) {
+                    area = area + Integer.valueOf(etInput.getText().toString().trim());
+                } else {
+                    area = area - Integer.valueOf(etInput.getText().toString().trim());
+                }
+            }
+        }
+        return area;
+    }
+
+    private void setLayoutHeight(int height) {
+        mClLayout.getLayoutParams().height = mClLayout.getHeight() + height;
     }
 
 }

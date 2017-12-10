@@ -46,4 +46,9 @@ public interface EventCode {
      */
     int PARAM_DETAIL_FINISH = 0x07;
 
+    /**
+     * 刷新参数详情页
+     */
+    int PARAM_DETAIL_UPDATE = 0x08;
+
 }

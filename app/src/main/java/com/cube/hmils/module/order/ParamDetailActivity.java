@@ -58,19 +58,21 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
 
         if (getPresenter().getType() == 0) {
             mToolbarBackText.setText("修改参数");
+            mToolbarBackText.setOnClickListener(v ->
+                    ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2));
         } else if (getPresenter().getType() == 2) {
             mToolbarBackText.setText("上一步");
             mBtnBack.setVisibility(View.GONE);
         } else {
-            mToolbarBackText.setText("修改参数");
+            mToolbarBackText.setVisibility(View.GONE);
             mBtnBack.setVisibility(View.VISIBLE);
-            mBtnBack.setOnClickListener(v -> {
-                Bundle bundle = new Bundle();
-                bundle.putInt(Presenter.EVENT_BUS_CODE, EventCode.ROOM_PARAMS_FINISH);
-                EventBus.getDefault().post(bundle);
-                finish();
-            });
         }
+        mBtnBack.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putInt(Presenter.EVENT_BUS_CODE, EventCode.ROOM_PARAMS_FINISH);
+            EventBus.getDefault().post(bundle);
+            finish();
+        });
 
         mFragments = new ArrayList<>();
     }

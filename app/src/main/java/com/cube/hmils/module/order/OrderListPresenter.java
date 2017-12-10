@@ -25,8 +25,8 @@ public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragm
     }
 
     @Override
-    protected void onCreateView(OrderListFragment view) {
-        super.onCreateView(view);
+    protected void onResume() {
+        super.onResume();
         onRefresh();
     }
 

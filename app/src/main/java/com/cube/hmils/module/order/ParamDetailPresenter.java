@@ -57,6 +57,8 @@ public class ParamDetailPresenter extends BaseDataActivityPresenter<ParamDetailA
                 Bundle bundle = new Bundle();
                 bundle.putInt(EVENT_BUS_CODE, EventCode.ORDER_DETAIL_UPDATE);
                 EventBus.getDefault().post(bundle);
+                bundle.putInt(EVENT_BUS_CODE, EventCode.PARAM_DETAIL_UPDATE);
+                EventBus.getDefault().post(bundle);
                 getView().finish();
             }
 
@@ -71,6 +73,9 @@ public class ParamDetailPresenter extends BaseDataActivityPresenter<ParamDetailA
     public void onEventMainThread(int eventCode, Bundle bundle) {
         if (eventCode == EventCode.PARAM_DETAIL_FINISH) {
             getView().finish();
+        }
+        if (eventCode == EventCode.PARAM_DETAIL_UPDATE) {
+            loadData();
         }
     }
 

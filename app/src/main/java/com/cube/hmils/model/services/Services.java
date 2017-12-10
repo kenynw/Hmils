@@ -1,6 +1,7 @@
 package com.cube.hmils.model.services;
 
 
+import com.cube.hmils.model.bean.Address;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
 import com.cube.hmils.model.bean.Order;
@@ -288,10 +289,16 @@ public interface Services {
             @Field("projectId") int projectId,
             @Field("custName") String custName,
             @Field("phoneNo") String phone,
-            @Field("province") String province,
-            @Field("city") String city,
-            @Field("district") String district,
+            @Field("province") int province,
+            @Field("city") int city,
+            @Field("district") int district,
             @Field("detailAddr") String detailAddr
     );
+
+    /**
+     * 获取地址列表
+     */
+    @GET("installer/queryArea")
+    Observable<Address> areaList();
 
 }

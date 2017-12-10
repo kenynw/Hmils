@@ -63,8 +63,8 @@ public class ClientModel extends AbsModel {
      * 完善该用户信息
      *
      */
-    public Observable<Response> saveClientInfo(int projectId, String clientName, String phone, String province,
-                                               String city, String district, String detailAddr) {
+    public Observable<Response> saveClientInfo(int projectId, String clientName, String phone, int province,
+                                               int city, int district, String detailAddr) {
         return ServicesClient.getServices().saveClientInfo(projectId, clientName, phone, province, city, district, detailAddr)
                 .compose(new DefaultTransform<>());
     }

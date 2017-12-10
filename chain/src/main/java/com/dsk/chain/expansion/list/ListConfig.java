@@ -38,7 +38,7 @@ public class ListConfig implements Cloneable {
     View mContainerErrorView;
     int mContainerErrorRes = R.layout.default_view_list_error;
 
-    boolean mLoadMoreAble = true;
+    boolean mLoadMoreAble = false;
     View mFooterMoreView;
     int mFooterMoreRes = R.layout.default_footer_load_more;
 
