@@ -19,6 +19,9 @@ public class EventBusUtil {
     }
 
     public static void eventPost(int code, Bundle bundle) {
+        if (bundle == null){
+            bundle = new Bundle();
+        }
         bundle.putInt(EVENT_BUS_CODE, code);
         EventBus.getDefault().post(bundle);
     }

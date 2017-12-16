@@ -26,6 +26,12 @@ public class LoginPresenter extends Presenter<LoginActivity> {
                 getView().getExpansionDelegate().hideProgressBar();
                 getView().finish();
             }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                getView().getExpansionDelegate().hideProgressBar();
+            }
         });
     }
 

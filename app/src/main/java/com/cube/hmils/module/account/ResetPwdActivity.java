@@ -58,12 +58,13 @@ public class ResetPwdActivity extends ChainBaseActivity<ResetPwdPresenter> imple
     }
 
     private void checkInput() {
-        String pwdText = mEtConfirm.getText().toString().trim();
+        String pwdText = mEtPwd.getText().toString().trim();
+        String pwdConfirm = mEtConfirm.getText().toString().trim();
         if (!TextUtils.isEmpty(pwdText) && pwdText.equals("123456")) {
             mTvErrorPwd.setVisibility(View.VISIBLE);
             return;
         }
-        if (!mEtPwd.getText().equals(mEtConfirm.getText())) {
+        if (!pwdText.equals(pwdConfirm)) {
             LUtils.toast("两次输入的密码不一样");
             return;
         }

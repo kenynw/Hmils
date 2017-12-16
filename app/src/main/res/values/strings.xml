@@ -48,7 +48,7 @@
     <string name="text_room_num">房间数量</string>
     <string name="text_steady_room">规则房间</string>
     <string name="text_unsteady_room">不规则房间</string>
-    <string name="text_bedroom_name">主卧名称</string>
+    <string name="text_bedroom_name">房间名称</string>
     <string name="text_device_type">设备选型</string>
     <string name="text_room_width">房&#160;&#160;间&#160;&#160;长</string>
     <string name="text_room_height">房&#160;&#160;间&#160;&#160;宽</string>
