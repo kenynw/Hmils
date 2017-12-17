@@ -52,6 +52,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -77,6 +78,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_mobile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -102,6 +104,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -128,6 +131,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -154,6 +158,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_remark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -165,10 +170,12 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/fl_service_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/spacing_normal"
                 android:paddingTop="@dimen/spacing_large"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -180,6 +187,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_service_tel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -191,46 +199,18 @@
             </FrameLayout>
 
             <com.jude.exgridview.ExGridView
+                android:id="@+id/exgrid_service_detail_photo"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:paddingBottom="@dimen/spacing_normal"
                 android:paddingLeft="@dimen/spacing_small"
                 android:paddingRight="@dimen/spacing_small"
                 android:paddingTop="@dimen/spacing_normal"
+                android:visibility="gone"
                 app:grid_as_square="true"
                 app:grid_column="4"
                 app:grid_divider_vertical="@dimen/spacing_normal"
-                >
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/def_image"
-                    />
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/def_image"
-                    />
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/def_image"
-                    />
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/def_image"
-                    />
-
-            </com.jude.exgridview.ExGridView>
+                />
 
         </LinearLayout>
 
@@ -241,45 +221,114 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/spacing_small"
         android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:paddingBottom="@dimen/spacing_large"
-        android:paddingTop="30dp"
         >
 
-        <View
-            android:id="@+id/v_service_detail_marker_one"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:background="@drawable/ic_marker_timeline_selected"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="30dp"
+            >
 
-        <View
-            android:id="@+id/v_service_detail_line_one"
-            android:layout_width="115dp"
-            android:layout_height="2dp"
-            android:background="#89CBCB"
-            />
+            <View
+                android:id="@+id/v_service_detail_marker_one"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/ic_marker_timeline_selected"
+                />
 
-        <View
-            android:id="@+id/v_service_detail_marker_two"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:background="@drawable/ic_marker_timeline_selected"
-            />
+            <View
+                android:id="@+id/v_service_detail_line_one"
+                android:layout_width="115dp"
+                android:layout_height="2dp"
+                android:background="#89CBCB"
+                />
 
-        <View
-            android:id="@+id/v_service_detail_line_two"
-            android:layout_width="115dp"
-            android:layout_height="2dp"
-            android:background="#89CBCB"
-            />
+            <View
+                android:id="@+id/v_service_detail_marker_two"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/ic_marker_timeline_selected"
+                />
 
-        <View
-            android:id="@+id/v_service_detail_marker_third"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:background="@drawable/ic_marker_timeline_normal"
+            <View
+                android:id="@+id/v_service_detail_line_two"
+                android:layout_width="115dp"
+                android:layout_height="2dp"
+                android:background="#89CBCB"
+                />
+
+            <View
+                android:id="@+id/v_service_detail_marker_third"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/ic_marker_timeline_normal"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/spacing_normal"
+            >
+
+            <TextView
+                android:id="@+id/tv_service_handed"
+                android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="待接收"
+                android:textColor="@color/textTertiary"
+                android:textSize="@dimen/text_size_caption_material"
+                />
+
+            <TextView
+                android:id="@+id/tv_service_handing"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="53dp"
+                android:layout_marginRight="53dp"
+                android:gravity="center"
+                android:text="处理中"
+                android:textColor="@color/textTertiary"
+                android:textSize="@dimen/text_size_caption_material"
+                />
+
+            <TextView
+                android:id="@+id/tv_service_done"
+                android:layout_width="68dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="已完成"
+                android:textColor="@color/textTertiary"
+                android:textSize="@dimen/text_size_caption_material"
+                />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_service_contact"
+            android:layout_width="134dp"
+            android:layout_height="34dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@drawable/btn_radius_stroke_divider"
+            android:drawableLeft="@mipmap/icon_tel_azry"
+            android:drawablePadding="7.7dp"
+            android:gravity="start|center_vertical"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:text="联系安装人员"
+            android:textColor="@color/textSecondary"
+            android:visibility="gone"
             />
 
     </LinearLayout>

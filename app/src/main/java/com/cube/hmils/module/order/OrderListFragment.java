@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Order;
-import com.cube.hmils.module.main.ServiceViewHolder;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.list.BaseListFragment;
@@ -20,14 +19,12 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 public class OrderListFragment extends BaseListFragment<OrderListPresenter, Order> {
 
     public static final String EXTRA_USER_ID = "user_id";
-    public static final String EXTRA_TYPE = "type";
     public static final String EXTRA_STATE = "state";
 
-    public static OrderListFragment newInstance(int userId, int type, int state) {
+    public static OrderListFragment newInstance(int userId, int state) {
         OrderListFragment fragment = new OrderListFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(EXTRA_USER_ID, userId);
-        bundle.putInt(EXTRA_TYPE, type);
         bundle.putInt(EXTRA_STATE, state);
         fragment.setArguments(bundle);
         return fragment;
@@ -35,7 +32,7 @@ public class OrderListFragment extends BaseListFragment<OrderListPresenter, Orde
 
     @Override
     public BaseViewHolder<Order> createViewHolder(ViewGroup parent, int viewType) {
-        return getPresenter().mType == 0 ? new OrderViewHolder(parent) : new ServiceViewHolder(parent);
+        return new OrderViewHolder(parent);
     }
 
     @Override

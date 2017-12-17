@@ -63,7 +63,7 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> impleme
     private List<Fragment> getFragments() {
         mFragments = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            OrderListFragment fragment = OrderListFragment.newInstance(0, 0, i + 1);
+            OrderListFragment fragment = OrderListFragment.newInstance(0,  i + 1);
             mFragments.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());
         }

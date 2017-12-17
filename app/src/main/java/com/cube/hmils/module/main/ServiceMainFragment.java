@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cube.hmils.R;
-import com.cube.hmils.module.order.OrderListFragment;
+import com.cube.hmils.model.Service;
+import com.cube.hmils.module.order.ServiceListFragment;
+import com.cube.hmils.module.order.ServiceListPresenter;
 import com.dsk.chain.bijection.ChainFragment;
 import com.dsk.chain.bijection.RequiresPresenter;
 
@@ -27,7 +29,6 @@ import butterknife.Unbinder;
 @RequiresPresenter(ServiceMainPresenter.class)
 public class ServiceMainFragment extends ChainFragment<ServiceMainPresenter> {
 
-
     @BindView(R.id.tl_main_order)
     TabLayout mTlOrder;
 
@@ -42,18 +43,21 @@ public class ServiceMainFragment extends ChainFragment<ServiceMainPresenter> {
         View view = inflater.inflate(R.layout.main_fragment_service, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        TitlePagerAdapter adapter = new TitlePagerAdapter(getActivity(),R.array.text_order_service_tabs,
-                getFragments(), getChildFragmentManager());
-        mVpOrder.setAdapter(adapter);
-        mTlOrder.setupWithViewPager(mVpOrder);
-
         return view;
     }
 
-    private List<Fragment> getFragments() {
+    public void initTabs(ArrayList<Service> serviceArrayList) {
+        TitlePagerAdapter adapter = new TitlePagerAdapter(getActivity(), R.array.text_order_service_tabs,
+                getFragments(serviceArrayList), getChildFragmentManager());
+        mVpOrder.setAdapter(adapter);
+        mTlOrder.setupWithViewPager(mVpOrder);
+    }
+
+    private List<Fragment> getFragments(ArrayList<Service> serviceArrayList) {
+        int[] states = new int[]{0, 6801, 6802, 6803};
         List<Fragment> list = new ArrayList<>();
-        for (int i=0; i<4; i++) {
-            OrderListFragment fragment = OrderListFragment.newInstance(0, 1, i+1);
+        for (int state : states) {
+            ServiceListFragment fragment = ServiceListPresenter.newInstance(state, serviceArrayList);
             list.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());
         }
@@ -77,6 +81,5 @@ public class ServiceMainFragment extends ChainFragment<ServiceMainPresenter> {
             }
         }
     }
-
 
 }

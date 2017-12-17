@@ -5,7 +5,7 @@ import com.cube.hmils.model.bean.Address;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
 import com.cube.hmils.model.bean.Order;
-import com.cube.hmils.model.bean.OrderList;
+import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
@@ -128,7 +128,7 @@ public interface Services {
      */
     @FormUrlEncoded
     @POST("operator/getOrderList/")
-    Observable<OrderList> orderList(
+    Observable<OrderResponse> orderList(
             @Field("userId") int userId,
             @Field("nameTel") String nameTel,
             @Field("handingStatus") int state
@@ -266,9 +266,19 @@ public interface Services {
      */
     @FormUrlEncoded
     @POST("operator/afterSaleList/")
-    Observable<OrderList> servicesList(
-            @Field("userId") int userId,
-            @Field("handingStatus") int state
+    Observable<OrderResponse> servicesList(
+            @Field("userId") int userId
+    );
+
+    /**
+     * 售后列表
+     *
+     * @param orderId 用户Id
+     */
+    @FormUrlEncoded
+    @POST("operator/getAfterSaleDetail/")
+    Observable<OrderResponse> servicesDetail(
+            @Field("orderId") int orderId
     );
 
     /**

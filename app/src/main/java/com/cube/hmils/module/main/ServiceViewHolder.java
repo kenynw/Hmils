@@ -7,7 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
-import com.cube.hmils.model.bean.Order;
+import com.cube.hmils.model.Service;
+import com.cube.hmils.model.constant.Extra;
 import com.cube.hmils.module.order.ServiceDetailActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by Carol on 2017/11/8.
  */
 
-public class ServiceViewHolder extends BaseViewHolder<Order> {
+public class ServiceViewHolder extends BaseViewHolder<Service> {
 
     @BindArray(R.array.order_status)
     String[] mOrderStatus;
@@ -52,13 +53,17 @@ public class ServiceViewHolder extends BaseViewHolder<Order> {
     }
 
     @Override
-    public void setData(Order data) {
-        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
-        mTvState.setText(mOrderStatus[data.getHandingStatus() - 1]);
+    public void setData(Service data) {
+        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getTime()));
+        mTvState.setText(data.getCodeName());
         mTvUsername.setText(data.getCustName());
-        mTvContact.setText(data.getCustTel());
-        mTvAddress.setText(data.getCustAddr());
-        itemView.setOnClickListener(v -> getContext().startActivity(new Intent(getContext(), ServiceDetailActivity.class)));
+        mTvContact.setText(data.getContTel());
+        mTvAddress.setText(data.getContAddr());
+        itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), ServiceDetailActivity.class);
+            intent.putExtra(Extra.EXTRA_ORDER_ID, data.getOrderId());
+            getContext().startActivity(intent);
+        });
     }
 
 }

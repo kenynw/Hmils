@@ -3,7 +3,7 @@ package com.cube.hmils.model;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.ClientList;
 import com.cube.hmils.model.bean.Order;
-import com.cube.hmils.model.bean.OrderList;
+import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
@@ -69,7 +69,7 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<OrderList> getOrderList(int userId, String search, int state) {
+    public Observable<OrderResponse> getOrderList(int userId, String search, int state) {
         return ServicesClient.getServices().orderList(userId == 0 ? UserPreferences.getUserID() : userId, search, state)
                 .compose(new DefaultTransform<>());
     }
@@ -78,8 +78,17 @@ public class ClientModel extends AbsModel {
      * 我的售后列表
      * @return
      */
-    public Observable<OrderList> getServiceList(int state) {
-        return ServicesClient.getServices().servicesList(UserPreferences.getUserID(), state)
+    public Observable<OrderResponse> getServiceList() {
+        return ServicesClient.getServices().servicesList(UserPreferences.getUserID())
+                .compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 我的售后详情
+     * @return
+     */
+    public Observable<OrderResponse> getServiceDetail(int orderId) {
+        return ServicesClient.getServices().servicesDetail(orderId)
                 .compose(new DefaultTransform<>());
     }
 

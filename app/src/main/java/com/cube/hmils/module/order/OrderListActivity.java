@@ -37,7 +37,7 @@ public class OrderListActivity extends ChainBaseActivity<OrderListActivityPresen
         ButterKnife.bind(this);
 
         int userId = getIntent().getIntExtra("client_id", 0);
-        OrderListFragment fragment = OrderListFragment.newInstance(userId, 0, 0);
+        OrderListFragment fragment = OrderListFragment.newInstance(userId, 0);
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl_order_list_container, fragment);
