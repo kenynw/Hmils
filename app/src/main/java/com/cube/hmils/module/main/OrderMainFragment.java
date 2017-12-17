@@ -29,7 +29,7 @@ import butterknife.Unbinder;
  * 客户订单
  */
 @RequiresPresenter(OrderMainPresenter.class)
-public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
+public class OrderMainFragment extends ChainFragment<OrderMainPresenter> implements TabLayout.OnTabSelectedListener {
 
     @BindView(R.id.tl_main_order)
     TabLayout mTlOrder;
@@ -41,6 +41,7 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
 
     @BindView(R.id.tv_main_order_search)
     TextView mTvSearch;
+    private List<Fragment> mFragments;
 
     @Nullable
     @Override
@@ -54,17 +55,19 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
         mVpOrder.setAdapter(adapter);
         mTlOrder.setupWithViewPager(mVpOrder);
 
+        mTlOrder.addOnTabSelectedListener(this);
+
         return view;
     }
 
     private List<Fragment> getFragments() {
-        List<Fragment> list = new ArrayList<>();
+        mFragments = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            OrderListFragment fragment = OrderListFragment.newInstance(0, i + 1);
-            list.add(fragment);
+            OrderListFragment fragment = OrderListFragment.newInstance(0, 0, i + 1);
+            mFragments.add(fragment);
             mTlOrder.addTab(mTlOrder.newTab());
         }
-        return list;
+        return mFragments;
     }
 
     @Override
@@ -85,4 +88,18 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> {
         }
     }
 
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        ((OrderListFragment) mFragments.get(tab.getPosition())).getPresenter().onRefresh();
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
 }

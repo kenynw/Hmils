@@ -19,12 +19,14 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 @RequiresPresenter(OrderListPresenter.class)
 public class OrderListFragment extends BaseListFragment<OrderListPresenter, Order> {
 
+    public static final String EXTRA_USER_ID = "user_id";
     public static final String EXTRA_TYPE = "type";
     public static final String EXTRA_STATE = "state";
 
-    public static OrderListFragment newInstance(int type, int state) {
+    public static OrderListFragment newInstance(int userId, int type, int state) {
         OrderListFragment fragment = new OrderListFragment();
         Bundle bundle = new Bundle();
+        bundle.putInt(EXTRA_USER_ID, userId);
         bundle.putInt(EXTRA_TYPE, type);
         bundle.putInt(EXTRA_STATE, state);
         fragment.setArguments(bundle);

@@ -183,7 +183,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="130"
                         android:gravity="center"
-                        android:text="订单时间"
+                        android:text="订单状态"
                         android:textColor="@color/textSecondary"
                         />
 

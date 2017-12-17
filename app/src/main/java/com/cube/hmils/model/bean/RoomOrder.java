@@ -34,6 +34,7 @@ public class RoomOrder implements Parcelable {
     private String roomName;
     private int totalGoods;
     private String totalPrice;
+    private String custPhone;
     @Expose
     @SerializedName(value = "heating", alternate = "HeatingList")
     private List<Device> heatingList;
@@ -56,6 +57,14 @@ public class RoomOrder implements Parcelable {
 
     public void setRoomPara(List<RoomOrder> roomPara) {
         this.roomPara = roomPara;
+    }
+
+    public String getCustPhone() {
+        return custPhone;
+    }
+
+    public void setCustPhone(String custPhone) {
+        this.custPhone = custPhone;
     }
 
     public int getHGoods() {
@@ -148,6 +157,7 @@ public class RoomOrder implements Parcelable {
         dest.writeString(this.roomName);
         dest.writeInt(this.totalGoods);
         dest.writeString(this.totalPrice);
+        dest.writeString(this.custPhone);
         dest.writeTypedList(this.heatingList);
         dest.writeTypedList(this.materialList);
         dest.writeParcelable(this.installInfo, flags);
@@ -162,6 +172,7 @@ public class RoomOrder implements Parcelable {
         this.roomName = in.readString();
         this.totalGoods = in.readInt();
         this.totalPrice = in.readString();
+        this.custPhone = in.readString();
         this.heatingList = in.createTypedArrayList(Device.CREATOR);
         this.materialList = in.createTypedArrayList(Device.CREATOR);
         this.installInfo = in.readParcelable(InstallInfo.class.getClassLoader());

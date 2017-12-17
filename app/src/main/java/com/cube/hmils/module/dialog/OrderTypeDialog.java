@@ -83,7 +83,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
                         public void onNext(Order order) {
                             dismiss();
                             order.setCustName(mClient.getCustName());
-                            order.setProjectId(mClient.getProjectId());
+                            order.setProjectId(order.getProjectId());
                             mOrder = order;
                             if (mSelectedIndex == 2) {
                                 ChangeDevicePresenter.start(context, order);

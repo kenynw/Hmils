@@ -1,11 +1,13 @@
 package com.cube.hmils.module.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.local.UserPreferences;
+import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.expansion.data.BaseDataFragmentPresenter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -22,7 +24,7 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
         loadUser();
     }
 
-    private void loadUser() {
+    public void loadUser() {
         UserModel.getInstance().getUserDetail().unsafeSubscribe(getSubscriber());
     }
 
@@ -34,6 +36,7 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
             Bundle bundle = new Bundle();
             bundle.putInt(EVENT_BUS_CODE, EventCode.LOGOUT);
             EventBus.getDefault().post(bundle);
+            getView().startActivity(new Intent(getView().getActivity(), LoginActivity.class));
         }
     }
 

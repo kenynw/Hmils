@@ -110,7 +110,11 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
         mTvPrice.setText(roomOrder.getRoomOrder().getTotalPrice());
         mTvNum.setText(String.format(getString(R.string.text_count_product), roomOrder.getRoomOrder().getTotalGoods()));
         mBtnConfirm.setOnClickListener(v -> showConfirmDialog());
-
+        mBtnContact.setOnClickListener(v -> {
+            Uri uri = Uri.parse("tel:" + roomOrder.getCustPhone());
+            Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+            startActivity(intent);
+        });
 
         InstallInfo install = roomOrder.getInstallInfo();
         if (install != null) {

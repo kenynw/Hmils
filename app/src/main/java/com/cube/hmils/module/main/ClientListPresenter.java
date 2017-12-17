@@ -60,7 +60,7 @@ public class ClientListPresenter extends BaseListFragmentPresenter<ClientListFra
                     mClients = clientList.getCustList();
                     return clientList.getCustList();
                 })
-                .subscribe(getRefreshSubscriber());
+                .unsafeSubscribe(getRefreshSubscriber());
     }
 
     public List<Client> getClients() {
@@ -73,4 +73,5 @@ public class ClientListPresenter extends BaseListFragmentPresenter<ClientListFra
             onRefresh();
         }
     }
+
 }

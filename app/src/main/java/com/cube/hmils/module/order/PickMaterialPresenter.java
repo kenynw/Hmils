@@ -16,7 +16,7 @@ import static com.cube.hmils.model.constant.Extra.EXTRA_ROOM_NUM;
 public class PickMaterialPresenter extends Presenter<PickMaterialActivity> {
 
     public static void start(Context context, Order order, int[] roomNum) {
-        Intent intent = new Intent(context, RoomParamsActivity.class);
+        Intent intent = new Intent(context, PickMaterialActivity.class);
         intent.putExtra(EXTRA_ORDER, order);
         intent.putExtra(EXTRA_ROOM_NUM, roomNum);
         context.startActivity(intent);

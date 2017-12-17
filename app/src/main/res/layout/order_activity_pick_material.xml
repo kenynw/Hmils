@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/bg_radius_white"
+            android:background="@drawable/btn_pick_material_selector"
             android:button="@null"
             android:gravity="center"
             android:text="贵族系列"
@@ -45,5 +45,11 @@
             />
 
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_type_next"
+        style="@style/ButtonLarge"
+        android:text="@string/btn_next"
+        />
 
 </LinearLayout>

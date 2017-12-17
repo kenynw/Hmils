@@ -188,6 +188,7 @@ public class ClientListFragment extends BaseListFragment<ClientListPresenter, Cl
         if (getView() != null) {
             if (menuVisible) {
                 getView().setVisibility(View.VISIBLE);
+                getPresenter().onRefresh();
             } else {
                 getView().setVisibility(View.INVISIBLE);
             }

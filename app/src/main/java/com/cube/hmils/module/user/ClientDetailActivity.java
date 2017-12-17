@@ -10,6 +10,7 @@ import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.module.dialog.OrderTypeDialog;
 import com.cube.hmils.module.order.ChangeDevicePresenter;
+import com.cube.hmils.module.order.OrderListActivity;
 import com.cube.hmils.module.order.RoomNumPresenter;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
@@ -55,6 +56,8 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
         mTvName.setText(client.getCustName());
         mTvAddress.setText(client.getFullAddress());
         mTvCooperatTime.setText(client.getCreatTime());
+
+        mBtnView.setOnClickListener(v -> OrderListActivity.start(this, client.getCustId()));
         mBtnCreate.setOnClickListener(v -> {
             if (mTypeDialog != null && mTypeDialog.getOrder() != null) {
                 if (mTypeDialog.getSelectedIndex() == 2) {

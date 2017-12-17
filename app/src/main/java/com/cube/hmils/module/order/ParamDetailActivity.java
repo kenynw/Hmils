@@ -79,6 +79,7 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
 
     @Override
     public void setData(RoomOrder roomOrder) {
+        if (roomOrder.getRoomPara().size() <= 0) return;
         for (RoomOrder order : roomOrder.getRoomPara()) {
             RoomOrderFragment fragment = RoomOrderFragmentPresenter.newInstance(order, getPresenter().getType() == 2);
             mFragments.add(fragment);
@@ -135,9 +136,14 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
     @Override
     public void onPageSelected(int position) {
         List<RoomOrder> roomPara = getPresenter().getData().getRoomPara();
-        setPositionInfo(position, roomPara);
-        mIvLeft.setEnabled(position != 0);
-        mIvRight.setEnabled(position != roomPara.size() - 1);
+        if (roomPara != null && roomPara.size() > 0) {
+            setPositionInfo(position, roomPara);
+            mIvLeft.setEnabled(position != 0);
+            mIvRight.setEnabled(position != roomPara.size() - 1);
+        } else {
+            mIvLeft.setEnabled(false);
+            mIvRight.setEnabled(false);
+        }
     }
 
     @Override

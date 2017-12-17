@@ -123,6 +123,7 @@
         </activity>
         <activity android:name=".module.order.PickMaterialActivity">
         </activity>
+        <activity android:name=".module.order.OrderListActivity"/>
     </application>
 
 </manifest>

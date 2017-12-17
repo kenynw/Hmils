@@ -12,7 +12,7 @@ public class OrderSearchPresenter extends BaseListActivityPresenter<OrderSearchA
 
     @Override
     public void onRefresh() {
-        ClientModel.getInstance().getOrderList(getView().getSearchKeywords(), 0)
+        ClientModel.getInstance().getOrderList(0, getView().getSearchKeywords(), 0)
                 .map(OrderList::getCustOrderList)
                 .unsafeSubscribe(getRefreshSubscriber());
     }

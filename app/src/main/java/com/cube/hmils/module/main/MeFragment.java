@@ -92,6 +92,7 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> {
         if (getView() != null) {
             if (menuVisible) {
                 getView().setVisibility(View.VISIBLE);
+                getPresenter().loadUser();
             } else {
                 getView().setVisibility(View.INVISIBLE);
             }

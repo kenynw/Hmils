@@ -131,9 +131,13 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     @Override
     public void onPositiveClick(@NonNull View view) {
         if (getSupportFragmentManager().findFragmentByTag(TAG_ADD_AREA) != null) {
-            EditText et = view.getRootView().findViewById(R.id.et_add_area_input);
-            addAndMinusArea(0, et.getText().toString().trim());
-            LUtils.closeKeyboard(et);
+            EditText etWidth = view.getRootView().findViewById(R.id.et_add_area_width);
+            EditText etHeight = view.getRootView().findViewById(R.id.et_add_area_height);
+            int width = Integer.valueOf(etWidth.getText().toString().trim());
+            int height = Integer.valueOf(etHeight.getText().toString().trim());
+
+            addAndMinusArea(0, String.valueOf(width * height));
+            LUtils.closeKeyboard(etWidth);
         }
     }
 
