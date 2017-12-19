@@ -74,7 +74,15 @@ public class OrderTypeDialog extends BottomSheetDialog {
                 }
             });
         });
-        mRlTypes[0].setSelected(true);
+        if (client.getCustType() == 0) {
+            mRlTypes[0].setVisibility(View.VISIBLE);
+            mRlTypes[1].setVisibility(View.GONE);
+            mRlTypes[0].setSelected(true);
+        } else {
+            mRlTypes[0].setVisibility(View.GONE);
+            mRlTypes[1].setVisibility(View.VISIBLE);
+            mRlTypes[1].setSelected(true);
+        }
         mIvClose.setOnClickListener(close -> dismiss());
         mBtnOk.setOnClickListener(ok -> {
             ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mTypes[mSelectedIndex])

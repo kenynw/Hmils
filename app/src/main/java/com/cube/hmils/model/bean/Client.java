@@ -37,6 +37,7 @@ public class Client implements Parcelable {
     private String phoneNo;
     private String province;
     private String street;
+    private int custType;
 
     public String getCity() {
         return city;
@@ -133,6 +134,14 @@ public class Client implements Parcelable {
         this.projectId = projectId;
     }
 
+    public int getCustType() {
+        return custType;
+    }
+
+    public void setCustType(int custType) {
+        this.custType = custType;
+    }
+
     public String getFullAddress() {
         StringBuilder builder = new StringBuilder();
         builder.append(getProvince() == null ? "" : getProvince());
@@ -164,6 +173,7 @@ public class Client implements Parcelable {
         dest.writeString(this.phoneNo);
         dest.writeString(this.province);
         dest.writeString(this.street);
+        dest.writeInt(this.custType);
     }
 
     protected Client(Parcel in) {
@@ -179,6 +189,7 @@ public class Client implements Parcelable {
         this.phoneNo = in.readString();
         this.province = in.readString();
         this.street = in.readString();
+        this.custType = in.readInt();
     }
 
     public static final Creator<Client> CREATOR = new Creator<Client>() {

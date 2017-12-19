@@ -12,4 +12,6 @@ public interface Extra {
 
     String EXTRA_ORDER_ID = "order_id";
 
+    String EXTRA_MATERIAL_TYPE = "material_type"; // 材料类型
+
 }

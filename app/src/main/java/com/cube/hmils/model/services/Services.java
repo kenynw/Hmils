@@ -203,6 +203,7 @@ public interface Services {
      * 填写房间数量
      *
      * @param roomType 标准房间传1，不规则房间传0
+     * @param matType  0---贵族，1---精英
      * @return
      */
     @FormUrlEncoded
@@ -214,7 +215,8 @@ public interface Services {
             @Field("projectId") int projectId,
             @Field("roomName") String roomName,
             @Field("roomSize") String roomSize,
-            @Field("roomType") int roomType
+            @Field("roomType") int roomType,
+            @Field("matType") int matType
     );
 
     /**

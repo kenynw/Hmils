@@ -87,4 +87,11 @@ public class Device implements Parcelable {
             return new Device[size];
         }
     };
+
+    // 用于设置spanner
+    @Override
+    public String toString() {
+        return spec;
+    }
+
 }

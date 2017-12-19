@@ -5,6 +5,8 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 /**
  * Created by Carol on 2017/10/14.
  */
@@ -31,6 +33,8 @@ public class Order implements Parcelable {
     private String procCode; //处理环节代码
 
     private String time; //指派时间
+
+    private ArrayList<Device> heatList; // 温控器类型
 
     public int getProjectId() {
         return projectId;
@@ -112,6 +116,14 @@ public class Order implements Parcelable {
         this.time = time;
     }
 
+    public ArrayList<Device> getHeatList() {
+        return heatList;
+    }
+
+    public void setHeatList(ArrayList<Device> heatList) {
+        this.heatList = heatList;
+    }
+
     public Order() {
     }
 
@@ -132,6 +144,7 @@ public class Order implements Parcelable {
         dest.writeString(this.appoTime);
         dest.writeString(this.procCode);
         dest.writeString(this.time);
+        dest.writeTypedList(this.heatList);
     }
 
     protected Order(Parcel in) {
@@ -145,6 +158,7 @@ public class Order implements Parcelable {
         this.appoTime = in.readString();
         this.procCode = in.readString();
         this.time = in.readString();
+        this.heatList = in.createTypedArrayList(Device.CREATOR);
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {
