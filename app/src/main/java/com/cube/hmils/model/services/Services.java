@@ -200,6 +200,22 @@ public interface Services {
     );
 
     /**
+     * 更换温控器
+     *
+     * @param projectId 项目ID
+     * @param qty 数量
+     * @param spec 温控器型号
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("operator/changeHeat/")
+    Observable<Project> changeHeat(
+            @Field("projectId") int projectId,
+            @Field("qty") int qty,
+            @Field("spec") String spec
+    );
+
+    /**
      * 填写房间数量
      *
      * @param roomType 标准房间传1，不规则房间传0

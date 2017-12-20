@@ -2,6 +2,7 @@ package com.cube.hmils.module.order;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RadioButton;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Order;
@@ -19,6 +20,10 @@ public class PickMaterialActivity extends ChainBaseActivity<PickMaterialPresente
 
     @BindView(R.id.btn_type_next)
     Button mBtnNext;
+    @BindView(R.id.rbtn_pick_material_1)
+    RadioButton mRbtn1;
+    @BindView(R.id.rbtn_pick_material_0)
+    RadioButton mRbtn0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class PickMaterialActivity extends ChainBaseActivity<PickMaterialPresente
         Order order = getIntent().getParcelableExtra(EXTRA_ORDER);
         int num[] = getIntent().getIntArrayExtra(EXTRA_ROOM_NUM);
         mBtnNext.setOnClickListener(v -> {
-            RoomParamsPresenter.start(this, order, num, 0);
+            RoomParamsPresenter.start(this, order, num, mRbtn0.isChecked() ? 0 : 1, 0);
             finish();
         });
     }

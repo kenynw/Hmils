@@ -13,9 +13,33 @@ android {
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'hms'
+            keyPassword '123456'
+            storeFile file('../hms.jks')
+            storePassword '123456'
+        }
+
+        release {
+            keyAlias 'hms'
+            keyPassword '123456'
+            storeFile file('../hms.jks')
+            storePassword '123456'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

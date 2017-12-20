@@ -44,8 +44,12 @@
                 android:id="@+id/sp_device_type"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/spacing_normal"
+                android:layout_marginRight="@dimen/spacing_normal"
                 android:gravity="center"
                 android:inputType="numberDecimal"
+                android:overlapAnchor="false"
+                android:spinnerMode="dropdown"
                 android:textColor="@color/textPrimary"
                 android:textSize="@dimen/text_size_title_material"
                 />

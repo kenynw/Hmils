@@ -61,7 +61,6 @@ public class ClientModel extends AbsModel {
 
     /**
      * 完善该用户信息
-     *
      */
     public Observable<Response> saveClientInfo(int projectId, String clientName, String phone, int province,
                                                int city, int district, String detailAddr) {
@@ -76,6 +75,7 @@ public class ClientModel extends AbsModel {
 
     /**
      * 我的售后列表
+     *
      * @return
      */
     public Observable<OrderResponse> getServiceList() {
@@ -85,6 +85,7 @@ public class ClientModel extends AbsModel {
 
     /**
      * 我的售后详情
+     *
      * @return
      */
     public Observable<OrderResponse> getServiceDetail(int orderId) {
@@ -94,6 +95,7 @@ public class ClientModel extends AbsModel {
 
     /**
      * 订单详情（房间）
+     *
      * @param custId
      * @param projectId
      * @return
@@ -114,19 +116,29 @@ public class ClientModel extends AbsModel {
     }
 
     /**
-     *
+     * 更换温控器
+     * @param projectId
+     * @param qyt
+     * @param spec
+     * @return
+     */
+    public Observable<Project> changeHeat(int projectId, int qyt, String spec) {
+        return ServicesClient.getServices().changeHeat(projectId, qyt, spec).compose(new DefaultTransform<>());
+    }
+
+    /**
      * @param addArea
      * @param addStatus
      * @param itemId
      * @param projectId
      * @param roomName
      * @param roomSize
-     * @param roomType 标准房间传1，不规则房间传0
+     * @param roomType  标准房间传1，不规则房间传0
      * @return
      */
     public Observable<Project> saveRoomParams(int addArea, String addStatus, int itemId, int projectId,
-                                              String roomName, String roomSize, int roomType) {
-        return ServicesClient.getServices().saveRoomParams(addArea, addStatus, itemId, projectId, roomName, roomSize, roomType)
+                                              String roomName, String roomSize, int roomType, int melType) {
+        return ServicesClient.getServices().saveRoomParams(addArea, addStatus, itemId, projectId, roomName, roomSize, roomType, melType)
                 .compose(new DefaultTransform<>());
     }
 

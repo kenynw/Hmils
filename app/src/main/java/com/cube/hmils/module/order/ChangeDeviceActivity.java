@@ -3,6 +3,8 @@ package com.cube.hmils.module.order;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,8 @@ public class ChangeDeviceActivity extends ChainBaseActivity<ChangeDevicePresente
     @BindView(R.id.btn_room_next)
     Button mBtnNext;
 
+    private Device mDevice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,19 +41,30 @@ public class ChangeDeviceActivity extends ChainBaseActivity<ChangeDevicePresente
 
         Order order = getIntent().getParcelableExtra("order");
         ArrayAdapter<Device> adapter = new ArrayAdapter<Device>(this, android.R.layout.simple_spinner_item, order.getHeatList());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpType.setAdapter(adapter);
+        mSpType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mDevice = order.getHeatList().get(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         mEtNum.addTextChangedListener(this);
         mBtnNext.setOnClickListener(v -> checkInput());
     }
-
 
     private void checkInput() {
         if (mEtNum.getText().length() <= 0) {
             LUtils.toast("请输入房间数");
             return;
         }
-        getPresenter().addNum(mEtNum.getText().toString().trim());
+        getPresenter().changeHeat(mEtNum.getText().toString().trim());
     }
 
     @Override
@@ -72,4 +87,7 @@ public class ChangeDeviceActivity extends ChainBaseActivity<ChangeDevicePresente
         return new int[] {R.id.et_device_num};
     }
 
+    public Device getDevice() {
+        return mDevice;
+    }
 }

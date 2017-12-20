@@ -16,7 +16,6 @@ import com.dsk.chain.bijection.Presenter;
 
 public class ChangeDevicePresenter extends Presenter<ChangeDeviceActivity> {
 
-
     private Order mOrder;
 
     public static void start(Context context, Order order) {
@@ -35,16 +34,19 @@ public class ChangeDevicePresenter extends Presenter<ChangeDeviceActivity> {
         if (mOrder != null) view.setToolbarTitle(String.format("%s家庭信息", mOrder.getCustName()));
     }
 
-    public void addNum(String num) {
-        ClientModel.getInstance().addRoomNum(mOrder.getProjectId(), Integer.valueOf(num))
-                .subscribe(new ServicesResponse<Project>() {
+    public void changeHeat(String num) {
+        ClientModel.getInstance().changeHeat(mOrder.getProjectId(), Integer.valueOf(num), getView().getDevice().getSpec())
+                .unsafeSubscribe(new ServicesResponse<Project>() {
                     @Override
                     public void onNext(Project project) {
-                        PickMaterialPresenter.start(getView(), mOrder, project.getItemId());
-                        getView().finish();
+                        ParamDetailPresenter.start(getView(), mOrder.getProjectId(), 0);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
                     }
                 });
     }
-
 
 }

@@ -19,7 +19,7 @@
         >
 
         <RadioButton
-            android:id="@+id/rbtn_order_detail_online"
+            android:id="@+id/rbtn_pick_material_1"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:background="@drawable/btn_pick_material_selector"
@@ -32,7 +32,7 @@
             />
 
         <RadioButton
-            android:id="@+id/rbtn_order_detail_offline"
+            android:id="@+id/rbtn_pick_material_0"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginTop="30dp"
