@@ -152,6 +152,14 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         String roomHeight = mEtHeight.getText().toString().trim();
         int extraArea = getArea();
         mRooms.clear();
+        if (!checkSize(roomWidth)) {
+            LUtils.toast("宽度不能小于60");
+            return;
+        }
+        if (!checkSize(roomHeight)) {
+            LUtils.toast("长度不能小于60");
+            return;
+        }
         addRoom(roomWidth, roomHeight);
         if (mLlAdd.getChildCount() > 0) {
             for (int i = 0; i < mLlAdd.getChildCount(); i++) {
@@ -161,15 +169,31 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 String width = tvW.getText().toString().trim();
                 String height = tvH.getText().toString().trim();
                 if (!TextUtils.isEmpty(width) && !TextUtils.isEmpty(height)) {
+                    if (!checkSize(width)) {
+                        LUtils.toast("宽度不能小于60");
+                        return;
+                    }
+                    if (!checkSize(height)) {
+                        LUtils.toast("长度不能小于60");
+                        return;
+                    }
                     addRoom(width, height);
                 }
             }
         }
         String roomSize = new Gson().toJson(mRooms);
 
-        LUtils.log("room: " + roomSize);
-
         getPresenter().saveParams(extraArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
+    }
+
+    private boolean checkSize(String sizeStr) {
+        if (TextUtils.isDigitsOnly(sizeStr)) {
+            int size = Integer.valueOf(sizeStr);
+            if (size < 60) return false;
+        } else {
+            return false;
+        }
+        return true;
     }
 
     private void addRoom(String width, String height) {
@@ -226,10 +250,13 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 View view = mLlExtra.getChildAt(i);
                 TextView tvLabel = view.findViewById(R.id.tv_room_params_extra);
                 EditText etInput = view.findViewById(R.id.et_room_param_extra);
-                if (tvLabel.getText().toString().trim().equals("增加面积")) {
-                    area = area + Integer.valueOf(etInput.getText().toString().trim());
-                } else {
-                    area = area - Integer.valueOf(etInput.getText().toString().trim());
+                String addSize = etInput.getText().toString().trim();
+                if (!TextUtils.isEmpty(addSize)) {
+                    if (tvLabel.getText().toString().trim().equals("增加面积")) {
+                        area = area + Integer.valueOf(addSize);
+                    } else {
+                        area = area - Integer.valueOf(addSize);
+                    }
                 }
             }
         }

@@ -23,6 +23,8 @@ public class User implements Parcelable {
 
     private String QRcode;
 
+    private int firstLogin;
+
     public int getAgentId() {
         return agentId;
     }
@@ -79,6 +81,14 @@ public class User implements Parcelable {
         this.QRcode = QRcode;
     }
 
+    public int getFirstLogin() {
+        return firstLogin;
+    }
+
+    public void setFirstLogin(int firstLogin) {
+        this.firstLogin = firstLogin;
+    }
+
     public User() {
     }
 
@@ -96,6 +106,7 @@ public class User implements Parcelable {
         dest.writeString(this.telPhone);
         dest.writeString(this.userName);
         dest.writeString(this.QRcode);
+        dest.writeInt(this.firstLogin);
     }
 
     protected User(Parcel in) {
@@ -106,6 +117,7 @@ public class User implements Parcelable {
         this.telPhone = in.readString();
         this.userName = in.readString();
         this.QRcode = in.readString();
+        this.firstLogin = in.readInt();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
