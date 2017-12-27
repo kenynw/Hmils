@@ -10,10 +10,11 @@ public class LauncherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         new Handler().postDelayed(() -> {
             startActivity(new Intent(LauncherActivity.this, MainActivity.class));
             finish();
-        }, 1000);
+        }, 2000);
     }
 
 }
