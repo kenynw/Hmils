@@ -16,8 +16,8 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.bean.Room;
-import com.cube.hmils.module.dialog.BaseAlertDialog;
 import com.cube.hmils.module.dialog.DialogCallback;
+import com.cube.hmils.module.dialog.ExtraAreaDialog;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -35,6 +35,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         RadioGroup.OnCheckedChangeListener {
 
     public static final String TAG_ADD_AREA = "add_area";
+    public static final String TAG_MINU_AREA = "minu_area";
 
     @BindArray(R.array.letters)
     String[] LETTERS;
@@ -86,6 +87,9 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     private List<Room> mRooms;
 
+    private List<Room> mAddAreas; // 增加面积
+    private List<Room> mMinuAreas; // 减少面积
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,8 +103,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mToolbarBackText.setText("上一步");
 
         mRgType.setOnCheckedChangeListener(this);
-        mTvAdd.setOnClickListener(v -> showAddDialog());
-        mTvMinus.setOnClickListener(v -> addAndMinusArea(1, ""));
+        mTvAdd.setOnClickListener(v -> showAddDialog(0));
+        mTvMinus.setOnClickListener(v -> showAddDialog(1));
         mIbtAdd.setOnClickListener(v -> {
             View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
             view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -123,22 +127,24 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mBtnSave.setOnClickListener(v -> checkInput());
     }
 
-    private void showAddDialog() {
-        BaseAlertDialog.newInstance(R.layout.dialog_add_area, this)
-                .show(getSupportFragmentManager(), TAG_ADD_AREA);
+    private void showAddDialog(int type) {
+        ExtraAreaDialog dialog = new ExtraAreaDialog();
+        dialog.show(getSupportFragmentManager(), type == 0 ? TAG_ADD_AREA : TAG_MINU_AREA);
     }
 
     @Override
     public void onPositiveClick(@NonNull View view) {
-        if (getSupportFragmentManager().findFragmentByTag(TAG_ADD_AREA) != null) {
-            EditText etWidth = view.getRootView().findViewById(R.id.et_add_area_width);
-            EditText etHeight = view.getRootView().findViewById(R.id.et_add_area_height);
-            int width = Integer.valueOf(etWidth.getText().toString().trim());
-            int height = Integer.valueOf(etHeight.getText().toString().trim());
+        EditText etWidth = view.getRootView().findViewById(R.id.et_add_area_width);
+        EditText etHeight = view.getRootView().findViewById(R.id.et_add_area_height);
+        int width = Integer.valueOf(etWidth.getText().toString().trim());
+        int height = Integer.valueOf(etHeight.getText().toString().trim());
 
-            addAndMinusArea(0, String.valueOf(width * height));
-            LUtils.closeKeyboard(etWidth);
+        if (getSupportFragmentManager().findFragmentByTag(TAG_ADD_AREA) != null) {
+            addAndMinusArea(0, width + "*" + height);
+        } else if (getSupportFragmentManager().findFragmentByTag(TAG_MINU_AREA) != null) {
+            addAndMinusArea(1, width + "*" + height);
         }
+        LUtils.closeKeyboard(etWidth);
     }
 
     @Override
@@ -150,7 +156,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         String roomName = mEtBedroom.getText().toString().trim();
         String roomWidth = mEtWidth.getText().toString().trim();
         String roomHeight = mEtHeight.getText().toString().trim();
-        int extraArea = getArea();
+        getAddArea();
         mRooms.clear();
         if (!checkSize(roomWidth)) {
             LUtils.toast("宽度不能小于60");
@@ -182,8 +188,10 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             }
         }
         String roomSize = new Gson().toJson(mRooms);
+        String addArea = new Gson().toJson(mAddAreas);
+        String minuArea = new Gson().toJson(mMinuAreas);
 
-        getPresenter().saveParams(extraArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
+        getPresenter().saveParams(addArea, minuArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
     }
 
     private boolean checkSize(String sizeStr) {
@@ -205,7 +213,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     @Override
     public int[] getHideSoftViewIds() {
-        return new int[]{R.id.et_room_param_bedroom, R.id.et_room_param_extra,
+        return new int[]{R.id.et_room_param_bedroom, R.id.tv_room_param_extra,
                 R.id.et_room_param_width, R.id.et_room_param_height};
     }
 
@@ -231,10 +239,10 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     private void addAndMinusArea(int type, String area) {
         View view = View.inflate(this, R.layout.item_room_params_extra, null);
         TextView label = view.findViewById(R.id.tv_room_params_extra);
-        TextView etArea = view.findViewById(R.id.et_room_param_extra);
+        TextView tvArea = view.findViewById(R.id.tv_room_param_extra);
         ImageView ivDelete = view.findViewById(R.id.iv_extra_area_delete);
         label.setText(type == 0 ? "增加面积" : "减少面积");
-        if (!TextUtils.isEmpty(area)) etArea.setText(area);
+        if (!TextUtils.isEmpty(area)) tvArea.setText(area);
         mLlExtra.addView(view);
         setLayoutHeight(LUtils.dp2px(55));
         ivDelete.setOnClickListener(v -> {
@@ -243,24 +251,30 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         });
     }
 
-    private int getArea() {
-        int area = 0;
+    private void getAddArea() {
+        mAddAreas = new ArrayList<>();
+        mMinuAreas = new ArrayList<>();
+
         if (mLlExtra.getChildCount() > 0) {
             for (int i = 0; i < mLlExtra.getChildCount(); i++) {
                 View view = mLlExtra.getChildAt(i);
                 TextView tvLabel = view.findViewById(R.id.tv_room_params_extra);
-                EditText etInput = view.findViewById(R.id.et_room_param_extra);
-                String addSize = etInput.getText().toString().trim();
+                TextView tvInput = view.findViewById(R.id.tv_room_param_extra);
+                String addSize = tvInput.getText().toString().trim();
+
                 if (!TextUtils.isEmpty(addSize)) {
+                    String[] sizes = addSize.split("\\*");
+                    Room room = new Room();
+                    room.setWidth(sizes[0]);
+                    room.setHeight(sizes[1]);
                     if (tvLabel.getText().toString().trim().equals("增加面积")) {
-                        area = area + Integer.valueOf(addSize);
+                        mAddAreas.add(room);
                     } else {
-                        area = area - Integer.valueOf(addSize);
+                        mMinuAreas.add(room);
                     }
                 }
             }
         }
-        return area;
     }
 
     private void setLayoutHeight(int height) {

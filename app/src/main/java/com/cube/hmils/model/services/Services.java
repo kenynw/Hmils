@@ -225,7 +225,8 @@ public interface Services {
     @FormUrlEncoded
     @POST("operator/addRoomPara/")
     Observable<Project> saveRoomParams(
-            @Field("addArea") int addArea,
+            @Field("addArea") String addArea,
+            @Field("reduceArea") String reduceArea,
             @Field("addStatus") String addStatus,
             @Field("itemId") int itemId,
             @Field("projectId") int projectId,

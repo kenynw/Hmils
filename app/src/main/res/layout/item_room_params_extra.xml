@@ -19,15 +19,17 @@
         android:textColor="@color/textSecondary"
         />
 
-    <EditText
-        android:id="@+id/et_room_param_extra"
+    <TextView
+        android:id="@+id/tv_room_param_extra"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginLeft="@dimen/spacing_normal"
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_weight="1"
         android:background="@drawable/bg_radius_input"
+        android:gravity="center_vertical"
         android:inputType="number"
+        android:textAppearance="@style/TextBody"
         tools:ignore="TextFields"
         />
 

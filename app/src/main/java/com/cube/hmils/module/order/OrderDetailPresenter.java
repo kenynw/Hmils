@@ -8,10 +8,9 @@ import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.EventBusUtil;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Carol on 2017/11/19.
@@ -50,11 +49,8 @@ public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailA
             public void onNext(RoomOrder roomOrder) {
                 LUtils.log("提交成功");
                 getView().finish();
-                Bundle bundle = new Bundle();
-                bundle.putInt(EVENT_BUS_CODE, EventCode.ROOM_PARAMS_FINISH);
-                EventBus.getDefault().post(bundle);
-                bundle.putInt(EVENT_BUS_CODE, EventCode.PARAM_DETAIL_FINISH);
-                EventBus.getDefault().post(bundle);
+                EventBusUtil.eventPost(EventCode.ROOM_PARAMS_FINISH);
+                EventBusUtil.eventPost(EventCode.PARAM_DETAIL_FINISH);
             }
 
             @Override
@@ -74,4 +70,5 @@ public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailA
     public int getProjectId() {
         return mProjectId;
     }
+
 }

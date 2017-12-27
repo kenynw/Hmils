@@ -52,10 +52,10 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
         view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
     }
 
-    public void saveParams(int addArea, String roomName, String roomSize, int roomType) {
+    public void saveParams(String addArea, String reduceArea, String roomName, String roomSize, int roomType) {
         String isEnd = mPosition == mRoomIds.length - 1 ? "end" : "";
 
-        ClientModel.getInstance().saveRoomParams(addArea, isEnd, mRoomIds[mPosition], mOrder.getProjectId(),
+        ClientModel.getInstance().saveRoomParams(addArea, reduceArea, isEnd, mRoomIds[mPosition], mOrder.getProjectId(),
                 roomName, roomSize, roomType, mMelType)
                 .subscribe(new ServicesResponse<Project>() {
                     @Override

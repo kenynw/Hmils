@@ -136,9 +136,10 @@ public class ClientModel extends AbsModel {
      * @param roomType  标准房间传1，不规则房间传0
      * @return
      */
-    public Observable<Project> saveRoomParams(int addArea, String addStatus, int itemId, int projectId,
-                                              String roomName, String roomSize, int roomType, int melType) {
-        return ServicesClient.getServices().saveRoomParams(addArea, addStatus, itemId, projectId, roomName, roomSize, roomType, melType)
+    public Observable<Project> saveRoomParams(String addArea, String reduceArea, String addStatus,
+                                              int itemId, int projectId, String roomName, String roomSize, int roomType, int melType) {
+        return ServicesClient.getServices().saveRoomParams(addArea, reduceArea, addStatus, itemId,
+                projectId, roomName, roomSize, roomType, melType)
                 .compose(new DefaultTransform<>());
     }
 

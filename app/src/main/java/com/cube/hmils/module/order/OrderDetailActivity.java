@@ -20,7 +20,6 @@ import com.cube.hmils.model.bean.InstallInfo;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.module.dialog.BaseAlertDialog;
 import com.cube.hmils.module.dialog.DialogCallback;
-import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
 
@@ -123,7 +122,6 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
             if (mType == 1) {
                 setToolbarTitle("订单详情-" + roomOrder.getInstallInfo().getOrderStatus());
-                LUtils.log("status: " + install.getOrderCode());
                 if (install.getOrderCode() == 8006) {
                     mLlInstall.setVisibility(View.VISIBLE);
                     String installStr = "%1$s<br>%2$s<br>%3$s<br><font color=\"#5DBA68\">%4$s</font>";
@@ -137,6 +135,8 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                         Intent intent = new Intent(Intent.ACTION_DIAL, uri);
                         startActivity(intent);
                     });
+                } else if (install.getOrderCode() == 8001) { // 待处理
+                    mBtnConfirm.setVisibility(View.VISIBLE);
                 }
             }
         }
