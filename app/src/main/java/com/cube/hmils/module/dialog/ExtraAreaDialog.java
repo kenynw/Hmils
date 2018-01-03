@@ -56,7 +56,7 @@ public class ExtraAreaDialog extends DialogFragment implements View.OnClickListe
     public void onStart() {
         super.onStart();
         if (getDialog() != null && getDialog().getWindow() != null) {
-            getDialog().getWindow().setLayout((int) (LUtils.getScreenWidth() * 0.75), ViewGroup.LayoutParams.WRAP_CONTENT);
+            getDialog().getWindow().setLayout((int) (LUtils.getScreenWidth() * 0.9), ViewGroup.LayoutParams.WRAP_CONTENT);
             getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
     }

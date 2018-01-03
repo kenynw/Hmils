@@ -186,10 +186,9 @@
                     />
 
                 <LinearLayout
-                    android:id="@+id/ll_params_extra"
+                    android:id="@+id/ll_room_params_add"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -197,13 +196,14 @@
                     />
 
                 <LinearLayout
-                    android:id="@+id/ll_room_params_add"
+                    android:id="@+id/ll_params_extra"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ll_params_extra"
+                    app:layout_constraintTop_toBottomOf="@id/ll_room_params_add"
                     />
 
                 <ImageButton
@@ -216,7 +216,7 @@
                     android:visibility="gone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll_room_params_add"
+                    app:layout_constraintTop_toBottomOf="@+id/ll_params_extra"
                     />
 
                 <View

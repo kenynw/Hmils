@@ -170,8 +170,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         if (mLlAdd.getChildCount() > 0) {
             for (int i = 0; i < mLlAdd.getChildCount(); i++) {
                 View view = mLlAdd.getChildAt(i);
-                TextView tvW = view.findViewById(R.id.tv_add_room_width);
-                TextView tvH = view.findViewById(R.id.tv_add_room_height);
+                TextView tvW = view.findViewById(R.id.et_add_room_w);
+                TextView tvH = view.findViewById(R.id.et_add_room_h);
                 String width = tvW.getText().toString().trim();
                 String height = tvH.getText().toString().trim();
                 if (!TextUtils.isEmpty(width) && !TextUtils.isEmpty(height)) {
