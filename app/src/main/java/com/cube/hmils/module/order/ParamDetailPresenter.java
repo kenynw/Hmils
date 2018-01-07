@@ -28,8 +28,7 @@ public class ParamDetailPresenter extends BaseDataActivityPresenter<ParamDetailA
         Intent intent = new Intent(context, ParamDetailActivity.class);
         intent.putExtra("projectId", projectId);
         intent.putExtra("type", type);
-        if (type == 0)
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if (type == 0) intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         context.startActivity(intent);
     }
 

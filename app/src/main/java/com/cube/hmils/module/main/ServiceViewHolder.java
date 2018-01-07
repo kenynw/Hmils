@@ -3,7 +3,6 @@ package com.cube.hmils.module.main;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
@@ -42,8 +41,6 @@ public class ServiceViewHolder extends BaseViewHolder<Service> {
     TextView mTvAddress;
     @BindView(R.id.iv_order_line_bottom)
     View mIvLineBottom;
-    @BindView(R.id.btn_order_detail)
-    Button mBtnDetail;
 
     public ServiceViewHolder(ViewGroup parent) {
         super(parent, R.layout.item_order_service);
@@ -54,7 +51,7 @@ public class ServiceViewHolder extends BaseViewHolder<Service> {
 
     @Override
     public void setData(Service data) {
-        mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getTime()));
+        mTvTime.setText(String.format(getContext().getString(R.string.text_appoint_time), data.getTime()));
         mTvState.setText(data.getCodeName());
         mTvUsername.setText(data.getCustName());
         mTvContact.setText(data.getContTel());

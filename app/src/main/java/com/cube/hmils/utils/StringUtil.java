@@ -10,7 +10,7 @@ public class StringUtil {
 
     public static String getFirstLetter(String string) {
         char charLetter = Pinyin.toPinyin(string.charAt(0)).charAt(0);
-        return Character.isLetter(charLetter) ? String.valueOf(charLetter) : "";
+        return Character.isLetter(charLetter) ? String.valueOf(charLetter).toUpperCase() : "";
     }
 
 }

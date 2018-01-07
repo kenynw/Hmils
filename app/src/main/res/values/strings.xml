@@ -43,6 +43,7 @@
     <string name="text_contact">联系方式</string>
     <string name="text_user_address">用户地址</string>
     <string name="text_order_time">订单时间：%s</string>
+    <string name="text_appoint_time">指派时间：%s</string>
     <string name="text_order_detail">订单详情</string>
     <string name="text_view_order">查看订单</string>
     <string name="text_room_num">房间数量</string>
@@ -70,6 +71,7 @@
     <string name="text_price_unit">（元）</string>
     <string name="text_count_product">共%d件产品</string>
     <string name="text_view_detail"><u>查看详情</u></string>
+    <string name="text_contact_client">联系客户</string>
 
     <string name="hint_phone">请输入您的手机号</string>
     <string name="hint_captcha">请输入6位验证码</string>
@@ -101,8 +103,8 @@
 
     <string-array name="text_order_service_tabs">
         <item>全部</item>
-        <item>未处理</item>
-        <item>未完成</item>
+        <item>待处理</item>
+        <item>处理中</item>
         <item>已完成</item>
     </string-array>
 

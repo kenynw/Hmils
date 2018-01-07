@@ -28,7 +28,6 @@ public class ServiceListFragment extends BaseListFragment<ServiceListPresenter, 
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-
         getListView().setClipToPadding(false);
         getListView().setRecyclerPadding(0, LUtils.dp2px(10), 0, 0);
     }

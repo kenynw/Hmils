@@ -166,12 +166,13 @@
 
     </LinearLayout>
 
-    <Button
+    <TextView
         android:layout_width="84dp"
         android:layout_height="30dp"
         android:layout_marginEnd="@dimen/spacing_small"
         android:layout_marginRight="@dimen/spacing_small"
         android:background="@drawable/btn_radius_stroke_secondary"
+        android:gravity="center"
         android:text="@string/text_order_detail"
         android:textColor="@color/textSecondary"
         app:layout_constraintBottom_toBottomOf="parent"

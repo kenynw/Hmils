@@ -130,6 +130,7 @@ public interface Services {
     @POST("operator/getOrderList/")
     Observable<OrderResponse> orderList(
             @Field("userId") int userId,
+            @Field("custId") int custId,
             @Field("nameTel") String nameTel,
             @Field("handingStatus") int state
     );

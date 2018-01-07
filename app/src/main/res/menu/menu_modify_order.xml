@@ -6,6 +6,7 @@
         android:id="@+id/menu_modify_order"
         android:title="@string/btn_modify_order"
         app:showAsAction="always"
+        android:visible="false"
         />
 
 </menu>

@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -46,8 +47,8 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     @BindView(R.id.tv_profile_address)
     TextView mTvAddress;
 
-    @BindView(R.id.tv_profile_cooperation)
-    TextView mTvCooperation;
+    @BindView(R.id.et_profile_cooperation)
+    EditText mEtCooperation;
 
     @BindView(R.id.fl_profile_address)
     FrameLayout mFlAddress;
@@ -88,6 +89,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     }
 
     public void setProfile(User user) {
+        setToolbarTitle("个人资料");
         mDvAvatar.setImageURI(user.getCustImg());
         mEtFullName.setText(user.getUserName());
         mEtPhone.setText(user.getTelPhone());
@@ -98,6 +100,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
 
     public void setClientInfo(Client client) {
         if (client == null) return;
+        setToolbarTitle("客户基本信息");
         mEtFullName.setText(client.getCustName());
         mEtPhone.setText(client.getPhoneNo());
         mFlAddress.setVisibility(View.VISIBLE);
@@ -106,7 +109,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         mFlCooperation.setVisibility(View.VISIBLE);
         mFlCooperation.setOnClickListener(v -> showPickerTime());
         if (!TextUtils.isEmpty(client.getCreatTime()))
-            mTvCooperation.setText(client.getCreatTime().substring(0, 11));
+            mEtCooperation.setText(client.getCreatTime().substring(0, 11));
         mBtnSave.setOnClickListener(v -> {
             checkClientInfo();
         });
@@ -126,7 +129,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         String name = mEtFullName.getText().toString().trim();
         String phone = mEtPhone.getText().toString().trim();
         String address = mTvAddress.getText().toString().trim();
-        String time = mTvCooperation.getText().toString().trim();
+        String time = mEtCooperation.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
             LUtils.toast("名字不能为空");
@@ -151,7 +154,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     private void showPickerTime() {
         new TimePickerView.Builder(this, (date, v) -> {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-            mTvCooperation.setText(format.format(date));
+            mEtCooperation.setText(format.format(date));
         }).setType(new boolean[] {true, true, true, false, false, false})
                 .setSubmitText("完成")
                 .setSubmitColor(getResources().getColor(R.color.colorPrimary))

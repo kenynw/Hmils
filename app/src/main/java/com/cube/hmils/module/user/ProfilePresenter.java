@@ -42,14 +42,14 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
 
 
     // 完善客户资料
-    public static final void start(Context context, Client client) {
+    public static void start(Context context, Client client) {
         Intent intent = new Intent(context, ProfileActivity.class);
         intent.putExtra(EXTRA_CLIENT, client);
         context.startActivity(intent);
     }
 
     // 修改个人资料
-    public static final void start(Context context, User user) {
+    public static void start(Context context, User user) {
         Intent intent = new Intent(context, ProfileActivity.class);
         intent.putExtra(EXTRA_USER, user);
         context.startActivity(intent);

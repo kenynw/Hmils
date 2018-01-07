@@ -32,6 +32,12 @@ public class Service implements Parcelable {
 
     private String phoneNo; // 	安装人员电话
 
+    private String createTime;
+
+    private String appoTime;
+
+    private String endTime;
+
     public String getOrderCnt() {
         return orderCnt;
     }
@@ -128,6 +134,30 @@ public class Service implements Parcelable {
         this.time = time;
     }
 
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getAppoTime() {
+        return appoTime;
+    }
+
+    public void setAppoTime(String appoTime) {
+        this.appoTime = appoTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public Service() {
     }
 
@@ -150,6 +180,9 @@ public class Service implements Parcelable {
         dest.writeStringArray(this.photo);
         dest.writeString(this.installer);
         dest.writeString(this.phoneNo);
+        dest.writeString(this.createTime);
+        dest.writeString(this.appoTime);
+        dest.writeString(this.endTime);
     }
 
     protected Service(Parcel in) {
@@ -165,6 +198,9 @@ public class Service implements Parcelable {
         this.photo = in.createStringArray();
         this.installer = in.readString();
         this.phoneNo = in.readString();
+        this.createTime = in.readString();
+        this.appoTime = in.readString();
+        this.endTime = in.readString();
     }
 
     public static final Creator<Service> CREATOR = new Creator<Service>() {

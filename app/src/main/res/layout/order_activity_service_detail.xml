@@ -24,6 +24,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="77dp"
             android:src="@mipmap/ic_service_state"
+            android:visibility="gone"
             />
 
         <LinearLayout

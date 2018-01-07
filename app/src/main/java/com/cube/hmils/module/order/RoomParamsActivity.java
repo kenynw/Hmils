@@ -58,12 +58,12 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     EditText mEtDeviceModel;
     @BindView(R.id.tv_room_params_width)
     TextView mTvWidth;
-    @BindView(R.id.et_room_param_width)
-    EditText mEtWidth;
+    @BindView(R.id.et_room_param_long)
+    EditText mEtLong;
     @BindView(R.id.tv_room_params_height)
     TextView mTvHeight;
-    @BindView(R.id.et_room_param_height)
-    EditText mEtHeight;
+    @BindView(R.id.et_room_param_width)
+    EditText mEtWidth;
     @BindView(R.id.tv_room_params_add)
     TextView mTvAdd;
     @BindView(R.id.tv_room_params_minus)
@@ -154,42 +154,44 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     private void checkInput() {
         String roomName = mEtBedroom.getText().toString().trim();
+        String roomLong = mEtLong.getText().toString().trim();
         String roomWidth = mEtWidth.getText().toString().trim();
-        String roomHeight = mEtHeight.getText().toString().trim();
         getAddArea();
         mRooms.clear();
-        if (!checkSize(roomWidth)) {
-            LUtils.toast("宽度不能小于60");
-            return;
-        }
-        if (!checkSize(roomHeight)) {
+        if (TextUtils.isEmpty(roomLong) || !checkSize(roomLong)) {
             LUtils.toast("长度不能小于60");
             return;
         }
-        addRoom(roomWidth, roomHeight);
+        if (TextUtils.isEmpty(roomWidth) || !checkSize(roomWidth)) {
+            LUtils.toast("宽度不能小于60");
+            return;
+        }
+        addRoom(roomLong, roomWidth);
         if (mLlAdd.getChildCount() > 0) {
             for (int i = 0; i < mLlAdd.getChildCount(); i++) {
                 View view = mLlAdd.getChildAt(i);
-                TextView tvW = view.findViewById(R.id.et_add_room_w);
-                TextView tvH = view.findViewById(R.id.et_add_room_h);
-                String width = tvW.getText().toString().trim();
-                String height = tvH.getText().toString().trim();
-                if (!TextUtils.isEmpty(width) && !TextUtils.isEmpty(height)) {
+                TextView etLong = view.findViewById(R.id.et_add_room_l);
+                TextView etWidth = view.findViewById(R.id.et_add_room_w);
+                String sLong = etLong.getText().toString().trim();
+                String width = etWidth.getText().toString().trim();
+                if (!TextUtils.isEmpty(sLong) && !TextUtils.isEmpty(width)) {
+                    if (!checkSize(sLong)) {
+                        LUtils.toast("长度不能小于60");
+                        return;
+                    }
                     if (!checkSize(width)) {
                         LUtils.toast("宽度不能小于60");
                         return;
                     }
-                    if (!checkSize(height)) {
-                        LUtils.toast("长度不能小于60");
-                        return;
-                    }
-                    addRoom(width, height);
+                    addRoom(sLong, width);
                 }
             }
         }
         String roomSize = new Gson().toJson(mRooms);
         String addArea = new Gson().toJson(mAddAreas);
         String minuArea = new Gson().toJson(mMinuAreas);
+
+        LUtils.log("addarea: " + addArea + ", minu: " + minuArea + ", roomname: " + roomName + ", room size: " + roomSize);
 
         getPresenter().saveParams(addArea, minuArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
     }
@@ -204,17 +206,17 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         return true;
     }
 
-    private void addRoom(String width, String height) {
+    private void addRoom(String sLong, String width) {
         Room room = new Room();
+        room.setLong(sLong);
         room.setWidth(width);
-        room.setHeight(height);
         mRooms.add(room);
     }
 
     @Override
     public int[] getHideSoftViewIds() {
         return new int[]{R.id.et_room_param_bedroom, R.id.tv_room_param_extra,
-                R.id.et_room_param_width, R.id.et_room_param_height};
+                R.id.et_room_param_long, R.id.et_room_param_width};
     }
 
     @Override
@@ -265,8 +267,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 if (!TextUtils.isEmpty(addSize)) {
                     String[] sizes = addSize.split("\\*");
                     Room room = new Room();
-                    room.setWidth(sizes[0]);
-                    room.setHeight(sizes[1]);
+                    room.setLong(sizes[0]);
+                    room.setWidth(sizes[1]);
                     if (tvLabel.getText().toString().trim().equals("增加面积")) {
                         mAddAreas.add(room);
                     } else {

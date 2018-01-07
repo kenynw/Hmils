@@ -12,16 +12,16 @@ import com.google.gson.annotations.SerializedName;
 public class Room implements Parcelable {
 
     @SerializedName("long")
-    private String height;
+    private String mLong;
 
     private String width;
 
-    public String getHeight() {
-        return height;
+    public String getLong() {
+        return mLong;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public void setLong(String aLong) {
+        this.mLong = aLong;
     }
 
     public String getWidth() {
@@ -39,7 +39,7 @@ public class Room implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.height);
+        dest.writeString(this.mLong);
         dest.writeString(this.width);
     }
 
@@ -47,7 +47,7 @@ public class Room implements Parcelable {
     }
 
     protected Room(Parcel in) {
-        this.height = in.readString();
+        this.mLong = in.readString();
         this.width = in.readString();
     }
 

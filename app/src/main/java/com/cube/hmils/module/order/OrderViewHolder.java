@@ -66,9 +66,10 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
             mLlAppoTime.setVisibility(View.GONE);
         }
         mBtnDetail.setOnClickListener(v ->
-                ParamDetailPresenter.start(getContext(), data.getProjectId(), 1));
+                        OrderDetailPresenter.start(getContext(), data.getProjectId(), 1)
+        );
         itemView.setOnClickListener(v ->
-                OrderDetailPresenter.start(getContext(), data.getProjectId(), 1)
+                ParamDetailPresenter.start(getContext(), data.getProjectId(), 1)
         );
     }
 

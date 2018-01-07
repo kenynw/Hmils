@@ -68,8 +68,8 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<OrderResponse> getOrderList(int userId, String search, int state) {
-        return ServicesClient.getServices().orderList(userId == 0 ? UserPreferences.getUserID() : userId, search, state)
+    public Observable<OrderResponse> getOrderList(int custId, String search, int state) {
+        return ServicesClient.getServices().orderList(UserPreferences.getUserID(), custId, search, state)
                 .compose(new DefaultTransform<>());
     }
 

@@ -30,7 +30,7 @@
         />
 
     <EditText
-        android:id="@+id/et_add_room_w"
+        android:id="@+id/et_add_room_l"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginLeft="@dimen/spacing_normal"
@@ -54,7 +54,7 @@
         />
 
     <EditText
-        android:id="@+id/et_add_room_h"
+        android:id="@+id/et_add_room_w"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginLeft="@dimen/spacing_normal"
@@ -62,7 +62,7 @@
         android:background="@drawable/bg_radius_input"
         android:inputType="number"
         app:layout_constraintLeft_toRightOf="@+id/tv_add_room_height"
-        app:layout_constraintRight_toRightOf="@id/et_add_room_w"
+        app:layout_constraintRight_toRightOf="@id/et_add_room_l"
         app:layout_constraintTop_toTopOf="@+id/tv_add_room_height"
         />
 
@@ -74,10 +74,10 @@
         android:background="@drawable/bg_radius_pink"
         android:scaleType="centerInside"
         android:src="@drawable/ic_del"
-        app:layout_constraintBottom_toBottomOf="@id/et_add_room_h"
-        app:layout_constraintLeft_toRightOf="@id/et_add_room_w"
+        app:layout_constraintBottom_toBottomOf="@id/et_add_room_w"
+        app:layout_constraintLeft_toRightOf="@id/et_add_room_l"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/et_add_room_w"
+        app:layout_constraintTop_toTopOf="@id/et_add_room_l"
         />
 
 </android.support.constraint.ConstraintLayout>

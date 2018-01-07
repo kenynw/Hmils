@@ -1,5 +1,7 @@
 package com.cube.hmils.module.user;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +33,7 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
     @BindView(R.id.tv_client_detail_address)
     TextView mTvAddress;
 
-    @BindView(R.id.tv_client_cooperat_label)
+    @BindView(R.id.tv_client_cooperat)
     TextView mTvCooperatTime;
 
     @BindView(R.id.btn_client_detail_view)
@@ -39,6 +41,9 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
 
     @BindView(R.id.btn_client_detail_create)
     Button mBtnCreate;
+
+    @BindView(R.id.btn_client_contact)
+    Button mBtnContact;
 
     private OrderTypeDialog mTypeDialog;
 
@@ -69,6 +74,11 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
                 mTypeDialog = new OrderTypeDialog(ClientDetailActivity.this, client);
                 mTypeDialog.show();
             }
+        });
+        mBtnContact.setOnClickListener(v -> {
+            Uri uri = Uri.parse("tel:" + client.getPhoneNo());
+            Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+            startActivity(intent);
         });
     }
 

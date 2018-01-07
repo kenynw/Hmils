@@ -99,11 +99,12 @@ public class ServiceDetailActivity extends BaseDataActivity<ServiceDetailPresent
             }
 
             String format = "%1$s<br><font color=\"#1F989B\">%2$s</font>";
-            mTvStates[0].setText(Html.fromHtml(String.format(format, "2017-09-02 10:02", "待接收")));
+            mTvStates[0].setText(Html.fromHtml(String.format(format, service.getCreateTime(), "待接收")));
+            mIvComplete.setVisibility(View.GONE);
             switch (serviceState) {
                 case HANDING:
                     String str = "%1$s<br><font color=\"#1F989B\">%2$s</font><br><font color=\"#1F989B\">%3$s</font>";
-                    mTvStates[1].setText(Html.fromHtml(String.format(str, "2017-09-02 10:02", "处理中", service.getInstaller() + "正在安装")));
+                    mTvStates[1].setText(Html.fromHtml(String.format(str, service.getAppoTime(), "处理中", service.getInstaller() + "正在安装")));
                     mBtnContact.setVisibility(View.VISIBLE);
                     mBtnContact.setOnClickListener(v -> {
                         Uri uri = Uri.parse("tel:" + service.getPhoneNo());
@@ -115,8 +116,9 @@ public class ServiceDetailActivity extends BaseDataActivity<ServiceDetailPresent
                     break;
 
                 case PENDING:
-                    mTvStates[1].setText(Html.fromHtml(String.format(format, "2017-09-02 10:02", "处理中")));
-                    mTvStates[2].setText(Html.fromHtml(String.format(format, "2017-09-02 10:02", "已完成")));
+                    mTvStates[1].setText(Html.fromHtml(String.format(format, service.getAppoTime(), "处理中")));
+                    mTvStates[2].setText(Html.fromHtml(String.format(format, service.getEndTime(), "已完成")));
+                    mIvComplete.setVisibility(View.VISIBLE);
                     break;
             }
         }

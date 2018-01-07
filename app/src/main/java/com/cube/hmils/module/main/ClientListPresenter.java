@@ -9,10 +9,12 @@ import android.view.ViewGroup;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.constant.EventCode;
+import com.cube.hmils.utils.StringUtil;
 import com.dsk.chain.expansion.list.BaseListFragmentPresenter;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +35,7 @@ public class ClientListPresenter extends BaseListFragmentPresenter<ClientListFra
     public void onRefresh() {
         ClientModel.getInstance().getClientList("")
                 .map(clientList -> {
+                    getAdapter().removeAllHeader();
                     getAdapter().addHeader(new RecyclerArrayAdapter.ItemView() {
                         @Override
                         public View onCreateView(ViewGroup parent) {
@@ -58,7 +61,12 @@ public class ClientListPresenter extends BaseListFragmentPresenter<ClientListFra
                         }
                     });
                     mClients = clientList.getCustList();
-                    return clientList.getCustList();
+                    Collections.sort(mClients, (clientFirst, clientSecond) -> {
+                        String firstLetter = StringUtil.getFirstLetter(clientFirst.getCustName());
+                        String secondLetter = StringUtil.getFirstLetter(clientSecond.getCustName());
+                        return firstLetter.compareTo(secondLetter);
+                    });
+                    return mClients;
                 })
                 .unsafeSubscribe(getRefreshSubscriber());
     }

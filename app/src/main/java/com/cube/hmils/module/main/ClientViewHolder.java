@@ -38,7 +38,7 @@ public class ClientViewHolder extends BaseViewHolder<Client> {
         } else {
             mTvLetter.setVisibility(View.GONE);
         }
-        mTvName.setText(data.getCustName());
+        mTvName.setText(data.getCustName() + " " + data.getContTel());
         itemView.setOnClickListener(v -> ClientDetailPresenter.start(getContext(), data));
     }
 

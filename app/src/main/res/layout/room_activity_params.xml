@@ -147,7 +147,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/et_room_param_width"
+                    android:id="@+id/et_room_param_long"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/spacing_normal"
@@ -172,7 +172,7 @@
                     />
 
                 <EditText
-                    android:id="@+id/et_room_param_height"
+                    android:id="@+id/et_room_param_width"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="@dimen/spacing_normal"

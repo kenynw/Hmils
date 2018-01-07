@@ -13,14 +13,14 @@ import static com.cube.hmils.module.order.OrderListFragment.EXTRA_USER_ID;
 
 public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragment, Order> {
 
-    private int mUserId;
+    private int mCustId;
     private int mState;
 
     @Override
     protected void onCreate(OrderListFragment view, Bundle saveState) {
         super.onCreate(view, saveState);
 
-        mUserId = view.getArguments().getInt(EXTRA_USER_ID);
+        mCustId = view.getArguments().getInt(EXTRA_USER_ID);
         mState = view.getArguments().getInt(EXTRA_STATE);
     }
 
@@ -32,7 +32,7 @@ public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragm
 
     @Override
     public void onRefresh() {
-        ClientModel.getInstance().getOrderList(mUserId, "", mState).map(OrderResponse::getCustOrderList)
+        ClientModel.getInstance().getOrderList(mCustId, "", mState).map(OrderResponse::getCustOrderList)
                 .unsafeSubscribe(getRefreshSubscriber());
     }
 

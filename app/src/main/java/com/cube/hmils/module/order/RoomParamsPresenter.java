@@ -63,7 +63,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         if (isEnd.equals("end")) {
                             ParamDetailPresenter.start(getView(), mOrder.getProjectId(), 0);
                         } else {
-                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mPosition + 1, mMelType);
+                            RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mMelType, mPosition + 1);
                         }
                     }
                 });

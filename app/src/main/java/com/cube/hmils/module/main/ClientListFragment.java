@@ -166,7 +166,7 @@ public class ClientListFragment extends BaseListFragment<ClientListPresenter, Cl
 
             if (mInSearchMode && mAllData != null) {
                 for (Client client : mAllData) {
-                    boolean isChinese = client.getCustName().contains(keyword);
+                    boolean isChinese = client.getCustName().contains(keyword) || client.getContTel().contains(keyword);
                     if (isChinese) mFilterList.add(client);
                 }
             }

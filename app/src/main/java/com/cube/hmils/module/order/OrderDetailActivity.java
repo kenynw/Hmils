@@ -136,8 +136,12 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                         startActivity(intent);
                     });
                 } else if (install.getOrderCode() == 8001) { // 待处理
+                    mLlPay.setVisibility(View.VISIBLE);
                     mBtnConfirm.setVisibility(View.VISIBLE);
+                    getToolbar().getMenu().getItem(0).setVisible(true);
                 }
+            } else {
+                getToolbar().getMenu().getItem(0).setVisible(true);
             }
         }
     }
@@ -149,15 +153,12 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (mType == 0) {
-            getMenuInflater().inflate(R.menu.menu_modify_order, menu);
-        }
+        getMenuInflater().inflate(R.menu.menu_modify_order, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2);
         ParamDetailPresenter.start(this, getPresenter().getProjectId(), 0);
         return super.onOptionsItemSelected(item);
     }
