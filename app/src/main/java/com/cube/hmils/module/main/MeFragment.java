@@ -92,10 +92,13 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> impl
     private void showLogoutDialog() {
         View view = View.inflate(getActivity(), R.layout.dialog_order_confirm, null);
         AlertDialog dialog = new AlertDialog.Builder(getActivity()).setView(view).show();
+        TextView tvMessage = view.findViewById(R.id.tv_dialog_message);
+        tvMessage.setText("确认退出");
         view.findViewById(R.id.btn_dialog_positive).setOnClickListener(v -> {
             dialog.dismiss();
             getPresenter().logout();
         });
+
         view.findViewById(R.id.btn_dialog_negative).setOnClickListener(v -> dialog.dismiss());
         dialog.show();
     }

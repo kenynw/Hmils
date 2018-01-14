@@ -7,12 +7,16 @@ import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.local.UserPreferences;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.model.AbsModel;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -78,6 +82,14 @@ public class UserModel extends AbsModel {
         UserPreferences.setUserID(user.getUserId());
         UserPreferences.setAgentID(user.getAgentId());
         UserPreferences.setToken(user.getToken());
+
+        // 调用 JPush 接口来设置别名。
+        JPushInterface.setAlias(LUtils.getAppContext(), user.getUserName(), new TagAliasCallback() {
+            @Override
+            public void gotResult(int i, String s, Set<String> set) {
+                LUtils.log("result : " + s);
+            }
+        });
     }
 
 }

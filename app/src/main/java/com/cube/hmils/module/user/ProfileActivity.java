@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -47,8 +46,8 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     @BindView(R.id.tv_profile_address)
     TextView mTvAddress;
 
-    @BindView(R.id.et_profile_cooperation)
-    EditText mEtCooperation;
+    @BindView(R.id.tv_profile_cooperation)
+    TextView mTvCooperation;
 
     @BindView(R.id.fl_profile_address)
     FrameLayout mFlAddress;
@@ -109,7 +108,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         mFlCooperation.setVisibility(View.VISIBLE);
         mFlCooperation.setOnClickListener(v -> showPickerTime());
         if (!TextUtils.isEmpty(client.getCreatTime()))
-            mEtCooperation.setText(client.getCreatTime().substring(0, 11));
+            mTvCooperation.setText(client.getCreatTime().substring(0, 11));
         mBtnSave.setOnClickListener(v -> {
             checkClientInfo();
         });
@@ -129,7 +128,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
         String name = mEtFullName.getText().toString().trim();
         String phone = mEtPhone.getText().toString().trim();
         String address = mTvAddress.getText().toString().trim();
-        String time = mEtCooperation.getText().toString().trim();
+        String time = mTvCooperation.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
             LUtils.toast("名字不能为空");
@@ -154,7 +153,7 @@ public class ProfileActivity extends ChainBaseActivity<ProfilePresenter> impleme
     private void showPickerTime() {
         new TimePickerView.Builder(this, (date, v) -> {
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
-            mEtCooperation.setText(format.format(date));
+            mTvCooperation.setText(format.format(date));
         }).setType(new boolean[] {true, true, true, false, false, false})
                 .setSubmitText("完成")
                 .setSubmitColor(getResources().getColor(R.color.colorPrimary))

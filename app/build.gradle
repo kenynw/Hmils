@@ -12,6 +12,12 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "dc6e9a45604e75ab671d8fb6", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
 
     lintOptions {
@@ -63,6 +69,9 @@ dependencies {
     compile 'com.jude:exgridview:1.1.5'
     compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
     compile 'com.dsk:imageprovider:2.2.1'
+
+    compile 'cn.jiguang.sdk:jpush:3.0.3'
+    compile 'cn.jiguang.sdk:jcore:1.1.1'
 
     // network
     compile rootProject.ext.dependencies["retrofit"]
