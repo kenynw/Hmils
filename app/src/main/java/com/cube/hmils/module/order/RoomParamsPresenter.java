@@ -6,11 +6,17 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Order;
+import com.cube.hmils.model.bean.Params;
 import com.cube.hmils.model.bean.Project;
+import com.cube.hmils.model.bean.Room;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.local.DaoSharedPreferences;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.dsk.chain.bijection.Presenter;
+import com.google.gson.Gson;
+
+import java.util.List;
 
 import static com.cube.hmils.model.constant.Extra.EXTRA_MATERIAL_TYPE;
 import static com.cube.hmils.model.constant.Extra.EXTRA_ORDER;
@@ -50,12 +56,23 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     protected void onCreateView(RoomParamsActivity view) {
         super.onCreateView(view);
         view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
+
     }
 
-    public void saveParams(String addArea, String reduceArea, String roomName, String roomSize, int roomType) {
+    private void getData() {
+        Params roomParams = DaoSharedPreferences.getInstance().getRoomParams(mPosition);
+        if (roomParams != null) {
+            getView().setData(roomParams);
+        }
+    }
+
+    public void saveParams(List<Room> addAreas, List<Room> minuAreas, String roomName, List<Room> roomSizes, int roomType) {
+        String addArea = new Gson().toJson(addAreas);
+        String minuArea = new Gson().toJson(minuAreas);
+        String roomSize = new Gson().toJson(roomSizes);
         String isEnd = mPosition == mRoomIds.length - 1 ? "end" : "";
 
-        ClientModel.getInstance().saveRoomParams(addArea, reduceArea, isEnd, mRoomIds[mPosition], mOrder.getProjectId(),
+        ClientModel.getInstance().saveRoomParams(addArea, minuArea, isEnd, mRoomIds[mPosition], mOrder.getProjectId(),
                 roomName, roomSize, roomType, mMelType)
                 .subscribe(new ServicesResponse<Project>() {
                     @Override
@@ -65,6 +82,11 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         } else {
                             RoomParamsPresenter.start(getView(), mOrder, mRoomIds, mMelType, mPosition + 1);
                         }
+                        Params params = new Params();
+                        params.setAddAreas(addAreas);
+                        params.setMinuAreas(minuAreas);
+                        params.setRooms(roomSizes);
+                        DaoSharedPreferences.getInstance().setRoomParams(params, mPosition);
                     }
                 });
     }

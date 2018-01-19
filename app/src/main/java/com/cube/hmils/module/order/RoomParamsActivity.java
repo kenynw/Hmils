@@ -15,13 +15,13 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.Params;
 import com.cube.hmils.model.bean.Room;
 import com.cube.hmils.module.dialog.DialogCallback;
 import com.cube.hmils.module.dialog.ExtraAreaDialog;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,25 +105,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         mRgType.setOnCheckedChangeListener(this);
         mTvAdd.setOnClickListener(v -> showAddDialog(0));
         mTvMinus.setOnClickListener(v -> showAddDialog(1));
-        mIbtAdd.setOnClickListener(v -> {
-            View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
-            view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
-            mLlAdd.addView(view);
-
-            ImageView ivDelete = view.findViewById(R.id.iv_add_room_delete);
-            ivDelete.setOnClickListener(view1 -> {
-                mLlAdd.removeView(view);
-                setLayoutHeight(-view.getMeasuredHeight());
-            });
-
-            TextView tvW = view.findViewById(R.id.tv_add_room_width);
-            String letter = LETTERS[mLlAdd.indexOfChild(view)];
-            tvW.setText(letter + getString(R.string.text_room_width));
-            TextView tvH = view.findViewById(R.id.tv_add_room_height);
-            tvH.setText(letter + getString(R.string.text_room_height));
-
-            setLayoutHeight(view.getMeasuredHeight());
-        });
+        mIbtAdd.setOnClickListener(v -> addRoomLayout("", ""));
         mBtnSave.setOnClickListener(v -> checkInput());
     }
 
@@ -150,6 +132,21 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     @Override
     public void onNegativeClick(@NonNull View view) {
 
+    }
+
+    public void setData(Params params) {
+        if (TextUtils.isEmpty(params.getName())) mEtBedroom.setText(params.getName());
+        if (params.getRooms() != null && params.getRooms().size() > 0) {
+            for (int i = 0; i < params.getRooms().size(); i++) {
+                Room room = params.getRooms().get(i);
+                if (i == 0) {
+                    mEtLong.setText(room.getLong());
+                    mEtWidth.setText(room.getWidth());
+                } else {
+                    addRoomLayout(room.getLong(), room.getWidth());
+                }
+            }
+        }
     }
 
     private void checkInput() {
@@ -187,13 +184,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 }
             }
         }
-        String roomSize = new Gson().toJson(mRooms);
-        String addArea = new Gson().toJson(mAddAreas);
-        String minuArea = new Gson().toJson(mMinuAreas);
 
-        LUtils.log("addarea: " + addArea + ", minu: " + minuArea + ", roomname: " + roomName + ", room size: " + roomSize);
-
-        getPresenter().saveParams(addArea, minuArea, roomName, roomSize, mRbSteady.isChecked() ? 1 : 0);
+        getPresenter().saveParams(mAddAreas, mMinuAreas, roomName, mRooms, mRbSteady.isChecked() ? 1 : 0);
     }
 
     private boolean checkSize(String sizeStr) {
@@ -204,6 +196,35 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             return false;
         }
         return true;
+    }
+
+    private void addRoomLayout(String sLong, String width) {
+        View view = getLayoutInflater().inflate(R.layout.item_add_room, null);
+        view.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        mLlAdd.addView(view);
+
+        ImageView ivDelete = view.findViewById(R.id.iv_add_room_delete);
+        ivDelete.setOnClickListener(view1 -> {
+            mLlAdd.removeView(view);
+            setLayoutHeight(-view.getMeasuredHeight());
+        });
+
+        TextView tvW = view.findViewById(R.id.tv_add_room_width);
+        String letter = LETTERS[mLlAdd.indexOfChild(view)];
+        tvW.setText(letter + getString(R.string.text_room_width));
+        TextView tvH = view.findViewById(R.id.tv_add_room_height);
+        tvH.setText(letter + getString(R.string.text_room_height));
+
+        if (!TextUtils.isEmpty(sLong)) {
+            TextView etLong = view.findViewById(R.id.et_add_room_l);
+            etLong.setText(sLong);
+        }
+        if (!TextUtils.isEmpty(width)) {
+            TextView etWidth = view.findViewById(R.id.et_add_room_w);
+            etWidth.setText(width);
+        }
+
+        setLayoutHeight(view.getMeasuredHeight());
     }
 
     private void addRoom(String sLong, String width) {
