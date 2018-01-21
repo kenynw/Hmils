@@ -7,7 +7,7 @@ import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
-import com.cube.hmils.model.local.UserPreferences;
+import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
 import com.cube.hmils.utils.StringUtil;
@@ -34,7 +34,8 @@ public class ClientModel extends AbsModel {
      * @return
      */
     public Observable<ClientList> getClientList(String keywords) {
-        return ServicesClient.getServices().getCustList(UserPreferences.getUserID(), keywords)
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().getCustList(user == null ? 0 : user.getUserId(), keywords)
                 .map(clientList -> {
                     if (!clientList.getCustList().isEmpty()) {
                         Collections.sort(clientList.getCustList(), (clientFirst, clientSecond) ->
@@ -55,7 +56,8 @@ public class ClientModel extends AbsModel {
      * @return
      */
     public Observable<Client> getClientDetail(int clientId, int projectId) {
-        return ServicesClient.getServices().getClientDetail(UserPreferences.getUserID(), clientId, projectId)
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().getClientDetail(user == null ? 0 :user.getUserId(), clientId, projectId)
                 .compose(new DefaultTransform<>());
     }
 
@@ -69,7 +71,8 @@ public class ClientModel extends AbsModel {
     }
 
     public Observable<OrderResponse> getOrderList(int custId, String search, int state) {
-        return ServicesClient.getServices().orderList(UserPreferences.getUserID(), custId, search, state)
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().orderList(user == null ? 0 : user.getUserId(), custId, search, state)
                 .compose(new DefaultTransform<>());
     }
 
@@ -79,7 +82,8 @@ public class ClientModel extends AbsModel {
      * @return
      */
     public Observable<OrderResponse> getServiceList() {
-        return ServicesClient.getServices().servicesList(UserPreferences.getUserID())
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().servicesList(user == null ? 0 : user.getUserId())
                 .compose(new DefaultTransform<>());
     }
 

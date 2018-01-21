@@ -1,7 +1,8 @@
 package com.cube.hmils.model.services;
 
 
-import com.cube.hmils.model.local.UserPreferences;
+import com.cube.hmils.model.UserModel;
+import com.cube.hmils.model.bean.User;
 import com.cube.hmils.utils.LUtils;
 
 import java.io.IOException;
@@ -23,8 +24,9 @@ public class EncryptInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
+        User user = UserModel.getInstance().getUser();
         Request request = chain.request().newBuilder()
-                .addHeader("token", UserPreferences.getToken())
+                .addHeader("token", user == null ? "" : user.getToken())
                 .build();
 
         if (request.method().equals("POST")) {

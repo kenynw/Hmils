@@ -111,6 +111,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     private void showAddDialog(int type) {
         ExtraAreaDialog dialog = new ExtraAreaDialog();
+        dialog.setTitle(type == 0 ? R.string.text_add_area : R.string.text_minus_area);
         dialog.show(getSupportFragmentManager(), type == 0 ? TAG_ADD_AREA : TAG_MINU_AREA);
     }
 
@@ -136,6 +137,7 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
 
     public void setData(Params params) {
         if (TextUtils.isEmpty(params.getName())) mEtBedroom.setText(params.getName());
+
         if (params.getRooms() != null && params.getRooms().size() > 0) {
             for (int i = 0; i < params.getRooms().size(); i++) {
                 Room room = params.getRooms().get(i);

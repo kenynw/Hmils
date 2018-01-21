@@ -12,6 +12,16 @@ import java.util.List;
 
 public class Params implements Parcelable {
 
+    public int getProjectId() {
+        return mProjectId;
+    }
+
+    public void setProjectId(int projectId) {
+        mProjectId = projectId;
+    }
+
+    private int mProjectId;
+
     private String mName;
 
     private List<Room> mRooms;
@@ -62,6 +72,9 @@ public class Params implements Parcelable {
         mIsSteady = isSteady;
     }
 
+    public Params() {
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -69,6 +82,7 @@ public class Params implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.mProjectId);
         dest.writeString(this.mName);
         dest.writeTypedList(this.mRooms);
         dest.writeTypedList(this.mAddAreas);
@@ -76,10 +90,8 @@ public class Params implements Parcelable {
         dest.writeInt(this.mIsSteady);
     }
 
-    public Params() {
-    }
-
     protected Params(Parcel in) {
+        this.mProjectId = in.readInt();
         this.mName = in.readString();
         this.mRooms = in.createTypedArrayList(Room.CREATOR);
         this.mAddAreas = in.createTypedArrayList(Room.CREATOR);

@@ -24,6 +24,7 @@ public class LoginPresenter extends Presenter<LoginActivity> {
                     getView().startActivity(new Intent(getView(), ResetPwdActivity.class));
                 } else {
                     EventBusUtil.eventPost(EventCode.ORDER_LIST_UPDATE);
+                    EventBusUtil.eventPost(EventCode.INIT_PUSH);
                     getView().finish();
                 }
             }

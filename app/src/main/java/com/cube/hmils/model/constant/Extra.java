@@ -14,4 +14,6 @@ public interface Extra {
 
     String EXTRA_MATERIAL_TYPE = "material_type"; // 材料类型
 
+    String EXTRA_PROJECT_ID = "project_id";
+
 }

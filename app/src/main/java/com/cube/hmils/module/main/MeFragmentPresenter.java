@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
-import com.cube.hmils.model.local.UserPreferences;
 import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.expansion.data.BaseDataFragmentPresenter;
 
@@ -29,9 +28,7 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
     }
 
     public void logout() {
-        UserPreferences.setToken("");
-        UserPreferences.setUserID(0);
-        UserPreferences.setAgentID(0);
+        UserModel.getInstance().setUser(new User());
         if (!UserModel.getInstance().isLogin()) {
             Bundle bundle = new Bundle();
             bundle.putInt(EVENT_BUS_CODE, EventCode.LOGOUT);

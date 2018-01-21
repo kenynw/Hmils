@@ -3,6 +3,7 @@ package com.cube.hmils.module.dialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -23,6 +24,7 @@ import com.cube.hmils.utils.LUtils;
 
 public class ExtraAreaDialog extends DialogFragment implements View.OnClickListener {
 
+    private TextView mTvTitle;
     private EditText mEtWidth;
     private EditText mEtHeight;
 
@@ -31,6 +33,7 @@ public class ExtraAreaDialog extends DialogFragment implements View.OnClickListe
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_add_area, null);
 
+        mTvTitle = view.findViewById(R.id.tv_add_area_title);
         mEtWidth = view.findViewById(R.id.et_add_area_width);
         mEtHeight = view.findViewById(R.id.et_add_area_height);
 
@@ -59,6 +62,10 @@ public class ExtraAreaDialog extends DialogFragment implements View.OnClickListe
             getDialog().getWindow().setLayout((int) (LUtils.getScreenWidth() * 0.9), ViewGroup.LayoutParams.WRAP_CONTENT);
             getDialog().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
+    }
+
+    public void setTitle(@StringRes int res) {
+        mTvTitle.setText(res);
     }
 
     @Override

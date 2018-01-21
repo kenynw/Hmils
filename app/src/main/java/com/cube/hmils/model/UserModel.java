@@ -1,10 +1,8 @@
 package com.cube.hmils.model;
 
-import android.text.TextUtils;
-
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
-import com.cube.hmils.model.local.UserPreferences;
+import com.cube.hmils.model.local.DaoSharedPreferences;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
 import com.cube.hmils.utils.LUtils;
@@ -13,10 +11,7 @@ import com.dsk.chain.model.AbsModel;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
-import cn.jpush.android.api.JPushInterface;
-import cn.jpush.android.api.TagAliasCallback;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -36,7 +31,7 @@ public class UserModel extends AbsModel {
     }
 
     public Observable<User> doLogin(String mobile, String password) {
-        return ServicesClient.getServices().login(mobile, password)
+        return ServicesClient.getServices().login(mobile, LUtils.md5(password))
                 .doOnNext(this::saveAccount)
                 .compose(new DefaultTransform<>());
     }
@@ -50,7 +45,8 @@ public class UserModel extends AbsModel {
     }
 
     public Observable<Response> changePwd(String mobile) {
-        return ServicesClient.getServices().changePwd(UserPreferences.getUserID(), mobile).compose(new DefaultTransform<>());
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().changePwd(user == null ? 0 : user.getUserId(), mobile).compose(new DefaultTransform<>());
     }
 
     /**
@@ -58,7 +54,8 @@ public class UserModel extends AbsModel {
      * @return
      */
     public Observable<User> getUserDetail() {
-        return ServicesClient.getServices().userDetail(UserPreferences.getUserID()).compose(new DefaultTransform<>());
+        User user = UserModel.getInstance().getUser();
+        return ServicesClient.getServices().userDetail(user == null ? 0 : user.getUserId()).compose(new DefaultTransform<>());
     }
 
     public Observable<Response> saveProfile(File file, String userName, String mobile) {
@@ -67,29 +64,28 @@ public class UserModel extends AbsModel {
             RequestBody photo = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             params.put("image\"; filename=\"" + file.getName() + "\"", photo);
         }
-        params.put("userId", RequestBody.create(null, UserPreferences.getUserID() + ""));
+        User user = UserModel.getInstance().getUser();
+        params.put("userId", RequestBody.create(null, user == null ? "" : user.getUserId() + ""));
         params.put("userName", RequestBody.create(null, userName));
         params.put("telPhone", RequestBody.create(null, mobile));
 
         return ServicesClient.getServices().editUserInfo(params).compose(new DefaultTransform<>());
     }
 
+    public User getUser() {
+        return DaoSharedPreferences.getInstance().getUser();
+    }
+
+    public void setUser(User user) {
+        DaoSharedPreferences.getInstance().setUser(user);
+    }
+
     public boolean isLogin() {
-        return !TextUtils.isEmpty(UserPreferences.getToken()) && UserPreferences.getUserID() > 0;
+        return getUser() != null;
     }
 
     private void saveAccount(User user) {
-        UserPreferences.setUserID(user.getUserId());
-        UserPreferences.setAgentID(user.getAgentId());
-        UserPreferences.setToken(user.getToken());
-
-        // 调用 JPush 接口来设置别名。
-        JPushInterface.setAlias(LUtils.getAppContext(), user.getUserName(), new TagAliasCallback() {
-            @Override
-            public void gotResult(int i, String s, Set<String> set) {
-                LUtils.log("result : " + s);
-            }
-        });
+        DaoSharedPreferences.getInstance().setUser(user);
     }
 
 }

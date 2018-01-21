@@ -62,6 +62,9 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
                     ParamDetailPresenter.start(this, getPresenter().getProjectId(), 2));
         } else if (getPresenter().getType() == 2) {
             mToolbarBackText.setText("上一步");
+            mToolbarBackText.setOnClickListener(v -> {
+//                RoomParamsPresenter.start(this, getPresenter().getProjectId(), null, );
+            });
             mBtnBack.setVisibility(View.GONE);
         } else {
             mToolbarBackText.setVisibility(View.GONE);

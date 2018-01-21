@@ -51,4 +51,11 @@ public interface EventCode {
      */
     int PARAM_DETAIL_UPDATE = 0x08;
 
+
+    /**
+     * 初始化推送
+     */
+    int INIT_PUSH = 0x09;
+
+
 }
