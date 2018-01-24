@@ -12,14 +12,6 @@ import java.util.List;
 
 public class Params implements Parcelable {
 
-    public int getProjectId() {
-        return mProjectId;
-    }
-
-    public void setProjectId(int projectId) {
-        mProjectId = projectId;
-    }
-
     private int mProjectId;
 
     private String mName;
@@ -30,7 +22,17 @@ public class Params implements Parcelable {
 
     private List<Room> mMinuAreas; // 减少面积
 
+    private int[] mItemIds;
+
     private int mIsSteady; // 是否规则
+
+    public int getProjectId() {
+        return mProjectId;
+    }
+
+    public void setProjectId(int projectId) {
+        mProjectId = projectId;
+    }
 
     public String getName() {
         return mName;
@@ -64,6 +66,14 @@ public class Params implements Parcelable {
         mMinuAreas = minuAreas;
     }
 
+    public int[] getItemIds() {
+        return mItemIds;
+    }
+
+    public void setItemIds(int[] itemIds) {
+        mItemIds = itemIds;
+    }
+
     public int getIsSteady() {
         return mIsSteady;
     }
@@ -87,6 +97,7 @@ public class Params implements Parcelable {
         dest.writeTypedList(this.mRooms);
         dest.writeTypedList(this.mAddAreas);
         dest.writeTypedList(this.mMinuAreas);
+        dest.writeIntArray(this.mItemIds);
         dest.writeInt(this.mIsSteady);
     }
 
@@ -96,6 +107,7 @@ public class Params implements Parcelable {
         this.mRooms = in.createTypedArrayList(Room.CREATOR);
         this.mAddAreas = in.createTypedArrayList(Room.CREATOR);
         this.mMinuAreas = in.createTypedArrayList(Room.CREATOR);
+        this.mItemIds = in.createIntArray();
         this.mIsSteady = in.readInt();
     }
 

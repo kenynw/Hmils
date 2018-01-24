@@ -82,11 +82,13 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         } else {
                             RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mMelType, mPosition + 1);
                         }
+
                         Params params = new Params();
                         params.setProjectId(mProjectId);
                         params.setAddAreas(addAreas);
                         params.setMinuAreas(minuAreas);
                         params.setRooms(roomSizes);
+                        params.setItemIds(mRoomIds);
                         DaoSharedPreferences.getInstance().setRoomParams(params, getSuffix());
                     }
                 });

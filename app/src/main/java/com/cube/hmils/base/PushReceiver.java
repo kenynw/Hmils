@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import com.cube.hmils.model.constant.EventCode;
+import com.cube.hmils.utils.EventBusUtil;
 import com.cube.hmils.utils.LUtils;
 
 import org.json.JSONException;
@@ -26,7 +28,23 @@ public class PushReceiver extends BroadcastReceiver {
         Bundle bundle = intent.getExtras();
         LUtils.log("[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
 
-        if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
+        if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
+            String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
+            String type;
+            try {
+                JSONObject extrasJson = new JSONObject(extras);
+                type = extrasJson.optString("type");
+            } catch (Exception e) {
+                LUtils.log("Unexpected: extras is not a valid json");
+                return;
+            }
+            switch (type) {
+                case "scanQRCode" :
+                    EventBusUtil.eventPost(EventCode.CODE_FINISH);
+                    break;
+
+            }
+        } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             openNotification(context, bundle);
         }
     }
