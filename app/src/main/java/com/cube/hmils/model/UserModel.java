@@ -80,6 +80,10 @@ public class UserModel extends AbsModel {
         DaoSharedPreferences.getInstance().setUser(user);
     }
 
+    public void logout() {
+        DaoSharedPreferences.getInstance().clearUser();
+    }
+
     public boolean isLogin() {
         return getUser() != null;
     }

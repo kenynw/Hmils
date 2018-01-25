@@ -48,6 +48,7 @@ public class DaoSharedPreferences {
         if (user == null) return;
         mEditor.putString(USER_ENTITY, GsonUtil.toJson(user));
         mEditor.commit();
+        LUtils.log("json: " + GsonUtil.toJson(user) + ", new: " + GsonUtil.toJson(getUser()));
     }
 
     public User getUser() {
@@ -57,6 +58,11 @@ public class DaoSharedPreferences {
             user = GsonUtil.parse(userStr, User.class);
         }
         return user;
+    }
+
+    public void clearUser() {
+        mEditor.putString(USER_ENTITY, "");
+        mEditor.commit();
     }
 
     /**

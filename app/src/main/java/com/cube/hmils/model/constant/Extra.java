@@ -16,4 +16,8 @@ public interface Extra {
 
     String EXTRA_PROJECT_ID = "project_id";
 
+    String EXTRA_POSITION = "position";
+
+    String EXTRA_PARAM_ENTITY = "param_entity";
+
 }

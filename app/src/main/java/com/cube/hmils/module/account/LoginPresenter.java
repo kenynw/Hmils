@@ -23,6 +23,8 @@ public class LoginPresenter extends Presenter<LoginActivity> {
                 if (user.getFirstLogin() == 0) {
                     getView().startActivity(new Intent(getView(), ResetPwdActivity.class));
                 } else {
+                    user.setUserName(mobile);
+                    UserModel.getInstance().setUser(user);
                     EventBusUtil.eventPost(EventCode.ORDER_LIST_UPDATE);
                     EventBusUtil.eventPost(EventCode.INIT_PUSH);
                     getView().finish();

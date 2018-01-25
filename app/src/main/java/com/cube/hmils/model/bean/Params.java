@@ -24,6 +24,10 @@ public class Params implements Parcelable {
 
     private int[] mItemIds;
 
+    private int mMelType;
+
+    private int mPosition;
+
     private int mIsSteady; // 是否规则
 
     public int getProjectId() {
@@ -82,6 +86,22 @@ public class Params implements Parcelable {
         mIsSteady = isSteady;
     }
 
+    public int getMelType() {
+        return mMelType;
+    }
+
+    public void setMelType(int melType) {
+        mMelType = melType;
+    }
+
+    public int getPosition() {
+        return mPosition;
+    }
+
+    public void setPosition(int position) {
+        mPosition = position;
+    }
+
     public Params() {
     }
 
@@ -98,6 +118,8 @@ public class Params implements Parcelable {
         dest.writeTypedList(this.mAddAreas);
         dest.writeTypedList(this.mMinuAreas);
         dest.writeIntArray(this.mItemIds);
+        dest.writeInt(this.mMelType);
+        dest.writeInt(this.mPosition);
         dest.writeInt(this.mIsSteady);
     }
 
@@ -108,6 +130,8 @@ public class Params implements Parcelable {
         this.mAddAreas = in.createTypedArrayList(Room.CREATOR);
         this.mMinuAreas = in.createTypedArrayList(Room.CREATOR);
         this.mItemIds = in.createIntArray();
+        this.mMelType = in.readInt();
+        this.mPosition = in.readInt();
         this.mIsSteady = in.readInt();
     }
 

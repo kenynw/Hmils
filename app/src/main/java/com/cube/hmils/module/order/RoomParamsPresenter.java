@@ -18,9 +18,6 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-import static com.cube.hmils.model.constant.Extra.EXTRA_MATERIAL_TYPE;
-import static com.cube.hmils.model.constant.Extra.EXTRA_ROOM_NUM;
-
 /**
  * Created by Carol on 2017/10/15.
  */
@@ -37,8 +34,14 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
         Intent intent = new Intent(context, RoomParamsActivity.class);
         intent.putExtra(Extra.EXTRA_PROJECT_ID, projectId);
         intent.putExtra(Extra.EXTRA_MATERIAL_TYPE, melType);
-        intent.putExtra(EXTRA_ROOM_NUM, roomNum);
-        intent.putExtra("position", position);
+        intent.putExtra(Extra.EXTRA_ROOM_NUM, roomNum);
+        intent.putExtra(Extra.EXTRA_POSITION, position);
+        context.startActivity(intent);
+    }
+
+    public static void start(Context context, Params params) {
+        Intent intent = new Intent(context, RoomParamsActivity.class);
+        intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
         context.startActivity(intent);
     }
 
@@ -46,9 +49,9 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     protected void onCreate(RoomParamsActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
         mProjectId = view.getIntent().getIntExtra(Extra.EXTRA_PROJECT_ID, 0);
-        mRoomIds = view.getIntent().getIntArrayExtra(EXTRA_ROOM_NUM);
-        mMelType = view.getIntent().getIntExtra(EXTRA_MATERIAL_TYPE, 0);
-        mPosition = view.getIntent().getIntExtra("position", 0);
+        mRoomIds = view.getIntent().getIntArrayExtra(Extra.EXTRA_ROOM_NUM);
+        mMelType = view.getIntent().getIntExtra(Extra.EXTRA_MATERIAL_TYPE, 0);
+        mPosition = view.getIntent().getIntExtra(Extra.EXTRA_POSITION, 0);
     }
 
     @Override
@@ -85,10 +88,12 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
 
                         Params params = new Params();
                         params.setProjectId(mProjectId);
+                        params.setItemIds(mRoomIds);
+                        params.setMelType(mMelType);
+                        params.setPosition(mPosition);
                         params.setAddAreas(addAreas);
                         params.setMinuAreas(minuAreas);
                         params.setRooms(roomSizes);
-                        params.setItemIds(mRoomIds);
                         DaoSharedPreferences.getInstance().setRoomParams(params, getSuffix());
                     }
                 });

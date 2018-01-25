@@ -63,7 +63,14 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
         } else if (getPresenter().getType() == 2) {
             mToolbarBackText.setText("上一步");
             mToolbarBackText.setOnClickListener(v -> {
+//                Intent intent = new Intent(context, RoomParamsActivity.class);
+//                intent.putExtra(Extra.EXTRA_PROJECT_ID, projectId);
+//                intent.putExtra(Extra.EXTRA_MATERIAL_TYPE, melType);
+//                intent.putExtra(EXTRA_ROOM_NUM, roomNum);
+//                intent.putExtra("position", position);
+//                context.startActivity(intent);
 //                RoomParamsPresenter.start(this, getPresenter().getProjectId(), null, );
+
             });
             mBtnBack.setVisibility(View.GONE);
         } else {
