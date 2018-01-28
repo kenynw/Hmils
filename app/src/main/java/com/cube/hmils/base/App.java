@@ -27,6 +27,7 @@ public class App extends Application {
         super.onCreate();
 
         LUtils.initialize(this);
+        LUtils.isDebug = false;
         Fresco.initialize(this);
     }
 

@@ -15,6 +15,7 @@ import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.GsonUtil;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
 
@@ -67,6 +68,7 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
         if (mClient != null) {
             getView().setClientInfo(mClient);
 //            loadData();
+            LUtils.log(GsonUtil.toJson(mClient));
         }
         User user = getView().getIntent().getParcelableExtra(EXTRA_USER);
         if (user != null) {
@@ -88,8 +90,10 @@ public class ProfilePresenter extends Presenter<ProfileActivity> {
     }
 
     public void saveClient(String name, String phone) {
-        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone,mProvince.getProvinceCode(),
-                mCity.getCityCode(), mDistrict.getDistCode(), mClient.getDetailAddr())
+        ClientModel.getInstance().saveClientInfo(mClient.getProjectId(), name, phone,
+                mProvince != null ? mProvince.getProvinceCode() : 0,
+                mCity != null ? mCity.getCityCode() : 0,
+                mDistrict != null ? mDistrict.getDistCode() : 0, mClient.getDetailAddr())
                 .subscribe(new ServicesResponse<Response>() {
                     @Override
                     public void onNext(Response response) {

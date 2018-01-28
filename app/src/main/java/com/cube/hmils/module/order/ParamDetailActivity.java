@@ -10,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.bean.Params;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.model.constant.EventCode;
+import com.cube.hmils.model.local.DaoSharedPreferences;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -35,7 +37,6 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
     TextView mTvPosition;
     @BindView(R.id.iv_param_detail_right)
     ImageView mIvRight;
-
     @BindView(R.id.toolbar_back_icon)
     ImageView mToolbarBackIcon;
     @BindView(R.id.toolbar_back_text)
@@ -63,14 +64,9 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
         } else if (getPresenter().getType() == 2) {
             mToolbarBackText.setText("上一步");
             mToolbarBackText.setOnClickListener(v -> {
-//                Intent intent = new Intent(context, RoomParamsActivity.class);
-//                intent.putExtra(Extra.EXTRA_PROJECT_ID, projectId);
-//                intent.putExtra(Extra.EXTRA_MATERIAL_TYPE, melType);
-//                intent.putExtra(EXTRA_ROOM_NUM, roomNum);
-//                intent.putExtra("position", position);
-//                context.startActivity(intent);
-//                RoomParamsPresenter.start(this, getPresenter().getProjectId(), null, );
-
+                String suffix = String.valueOf(getPresenter().getProjectId()) + 0;
+                Params params = DaoSharedPreferences.getInstance().getRoomParams(suffix);
+                RoomParamsPresenter.start(ParamDetailActivity.this, params);
             });
             mBtnBack.setVisibility(View.GONE);
         } else {

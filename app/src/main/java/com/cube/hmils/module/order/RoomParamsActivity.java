@@ -2,7 +2,6 @@ package com.cube.hmils.module.order;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -50,12 +49,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     TextView mTvBedroom;
     @BindView(R.id.et_room_param_bedroom)
     EditText mEtBedroom;
-    @BindView(R.id.tv_room_params_device)
-    TextView mTvDevice;
-    @BindView(R.id.et_room_param_device_name)
-    EditText mEtDeviceName;
-    @BindView(R.id.et_room_param_device_model)
-    EditText mEtDeviceModel;
     @BindView(R.id.tv_room_params_width)
     TextView mTvWidth;
     @BindView(R.id.et_room_param_long)
@@ -79,9 +72,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     ImageView mToolbarBackIcon;
     @BindView(R.id.toolbar_back_text)
     TextView mToolbarBackText;
-
-    @BindView(R.id.cl_params_layout)
-    ConstraintLayout mClLayout;
     @BindView(R.id.ll_params_extra)
     LinearLayout mLlExtra;
 
@@ -110,9 +100,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     }
 
     private void showAddDialog(int type) {
-        ExtraAreaDialog dialog = new ExtraAreaDialog();
-        dialog.setTitle(type == 0 ? R.string.text_add_area : R.string.text_minus_area);
-        dialog.show(getSupportFragmentManager(), type == 0 ? TAG_ADD_AREA : TAG_MINU_AREA);
+        ExtraAreaDialog.newInstance(type)
+                .show(getSupportFragmentManager(), type == 0 ? TAG_ADD_AREA : TAG_MINU_AREA);
     }
 
     @Override
@@ -136,19 +125,33 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     }
 
     public void setData(Params params) {
-        if (TextUtils.isEmpty(params.getName())) mEtBedroom.setText(params.getName());
+        if (!TextUtils.isEmpty(params.getName())) mEtBedroom.setText(params.getName());
 
         if (params.getRooms() != null && params.getRooms().size() > 0) {
-            for (int i = 0; i < params.getRooms().size(); i++) {
-                Room room = params.getRooms().get(i);
-                if (i == 0) {
-                    mEtLong.setText(room.getLong());
-                    mEtWidth.setText(room.getWidth());
-                } else {
+            mEtLong.setText(params.getRooms().get(0).getLong());
+            mEtWidth.setText(params.getRooms().get(0).getWidth());
+            if (params.getIsSteady() == 1) {
+                mRgType.check(R.id.rb_room_params_steady);
+            } else {
+                mRgType.check(R.id.rb_room_params_unsteady);
+                for (int i = 1; i < params.getRooms().size(); i++) {
+                    Room room = params.getRooms().get(i);
                     addRoomLayout(room.getLong(), room.getWidth());
                 }
             }
         }
+
+        if (params.getAddAreas() != null && params.getAddAreas().size() > 0) {
+            for (Room room : params.getAddAreas()) {
+                addAndMinusArea(0, room.getLong() + "*" + room.getWidth());
+            }
+        }
+        if (params.getMinuAreas() != null && params.getMinuAreas().size() > 0) {
+            for (Room room : params.getMinuAreas()) {
+                addAndMinusArea(1, room.getLong() + "*" + room.getWidth());
+            }
+        }
+
     }
 
     private void checkInput() {
@@ -208,7 +211,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         ImageView ivDelete = view.findViewById(R.id.iv_add_room_delete);
         ivDelete.setOnClickListener(view1 -> {
             mLlAdd.removeView(view);
-            setLayoutHeight(-view.getMeasuredHeight());
         });
 
         TextView tvW = view.findViewById(R.id.tv_add_room_width);
@@ -225,8 +227,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
             TextView etWidth = view.findViewById(R.id.et_add_room_w);
             etWidth.setText(width);
         }
-
-        setLayoutHeight(view.getMeasuredHeight());
     }
 
     private void addRoom(String sLong, String width) {
@@ -247,14 +247,12 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         switch (checkedId) {
             case R.id.rb_room_params_steady:
                 mIbtAdd.setVisibility(View.GONE);
-                setLayoutHeight(-LUtils.dp2px(54));
                 mTvWidth.setText(getString(R.string.text_room_width));
                 mTvHeight.setText(getString(R.string.text_room_height));
                 mLlAdd.removeAllViews();
                 break;
             case R.id.rb_room_params_unsteady:
                 mIbtAdd.setVisibility(View.VISIBLE);
-                setLayoutHeight(LUtils.dp2px(54));
                 mTvWidth.setText("A" + getString(R.string.text_room_width));
                 mTvHeight.setText("A" + getString(R.string.text_room_height));
                 break;
@@ -269,10 +267,8 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         label.setText(type == 0 ? "增加面积" : "减少面积");
         if (!TextUtils.isEmpty(area)) tvArea.setText(area);
         mLlExtra.addView(view);
-        setLayoutHeight(LUtils.dp2px(55));
         ivDelete.setOnClickListener(v -> {
             mLlExtra.removeView(view);
-            setLayoutHeight(-view.getHeight());
         });
     }
 
@@ -300,10 +296,6 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 }
             }
         }
-    }
-
-    private void setLayoutHeight(int height) {
-        mClLayout.getLayoutParams().height = mClLayout.getHeight() + height;
     }
 
 }

@@ -12,6 +12,8 @@ import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.constant.Extra;
 import com.cube.hmils.model.local.DaoSharedPreferences;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.EventBusUtil;
+import com.cube.hmils.utils.GsonUtil;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
 import com.google.gson.Gson;
@@ -29,6 +31,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     private int[] mRoomIds;
 
     private int mPosition;
+    private Params mParams;
 
     public static void start(Context context, int projectId, int[] roomNum, int melType, int position) {
         Intent intent = new Intent(context, RoomParamsActivity.class);
@@ -42,29 +45,34 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     public static void start(Context context, Params params) {
         Intent intent = new Intent(context, RoomParamsActivity.class);
         intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
     @Override
     protected void onCreate(RoomParamsActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
-        mProjectId = view.getIntent().getIntExtra(Extra.EXTRA_PROJECT_ID, 0);
-        mRoomIds = view.getIntent().getIntArrayExtra(Extra.EXTRA_ROOM_NUM);
-        mMelType = view.getIntent().getIntExtra(Extra.EXTRA_MATERIAL_TYPE, 0);
-        mPosition = view.getIntent().getIntExtra(Extra.EXTRA_POSITION, 0);
+        mParams = view.getIntent().getParcelableExtra(Extra.EXTRA_PARAM_ENTITY);
+        if (mParams != null) {
+            mProjectId = mParams.getProjectId();
+            mRoomIds = mParams.getItemIds();
+            mMelType = mParams.getMelType();
+            mPosition = mParams.getPosition();
+        } else {
+            mProjectId = view.getIntent().getIntExtra(Extra.EXTRA_PROJECT_ID, 0);
+            mRoomIds = view.getIntent().getIntArrayExtra(Extra.EXTRA_ROOM_NUM);
+            mMelType = view.getIntent().getIntExtra(Extra.EXTRA_MATERIAL_TYPE, 0);
+            mPosition = view.getIntent().getIntExtra(Extra.EXTRA_POSITION, 0);
+        }
     }
 
     @Override
     protected void onCreateView(RoomParamsActivity view) {
         super.onCreateView(view);
         view.setToolbarTitle(String.format("%1$d of %2$d", mPosition + 1, mRoomIds.length));
-        getData();
-    }
-
-    private void getData() {
-        Params roomParams = DaoSharedPreferences.getInstance().getRoomParams(getSuffix());
-        if (roomParams != null) {
-            getView().setData(roomParams);
+        if (mParams != null) {
+            getView().setData(mParams);
+            LUtils.log(GsonUtil.toJson(mParams));
         }
     }
 
@@ -82,8 +90,17 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         LUtils.log("itemId: " + mRoomIds[mPosition] + ", projectId: " + mProjectId);
                         if (isEnd.equals("end")) {
                             ParamDetailPresenter.start(getView(), mProjectId, 0);
+                            EventBusUtil.eventPost(EventCode.PARAM_DETAIL_UPDATE);
                         } else {
-                            RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mMelType, mPosition + 1);
+                            String suffix = String.valueOf(mProjectId) + (mPosition + 1);
+                            Params params = DaoSharedPreferences.getInstance().getRoomParams(suffix);
+                            if (params != null) {
+                                Intent intent = new Intent(getView(), RoomParamsActivity.class);
+                                intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
+                                getView().startActivity(intent);
+                            } else {
+                                RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mMelType, mPosition + 1);
+                            }
                         }
 
                         Params params = new Params();
@@ -91,9 +108,11 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                         params.setItemIds(mRoomIds);
                         params.setMelType(mMelType);
                         params.setPosition(mPosition);
+                        params.setName(roomName);
                         params.setAddAreas(addAreas);
                         params.setMinuAreas(minuAreas);
                         params.setRooms(roomSizes);
+                        params.setIsSteady(roomType);
                         DaoSharedPreferences.getInstance().setRoomParams(params, getSuffix());
                     }
                 });
