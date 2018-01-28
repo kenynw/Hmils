@@ -1,11 +1,12 @@
 package com.cube.hmils.module.main;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-public class LauncherActivity extends Activity {
+import com.dsk.chain.bijection.ChainBaseActivity;
+
+public class LauncherActivity extends ChainBaseActivity<LauncherPresenter> {
 
     private Handler mHandler = new Handler();
 
