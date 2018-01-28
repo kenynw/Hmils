@@ -14,9 +14,17 @@ public class LauncherActivity extends ChainBaseActivity<LauncherPresenter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mHandler.postDelayed(() -> {
-            startActivity(new Intent(LauncherActivity.this, MainActivity.class));
-            finish();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+                        finish();
+                    }
+                });
+            }
         }, 2000);
     }
 
