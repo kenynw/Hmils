@@ -20,4 +20,6 @@ public interface Extra {
 
     String EXTRA_PARAM_ENTITY = "param_entity";
 
+    String EXTRA_USER_ID = "user_id";
+
 }

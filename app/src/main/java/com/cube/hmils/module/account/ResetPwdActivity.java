@@ -1,5 +1,7 @@
 package com.cube.hmils.module.account;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.model.constant.Extra;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -43,6 +46,12 @@ public class ResetPwdActivity extends ChainBaseActivity<ResetPwdPresenter> imple
     @BindView(R.id.btn_forgot_save)
     Button mBtnSave;
 
+    public static void start(Context context, int userId) {
+        Intent intent = new Intent(context, ResetPwdActivity.class);
+        intent.putExtra(Extra.EXTRA_USER_ID, userId);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +77,7 @@ public class ResetPwdActivity extends ChainBaseActivity<ResetPwdPresenter> imple
             LUtils.toast("两次输入的密码不一样");
             return;
         }
-        getPresenter().changePwd(mEtPwd.getText().toString().trim());
+        getPresenter().changePwd(pwdText);
     }
 
     @Override

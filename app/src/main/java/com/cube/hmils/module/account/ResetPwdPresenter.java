@@ -1,7 +1,10 @@
 package com.cube.hmils.module.account;
 
+import android.os.Bundle;
+
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.Response;
+import com.cube.hmils.model.constant.Extra;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
@@ -12,8 +15,16 @@ import com.dsk.chain.bijection.Presenter;
 
 public class ResetPwdPresenter extends Presenter<ResetPwdActivity> {
 
-    public void changePwd(String mobile) {
-        UserModel.getInstance().changePwd(mobile).subscribe(new ServicesResponse<Response>() {
+    private int mUserId;
+
+    @Override
+    protected void onCreate(ResetPwdActivity view, Bundle saveState) {
+        super.onCreate(view, saveState);
+        mUserId = view.getIntent().getIntExtra(Extra.EXTRA_USER_ID, 0);
+    }
+
+    public void changePwd(String pwd) {
+        UserModel.getInstance().changePwd(mUserId, pwd).subscribe(new ServicesResponse<Response>() {
             @Override
             public void onNext(Response response) {
                 LUtils.toast(response.getMessage());

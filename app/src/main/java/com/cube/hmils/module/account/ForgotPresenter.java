@@ -1,7 +1,5 @@
 package com.cube.hmils.module.account;
 
-import android.content.Intent;
-
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.User;
@@ -29,7 +27,7 @@ public class ForgotPresenter extends Presenter<ForgotActivity> {
         UserModel.getInstance().checkCode(mobile, code).subscribe(new ServicesResponse<User>() {
             @Override
             public void onNext(User user) {
-                getView().startActivity(new Intent(getView(), ResetPwdActivity.class));
+                ResetPwdActivity.start(getView(), user.getUserId());
                 getView().finish();
             }
         });

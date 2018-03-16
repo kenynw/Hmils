@@ -44,9 +44,24 @@ public class UserModel extends AbsModel {
         return ServicesClient.getServices().checkCode(mobile, code).compose(new DefaultTransform<>());
     }
 
-    public Observable<Response> changePwd(String mobile) {
+    /**
+     * 修改密码
+     * @param pwd
+     * @return
+     */
+    public Observable<Response> changePwd(String pwd) {
         User user = UserModel.getInstance().getUser();
-        return ServicesClient.getServices().changePwd(user == null ? 0 : user.getUserId(), mobile).compose(new DefaultTransform<>());
+        return ServicesClient.getServices().changePwd(user == null ? 0 : user.getUserId(), LUtils.md5(pwd)).compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 忘记密码
+     * @param userId
+     * @param pwd
+     * @return
+     */
+    public Observable<Response> changePwd(int userId, String pwd) {
+        return ServicesClient.getServices().changePwd(userId, LUtils.md5(pwd)).compose(new DefaultTransform<>());
     }
 
     /**

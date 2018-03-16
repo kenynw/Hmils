@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.dsk.chain.bijection.ChainBaseActivity;
+import com.dsk.chain.bijection.RequiresPresenter;
 
+@RequiresPresenter(LauncherPresenter.class)
 public class LauncherActivity extends ChainBaseActivity<LauncherPresenter> {
 
     private Handler mHandler = new Handler();
