@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Order;
-import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.constant.EventCode;
 import com.dsk.chain.expansion.list.BaseListFragmentPresenter;
 
@@ -20,8 +19,8 @@ public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragm
     protected void onCreate(OrderListFragment view, Bundle saveState) {
         super.onCreate(view, saveState);
 
-        mCustId = view.getArguments().getInt(EXTRA_USER_ID);
-        mState = view.getArguments().getInt(EXTRA_STATE);
+        mCustId = view.getArguments().getInt(EXTRA_USER_ID, 0);
+        mState = view.getArguments().getInt(EXTRA_STATE, 0);
     }
 
     @Override
@@ -32,7 +31,8 @@ public class OrderListPresenter extends BaseListFragmentPresenter<OrderListFragm
 
     @Override
     public void onRefresh() {
-        ClientModel.getInstance().getOrderList(mCustId, "", mState).map(OrderResponse::getCustOrderList)
+        ClientModel.getInstance().getOrderList(mCustId, "", mState)
+                .map(orderResponse -> orderResponse != null ? orderResponse.getCustOrderList() : null)
                 .unsafeSubscribe(getRefreshSubscriber());
     }
 

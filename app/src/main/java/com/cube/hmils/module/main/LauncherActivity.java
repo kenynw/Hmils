@@ -12,22 +12,19 @@ public class LauncherActivity extends ChainBaseActivity<LauncherPresenter> {
 
     private Handler mHandler = new Handler();
 
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            startActivity(new Intent(LauncherActivity.this, MainActivity.class));
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(LauncherActivity.this, MainActivity.class));
-                        finish();
-                    }
-                });
-            }
-        }, 2000);
+        mHandler.postDelayed(mRunnable, 2000);
     }
 
 }
