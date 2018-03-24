@@ -69,6 +69,7 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> impl
 
     @Override
     public void setData(User user) {
+        mDvAvatar.setImageURI(user.getCustImg());
         mTvName.setText(user.getUserName());
         mTvPhone.setText(user.getTelPhone());
         mClProfile.setOnClickListener(v -> {

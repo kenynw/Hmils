@@ -19,40 +19,25 @@
         <ImageView
             android:id="@+id/iv_search_back"
             android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="@dimen/spacing_normal"
-            android:layout_marginRight="12.5dp"
+            android:paddingLeft="@dimen/spacing_normal"
+            android:paddingRight="12.5dp"
             android:src="@mipmap/ic_back"
             />
 
-        <FrameLayout
+        <com.cube.hmils.widget.ClearEditText
+            android:id="@+id/et_search_keyword"
             android:layout_width="280dp"
             android:layout_height="34dp"
             android:layout_marginBottom="@dimen/spacing_small"
-            >
-
-            <EditText
-                android:id="@+id/et_search_keyword"
-                android:layout_width="280dp"
-                android:layout_height="34dp"
-                android:background="@drawable/bg_round_white"
-                android:gravity="center"
-                android:hint="@string/hint_search"
-                android:textSize="@dimen/text_size_body"
-                />
-
-            <ImageView
-                android:id="@+id/iv_search_close"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_gravity="center_vertical|end"
-                android:layout_marginRight="6dp"
-                android:src="@mipmap/ic_search_close"
-                />
-
-        </FrameLayout>
+            android:background="@drawable/bg_round_white"
+            android:gravity="center"
+            android:hint="@string/hint_search"
+            android:paddingRight="6dp"
+            android:textSize="@dimen/text_size_body"
+            />
 
     </LinearLayout>
 

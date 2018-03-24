@@ -35,14 +35,17 @@ public class PushReceiver extends BroadcastReceiver {
                 JSONObject extrasJson = new JSONObject(extras);
                 type = extrasJson.optString("type");
             } catch (Exception e) {
-                LUtils.log("Unexpected: extras is not a valid json");
+                LUtils.log("推送数据解析错误");
                 return;
             }
             switch (type) {
                 case "scanQRCode" :
                     EventBusUtil.eventPost(EventCode.CODE_FINISH);
                     break;
-
+//                case "assign": // 售后指派
+//                    break;
+//                case "customerService": // 发起售后
+//                    break;
             }
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
             openNotification(context, bundle);

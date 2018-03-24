@@ -36,7 +36,7 @@ public class RoomOrder implements Parcelable {
     private String totalPrice;
     private String custPhone;
     @Expose
-    @SerializedName(value = "heating", alternate = "HeatingList")
+    @SerializedName(value = "heatingList", alternate = "HeatingList")
     private List<Device> heatingList;
     @Expose
     @SerializedName(value = "material", alternate = "materialList")

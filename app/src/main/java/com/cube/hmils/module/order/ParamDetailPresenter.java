@@ -10,10 +10,9 @@ import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.EventBusUtil;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by Carol on 2017/12/2.
@@ -55,9 +54,9 @@ public class ParamDetailPresenter extends BaseDataActivityPresenter<ParamDetailA
             public void onNext(Response response) {
                 Bundle bundle = new Bundle();
                 bundle.putInt(EVENT_BUS_CODE, EventCode.ORDER_DETAIL_UPDATE);
-                EventBus.getDefault().post(bundle);
+                EventBusUtil.eventPost(EventCode.ORDER_DETAIL_UPDATE, bundle);
                 bundle.putInt(EVENT_BUS_CODE, EventCode.PARAM_DETAIL_UPDATE);
-                EventBus.getDefault().post(bundle);
+                EventBusUtil.eventPost(EventCode.PARAM_DETAIL_UPDATE, bundle);
                 getView().finish();
             }
 

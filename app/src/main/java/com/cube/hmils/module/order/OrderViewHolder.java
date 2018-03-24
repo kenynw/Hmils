@@ -55,7 +55,8 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
         mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
         if (data.getHandingStatus() == 5)
             mTvState.setTextColor(getContext().getResources().getColor(R.color.textTertiary));
-        mTvState.setText(mOrderStatus[data.getHandingStatus() - 1]);
+        int index = data.getHandingStatus() <= 0 ? 1 : (data.getHandingStatus() >= 4 ? 3 : data.getHandingStatus());
+        mTvState.setText(mOrderStatus[index - 1]);
         mTvUsername.setText(data.getCustName());
         mTvContact.setText(data.getCustTel());
         mTvAddress.setText(data.getCustAddr());

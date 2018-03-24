@@ -1,7 +1,5 @@
 package com.cube.hmils.module.account;
 
-import android.content.Intent;
-
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
@@ -21,7 +19,7 @@ public class LoginPresenter extends Presenter<LoginActivity> {
             public void onNext(User user) {
                 getView().getExpansionDelegate().hideProgressBar();
                 if (user.getFirstLogin() == 0) {
-                    getView().startActivity(new Intent(getView(), ResetPwdActivity.class));
+                    ResetPwdActivity.start(getView(), user.getUserId());
                 } else {
                     user.setUserName(mobile);
                     UserModel.getInstance().setUser(user);

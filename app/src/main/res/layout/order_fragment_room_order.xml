@@ -24,6 +24,7 @@
             >
 
             <TextView
+                android:id="@+id/tv_room_order_material"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_normal"
@@ -33,11 +34,12 @@
                 />
 
             <LinearLayout
+                android:id="@+id/ll_room_order_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingBottom="@dimen/spacing_normal"
+                android:paddingBottom="35dp"
                 android:paddingLeft="@dimen/spacing_small"
                 android:paddingRight="@dimen/spacing_small"
                 android:paddingTop="@dimen/spacing_normal"
@@ -197,7 +199,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_normal"
-                android:layout_marginTop="25dp"
                 android:text="@string/text_heating_title"
                 android:textColor="@color/textSecondary"
                 android:textSize="@dimen/text_size_body"

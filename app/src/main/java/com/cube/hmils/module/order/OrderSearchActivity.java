@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.cube.hmils.R;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -16,14 +15,13 @@ import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 @RequiresPresenter(OrderSearchPresenter.class)
 public class OrderSearchActivity extends BaseListActivity<OrderSearchPresenter> implements TextWatcher {
 
     @BindView(R.id.et_search_keyword)
     EditText mEtSearchKeyword;
-    @BindView(R.id.iv_search_close)
-    ImageView mIvSearchClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,12 @@ public class OrderSearchActivity extends BaseListActivity<OrderSearchPresenter> 
 
     @Override
     public int[] getHideSoftViewIds() {
-        return new int[] {R.id.et_search_keyword};
+        return new int[]{R.id.et_search_keyword};
+    }
+
+    @OnClick(R.id.iv_search_back)
+    public void back() {
+        finish();
     }
 
 }

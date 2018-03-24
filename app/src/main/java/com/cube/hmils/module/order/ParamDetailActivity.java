@@ -86,6 +86,7 @@ public class ParamDetailActivity extends BaseDataActivity<ParamDetailPresenter, 
     @Override
     public void setData(RoomOrder roomOrder) {
         if (roomOrder.getRoomPara().size() <= 0) return;
+        mFragments.clear();
         for (RoomOrder order : roomOrder.getRoomPara()) {
             RoomOrderFragment fragment = RoomOrderFragmentPresenter.newInstance(order, getPresenter().getType() == 2);
             mFragments.add(fragment);

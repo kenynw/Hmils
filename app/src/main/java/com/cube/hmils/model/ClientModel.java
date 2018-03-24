@@ -159,7 +159,7 @@ public class ClientModel extends AbsModel {
     }
 
     public Observable<Response> updateOrder(String order) {
-        return ServicesClient.getServices().updateOrder(order).compose(new DefaultTransform<Response>());
+        return ServicesClient.getServices().updateOrder(order).compose(new DefaultTransform<>());
     }
 
     /**
