@@ -27,16 +27,15 @@ import java.util.List;
 public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
 
     private int mProjectId;
-    private int mMelType;
+    private int mMelType, mFloorType;
     private int[] mRoomIds;
 
     private int mPosition;
     private Params mParams;
 
-    public static void start(Context context, int projectId, int[] roomNum, int melType, int position) {
+    public static void start(Context context, int projectId, int[] roomNum, int position) {
         Intent intent = new Intent(context, RoomParamsActivity.class);
         intent.putExtra(Extra.EXTRA_PROJECT_ID, projectId);
-        intent.putExtra(Extra.EXTRA_MATERIAL_TYPE, melType);
         intent.putExtra(Extra.EXTRA_ROOM_NUM, roomNum);
         intent.putExtra(Extra.EXTRA_POSITION, position);
         context.startActivity(intent);
@@ -82,8 +81,10 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
         String roomSize = new Gson().toJson(roomSizes);
         String isEnd = mPosition == mRoomIds.length - 1 ? "end" : "";
 
+
+
         ClientModel.getInstance().saveRoomParams(addArea, minuArea, isEnd, mRoomIds[mPosition], mProjectId,
-                roomName, roomSize, roomType, mMelType)
+                roomName, roomSize, roomType, getView().getMelType(), getView().getFloorType())
                 .subscribe(new ServicesResponse<Project>() {
                     @Override
                     public void onNext(Project project) {
@@ -99,7 +100,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                                 intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
                                 getView().startActivity(intent);
                             } else {
-                                RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mMelType, mPosition + 1);
+                                RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mPosition + 1);
                             }
                         }
 

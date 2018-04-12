@@ -35,7 +35,7 @@ public class PickMaterialActivity extends ChainBaseActivity<PickMaterialPresente
         Order order = getIntent().getParcelableExtra(EXTRA_ORDER);
         int num[] = getIntent().getIntArrayExtra(EXTRA_ROOM_NUM);
         mBtnNext.setOnClickListener(v -> {
-            RoomParamsPresenter.start(this, order.getProjectId(), num, mRbtn0.isChecked() ? 0 : 1, 0);
+//            RoomParamsPresenter.start(this, order.getProjectId(), num, mRbtn0.isChecked() ? 0 : 1, 0);
             finish();
         });
     }

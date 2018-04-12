@@ -3,8 +3,10 @@ package com.cube.hmils.module.account;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
+import com.cube.hmils.model.services.ServiceException;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.EventBusUtil;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
 
 /**
@@ -31,8 +33,13 @@ public class LoginPresenter extends Presenter<LoginActivity> {
 
             @Override
             public void onError(Throwable e) {
-                super.onError(e);
                 getView().getExpansionDelegate().hideProgressBar();
+                if (e instanceof ServiceException) {
+                    ServiceException exception = (ServiceException) e;
+                    LUtils.toast(exception.getMsg());
+                } else {
+                    LUtils.toast("登录失败");
+                }
             }
         });
     }

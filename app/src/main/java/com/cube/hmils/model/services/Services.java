@@ -220,11 +220,12 @@ public interface Services {
      * 填写房间数量
      *
      * @param roomType 标准房间传1，不规则房间传0
+     * @param floorType  0 地板 1 地砖
      * @param matType  0---贵族，1---精英
      * @return
      */
     @FormUrlEncoded
-    @POST("operator/addRoomPara/")
+    @POST("operator/addRoomParas/")
     Observable<Project> saveRoomParams(
             @Field("addArea") String addArea,
             @Field("reduceArea") String reduceArea,
@@ -234,7 +235,8 @@ public interface Services {
             @Field("roomName") String roomName,
             @Field("roomSize") String roomSize,
             @Field("roomType") int roomType,
-            @Field("matType") int matType
+            @Field("matType") int matType,
+            @Field("floorType") int floorType
     );
 
     /**

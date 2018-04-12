@@ -232,6 +232,81 @@
 
             </LinearLayout>
 
+            <RadioGroup
+                android:id="@+id/rg_params_mater_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:orientation="horizontal"
+                >
+
+                <RadioButton
+                    android:id="@+id/rbtn_params_mater_0"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:background="@drawable/btn_pick_material_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="贵族"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_subhead"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rbtn_params_mater_1"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_pick_material_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="精英"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_subhead"
+                    />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/rg_params_floor_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/spacing_large"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:orientation="horizontal"
+                >
+
+                <RadioButton
+                    android:id="@+id/rbtn_params_floor_0"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="@dimen/spacing_normal"
+                    android:background="@drawable/btn_pick_material_selector"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="地板"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_subhead"
+                    />
+
+                <RadioButton
+                    android:id="@+id/rbtn_params_floor_1"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_pick_material_selector"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="地砖"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="@dimen/text_size_subhead"
+                    />
+
+            </RadioGroup>
+
             <Button
                 android:id="@+id/btn_room_params_save"
                 style="@style/ButtonLarge"

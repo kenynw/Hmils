@@ -39,7 +39,7 @@ public class RoomNumPresenter extends Presenter<RoomNumActivity> {
                 .subscribe(new ServicesResponse<Project>() {
                     @Override
                     public void onNext(Project project) {
-                        PickMaterialPresenter.start(getView(), mOrder, project.getItemId());
+                        RoomParamsPresenter.start(getView(), mOrder.getProjectId(), project.getItemId(), 0);
                         getView().finish();
                     }
                 });

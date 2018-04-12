@@ -27,6 +27,7 @@ public class EncryptInterceptor implements Interceptor {
         User user = UserModel.getInstance().getUser();
         Request request = chain.request().newBuilder()
                 .addHeader("token", user == null ? "" : user.getToken())
+                .addHeader("userId", String.valueOf(user == null ? 0 : user.getUserId()))
                 .build();
 
         if (request.method().equals("POST")) {

@@ -61,6 +61,21 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
     TextView mTvAdd;
     @BindView(R.id.tv_room_params_minus)
     TextView mTvMinus;
+
+    @BindView(R.id.rg_params_mater_type)
+    RadioGroup mRgMaterType;
+    @BindView(R.id.rbtn_params_mater_0)
+    RadioButton mRgMaterType0;
+    @BindView(R.id.rbtn_params_mater_1)
+    RadioButton mRgMaterType1;
+
+    @BindView(R.id.rg_params_floor_type)
+    RadioGroup mRgFloorType;
+    @BindView(R.id.rbtn_params_floor_0)
+    RadioButton mRgFloorType0;
+    @BindView(R.id.rbtn_params_floor_1)
+    RadioButton mRgFloorType1;
+
     @BindView(R.id.btn_room_params_save)
     Button mBtnSave;
 
@@ -296,6 +311,14 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
                 }
             }
         }
+    }
+
+    public int getMelType() {
+        return mRgMaterType0.isChecked() ? 0 : 1;
+    }
+
+    public int getFloorType() {
+        return mRgFloorType0.isChecked() ? 0 : 1;
     }
 
 }
