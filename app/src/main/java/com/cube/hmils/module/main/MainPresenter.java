@@ -40,6 +40,7 @@ public class MainPresenter extends Presenter<MainActivity> {
 
             }
         });
+        initPush();
     }
 
     private void initPush() {
