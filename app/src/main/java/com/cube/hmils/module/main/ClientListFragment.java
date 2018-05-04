@@ -195,4 +195,9 @@ public class ClientListFragment extends BaseListFragment<ClientListPresenter, Cl
         }
     }
 
+    @Override
+    public boolean immersionBarEnable() {
+        return false;
+    }
+
 }

@@ -128,4 +128,9 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> impl
         }
     }
 
+    @Override
+    public boolean immersionBarEnable() {
+        return false;
+    }
+
 }

@@ -102,4 +102,10 @@ public class OrderMainFragment extends ChainFragment<OrderMainPresenter> impleme
     public void onTabReselected(TabLayout.Tab tab) {
 
     }
+
+    @Override
+    public boolean immersionBarEnable() {
+        return false;
+    }
+
 }

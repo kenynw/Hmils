@@ -82,4 +82,9 @@ public class ServiceMainFragment extends ChainFragment<ServiceMainPresenter> {
         }
     }
 
+    @Override
+    public boolean immersionBarEnable() {
+        return false;
+    }
+
 }

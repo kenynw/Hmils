@@ -16,8 +16,6 @@ public class ChainFragment<PresenterType extends Presenter> extends Fragment {
 
     private ViewHelper<PresenterType> mHelper = new ViewHelper<>(this);
 
-    private ImmersionBar mImmersionBar;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +25,15 @@ public class ChainFragment<PresenterType extends Presenter> extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mImmersionBar = ImmersionBar.with(this)
-                .transparentStatusBar()
-                .statusBarDarkFont(true, 0.2f)
-                .navigationBarEnable(false);
-        View status = view.findViewById(R.id.status_bar);
-        if (status != null) mImmersionBar.statusBarView(status);
-        mImmersionBar.init();
+        if (immersionBarEnable()) {
+            ImmersionBar immersionBar = ImmersionBar.with(this)
+                    .transparentStatusBar()
+                    .statusBarDarkFont(true, 0.2f)
+                    .navigationBarEnable(false);
+            View status = view.findViewById(R.id.status_bar);
+            if (status != null) immersionBar.statusBarView(status);
+            immersionBar.init();
+        }
     }
 
     @Override
@@ -80,6 +80,10 @@ public class ChainFragment<PresenterType extends Presenter> extends Fragment {
 
     public PresenterType getPresenter() {
         return mHelper.getPresenter();
+    }
+
+    public boolean immersionBarEnable() {
+        return true;
     }
 
 }
