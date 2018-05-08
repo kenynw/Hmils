@@ -14,9 +14,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 //        ndk {
-//            //选择要添加的对应cpu类型的.so库。
-////            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
-//            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+//            abiFilters 'armeabi'
+//            // 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
 //        }
 
         manifestPlaceholders = [
@@ -75,6 +74,7 @@ dependencies {
     compile 'com.jude:exgridview:1.1.5'
     compile 'com.github.promeg:tinypinyin:2.0.3' // TinyPinyin核心包，约80KB
     compile 'com.dsk:imageprovider:2.2.1'
+    compile 'com.tencent.bugly:crashreport:2.6.6.1'
 
     compile 'cn.jiguang.sdk:jpush:3.0.3'
     compile 'cn.jiguang.sdk:jcore:1.1.1'

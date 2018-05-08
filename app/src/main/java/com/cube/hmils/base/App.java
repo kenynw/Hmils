@@ -1,10 +1,12 @@
 package com.cube.hmils.base;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.cube.hmils.BuildConfig;
 import com.cube.hmils.utils.LUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -33,6 +35,7 @@ public class App extends Application {
         LUtils.isDebug = BuildConfig.DEBUG;
         Fresco.initialize(this);
         initJPush();
+        initBugly();
     }
 
     /**
@@ -41,6 +44,19 @@ public class App extends Application {
     private void initJPush() {
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
         JPushInterface.init(this);
+    }
+
+    private void initBugly() {
+        Context context = getApplicationContext();
+        // 获取当前包名
+        String packageName = context.getPackageName();
+        // 获取当前进程名
+        String processName = LUtils.getProcessName();
+        // 设置是否为上报进程
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(context);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        // 初始化Bugly
+        CrashReport.initCrashReport(context, "e033e8cbf3", true, strategy);
     }
 
 }

@@ -197,14 +197,13 @@ public class LUtils {
     /**
      * 获取当前进程名
      *
-     * @param context
      * @return 进程名
      */
-    public static final String getProcessName(Context context) {
+    public static final String getProcessName() {
         String processName = null;
 
         // ActivityManager
-        ActivityManager am = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE));
+        ActivityManager am = ((ActivityManager) sContext.getSystemService(Context.ACTIVITY_SERVICE));
 
         while (true) {
             for (ActivityManager.RunningAppProcessInfo info : am.getRunningAppProcesses()) {

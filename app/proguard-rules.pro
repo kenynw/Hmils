@@ -36,3 +36,7 @@
 -dontwarn com.google.**
 -keep class com.google.gson.** {*;}
 -keep class com.google.protobuf.** {*;}
+
+#==================bugly==========================
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
