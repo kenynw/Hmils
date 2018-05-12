@@ -33,12 +33,12 @@ android {
     }
 
     signingConfigs {
-        debug {
-            keyAlias 'hms'
-            keyPassword '123456'
-            storeFile file('../hms.jks')
-            storePassword '123456'
-        }
+//        debug {
+//            keyAlias 'hms'
+//            keyPassword '123456'
+//            storeFile file('../hms.jks')
+//            storePassword '123456'
+//        }
 
         release {
             keyAlias 'hms'

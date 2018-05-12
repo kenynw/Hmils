@@ -46,7 +46,9 @@ public class OrderListFragment extends BaseListFragment<OrderListPresenter, Orde
 
     @Override
     public ListConfig getListConfig() {
-        return super.getListConfig().setContainerEmptyRes(R.layout.def_empty_layout);
+        return super.getListConfig()
+                .setContainerErrorRes(R.layout.def_empty_layout)
+                .setContainerEmptyRes(R.layout.def_empty_layout);
     }
 
 }

@@ -18,6 +18,7 @@ import com.cube.hmils.module.dialog.DialogCallback;
 import com.cube.hmils.module.user.ProfileActivity;
 import com.cube.hmils.module.user.ProfilePresenter;
 import com.cube.hmils.module.user.QRCodeActivity;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataFragment;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -50,6 +51,9 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> impl
     @BindView(R.id.tv_me_reset_pwd)
     TextView mTvResetPwd;
 
+    @BindView(R.id.tv_me_version)
+    TextView mTvVersion;
+
     @BindView(R.id.tv_me_logout)
     TextView mTvLogout;
 
@@ -63,6 +67,8 @@ public class MeFragment extends BaseDataFragment<MeFragmentPresenter, User> impl
 
         mTvLogout.setOnClickListener(v -> showLogoutDialog());
         mTvResetPwd.setOnClickListener(v -> startActivity(new Intent(getActivity(), ForgotActivity.class)));
+
+        mTvVersion.setText(getString(R.string.text_version_name, LUtils.getAppVersionName()));
 
         return view;
     }

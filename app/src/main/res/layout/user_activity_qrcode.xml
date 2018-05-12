@@ -57,7 +57,7 @@
             android:layout_height="255dp"
             android:layout_marginBottom="7dp"
             android:layout_marginTop="30dp"
-            app:actualImageScaleType="centerInside"
+            app:actualImageScaleType="fitCenter"
             app:failureImageScaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
