@@ -119,7 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/white"
-        android:paddingLeft="30dp"
+        android:paddingLeft="28dp"
         android:paddingRight="22.5dp">
 
         <TextView
@@ -129,7 +129,10 @@
             android:gravity="center_vertical"
             android:text="@string/text_version"
             android:textColor="@color/textSecondary"
-            android:textSize="@dimen/text_size_body" />
+            android:textSize="@dimen/text_size_body"
+            android:drawableLeft="@mipmap/icon_cur_version"
+            android:drawablePadding="@dimen/spacing_small"
+            />
 
         <TextView
             android:id="@+id/tv_me_version"
