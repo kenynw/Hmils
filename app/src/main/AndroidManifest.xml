@@ -68,7 +68,13 @@
         <activity
             android:name=".module.account.LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.cube.hmils.intent.login"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".module.order.RoomNumActivity"
             android:configChanges="orientation"
