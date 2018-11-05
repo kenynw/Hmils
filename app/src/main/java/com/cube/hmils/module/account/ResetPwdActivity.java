@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
-import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -48,7 +48,7 @@ public class ResetPwdActivity extends ChainBaseActivity<ResetPwdPresenter> imple
 
     public static void start(Context context, int userId) {
         Intent intent = new Intent(context, ResetPwdActivity.class);
-        intent.putExtra(Extra.EXTRA_USER_ID, userId);
+        intent.putExtra(ExtraConstant.EXTRA_USER_ID, userId);
         context.startActivity(intent);
     }
 

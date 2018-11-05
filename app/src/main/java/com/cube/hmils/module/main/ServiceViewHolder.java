@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.cube.hmils.R;
 import com.cube.hmils.model.Service;
-import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.cube.hmils.module.order.ServiceDetailActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -58,7 +58,7 @@ public class ServiceViewHolder extends BaseViewHolder<Service> {
         mTvAddress.setText(data.getContAddr());
         itemView.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ServiceDetailActivity.class);
-            intent.putExtra(Extra.EXTRA_ORDER_ID, data.getOrderId());
+            intent.putExtra(ExtraConstant.EXTRA_ORDER_ID, data.getOrderId());
             getContext().startActivity(intent);
         });
     }

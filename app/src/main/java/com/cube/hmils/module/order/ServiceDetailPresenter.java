@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.Service;
 import com.cube.hmils.model.bean.OrderResponse;
-import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
 
 /**
@@ -19,7 +19,7 @@ public class ServiceDetailPresenter extends BaseDataActivityPresenter<ServiceDet
     @Override
     protected void onCreate(ServiceDetailActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
-        mOrderId = view.getIntent().getIntExtra(Extra.EXTRA_ORDER_ID, 0);
+        mOrderId = view.getIntent().getIntExtra(ExtraConstant.EXTRA_ORDER_ID, 0);
     }
 
     @Override

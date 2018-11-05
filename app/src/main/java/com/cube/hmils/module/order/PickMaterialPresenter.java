@@ -6,8 +6,8 @@ import android.content.Intent;
 import com.cube.hmils.model.bean.Order;
 import com.dsk.chain.bijection.Presenter;
 
-import static com.cube.hmils.model.constant.Extra.EXTRA_ORDER;
-import static com.cube.hmils.model.constant.Extra.EXTRA_ROOM_NUM;
+import static com.cube.hmils.model.constant.ExtraConstant.EXTRA_ORDER;
+import static com.cube.hmils.model.constant.ExtraConstant.EXTRA_ROOM_NUM;
 
 /**
  * Copyright (c) 2017/12/10. LiaoPeiKun Inc. All rights reserved.

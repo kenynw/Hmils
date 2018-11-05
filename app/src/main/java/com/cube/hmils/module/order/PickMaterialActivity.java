@@ -12,8 +12,8 @@ import com.dsk.chain.bijection.RequiresPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.cube.hmils.model.constant.Extra.EXTRA_ORDER;
-import static com.cube.hmils.model.constant.Extra.EXTRA_ROOM_NUM;
+import static com.cube.hmils.model.constant.ExtraConstant.EXTRA_ORDER;
+import static com.cube.hmils.model.constant.ExtraConstant.EXTRA_ROOM_NUM;
 
 @RequiresPresenter(PickMaterialPresenter.class)
 public class PickMaterialActivity extends ChainBaseActivity<PickMaterialPresenter> {

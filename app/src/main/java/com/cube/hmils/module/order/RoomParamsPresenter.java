@@ -9,7 +9,7 @@ import com.cube.hmils.model.bean.Params;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Room;
 import com.cube.hmils.model.constant.EventCode;
-import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.cube.hmils.model.local.DaoSharedPreferences;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.EventBusUtil;
@@ -35,15 +35,15 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
 
     public static void start(Context context, int projectId, int[] roomNum, int position) {
         Intent intent = new Intent(context, RoomParamsActivity.class);
-        intent.putExtra(Extra.EXTRA_PROJECT_ID, projectId);
-        intent.putExtra(Extra.EXTRA_ROOM_NUM, roomNum);
-        intent.putExtra(Extra.EXTRA_POSITION, position);
+        intent.putExtra(ExtraConstant.EXTRA_PROJECT_ID, projectId);
+        intent.putExtra(ExtraConstant.EXTRA_ROOM_NUM, roomNum);
+        intent.putExtra(ExtraConstant.EXTRA_POSITION, position);
         context.startActivity(intent);
     }
 
     public static void start(Context context, Params params) {
         Intent intent = new Intent(context, RoomParamsActivity.class);
-        intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
+        intent.putExtra(ExtraConstant.EXTRA_PARAM_ENTITY, params);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
@@ -51,17 +51,17 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
     @Override
     protected void onCreate(RoomParamsActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
-        mParams = view.getIntent().getParcelableExtra(Extra.EXTRA_PARAM_ENTITY);
+        mParams = view.getIntent().getParcelableExtra(ExtraConstant.EXTRA_PARAM_ENTITY);
         if (mParams != null) {
             mProjectId = mParams.getProjectId();
             mRoomIds = mParams.getItemIds();
             mMelType = mParams.getMelType();
             mPosition = mParams.getPosition();
         } else {
-            mProjectId = view.getIntent().getIntExtra(Extra.EXTRA_PROJECT_ID, 0);
-            mRoomIds = view.getIntent().getIntArrayExtra(Extra.EXTRA_ROOM_NUM);
-            mMelType = view.getIntent().getIntExtra(Extra.EXTRA_MATERIAL_TYPE, 0);
-            mPosition = view.getIntent().getIntExtra(Extra.EXTRA_POSITION, 0);
+            mProjectId = view.getIntent().getIntExtra(ExtraConstant.EXTRA_PROJECT_ID, 0);
+            mRoomIds = view.getIntent().getIntArrayExtra(ExtraConstant.EXTRA_ROOM_NUM);
+            mMelType = view.getIntent().getIntExtra(ExtraConstant.EXTRA_MATERIAL_TYPE, 0);
+            mPosition = view.getIntent().getIntExtra(ExtraConstant.EXTRA_POSITION, 0);
         }
     }
 
@@ -97,7 +97,7 @@ public class RoomParamsPresenter extends Presenter<RoomParamsActivity> {
                             Params params = DaoSharedPreferences.getInstance().getRoomParams(suffix);
                             if (params != null) {
                                 Intent intent = new Intent(getView(), RoomParamsActivity.class);
-                                intent.putExtra(Extra.EXTRA_PARAM_ENTITY, params);
+                                intent.putExtra(ExtraConstant.EXTRA_PARAM_ENTITY, params);
                                 getView().startActivity(intent);
                             } else {
                                 RoomParamsPresenter.start(getView(), mProjectId, mRoomIds, mPosition + 1);

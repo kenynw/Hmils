@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.Response;
-import com.cube.hmils.model.constant.Extra;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.Presenter;
@@ -20,7 +20,7 @@ public class ResetPwdPresenter extends Presenter<ResetPwdActivity> {
     @Override
     protected void onCreate(ResetPwdActivity view, Bundle saveState) {
         super.onCreate(view, saveState);
-        mUserId = view.getIntent().getIntExtra(Extra.EXTRA_USER_ID, 0);
+        mUserId = view.getIntent().getIntExtra(ExtraConstant.EXTRA_USER_ID, 0);
     }
 
     public void changePwd(String pwd) {

@@ -175,6 +175,10 @@ public class RoomParamsActivity extends ChainBaseActivity<RoomParamsPresenter> i
         String roomWidth = mEtWidth.getText().toString().trim();
         getAddArea();
         mRooms.clear();
+        if (TextUtils.isEmpty(roomName)) {
+            LUtils.toast("房间名不能为空");
+            return;
+        }
         if (TextUtils.isEmpty(roomLong) || !checkSize(roomLong)) {
             LUtils.toast("长度不能小于60");
             return;
