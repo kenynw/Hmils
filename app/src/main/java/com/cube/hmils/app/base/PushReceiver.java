@@ -1,4 +1,4 @@
-package com.cube.hmils.base;
+package com.cube.hmils.app.base;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

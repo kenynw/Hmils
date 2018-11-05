@@ -2,7 +2,7 @@ package com.cube.hmils.model.services;
 
 import android.content.Intent;
 
-import com.cube.hmils.base.App;
+import com.cube.hmils.app.base.App;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.constant.HmilsIntent;
 import com.cube.hmils.utils.LUtils;

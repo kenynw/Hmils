@@ -1,18 +1,23 @@
 apply from: "config.gradle"
+apply plugin: 'com.alibaba.arouter'
 
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath 'me.tatarka:gradle-retrolambda:3.6.0'
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
+
+        classpath "com.alibaba:arouter-register:1.0.2"
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
