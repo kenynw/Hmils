@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.cube.hmils.R;
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
 import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.module.order.ChangeDevicePresenter;
-import com.cube.hmils.module.order.RoomNumPresenter;
 import com.cube.hmils.utils.LUtils;
 import com.gyf.barlibrary.ImmersionBar;
 
@@ -61,7 +61,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
             bar.destroy();
         });
 
-        ButterKnife.apply(mRlTypes, (ButterKnife.Action<RelativeLayout>) (view1, index) -> {
+        ButterKnife.apply(mRlTypes, (view1, index) -> {
             view1.setOnClickListener(rl -> {
                 if (!view1.isSelected()) {
                     view1.setSelected(true);
@@ -96,7 +96,8 @@ public class OrderTypeDialog extends BottomSheetDialog {
                             if (mSelectedIndex == 2) {
                                 ChangeDevicePresenter.start(context, order);
                             } else {
-                                RoomNumPresenter.start(context, order);
+//                                RoomNumPresenter.start(context, order);
+                                Navigator.getInstance().openCreateOrderActivity();
                             }
                         }
 

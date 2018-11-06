@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">赫曼斯运营</string>
 
+    <string name="pay_way">支付方式</string>
+    <string name="pay_online">线上支付</string>
+    <string name="pay_offline">线下支付</string>
+
     <string name="text_client_order">客户订单</string>
     <string name="text_my_client">我的客户</string>
     <string name="text_my_services">我的售后</string>

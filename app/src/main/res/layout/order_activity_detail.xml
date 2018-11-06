@@ -100,13 +100,12 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/spacing_normal"
-                android:visibility="gone"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="支付方式"
+                    android:text="@string/pay_way"
                     android:textColor="@color/textSecondary"
                     android:textSize="@dimen/text_size_body_material"
                     />
