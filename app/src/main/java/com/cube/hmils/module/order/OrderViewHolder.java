@@ -38,6 +38,8 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
     LinearLayout mLlUser;
     @BindView(R.id.btn_order_detail)
     Button mBtnDetail;
+    @BindView(R.id.btn_order_visit)
+    Button mBtnVisit;
     @BindView(R.id.tv_order_state)
     TextView mTvState;
     @BindView(R.id.tv_order_appo_time)

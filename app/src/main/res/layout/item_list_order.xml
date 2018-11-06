@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -166,32 +165,55 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="84dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="@dimen/spacing_small"
-        android:layout_marginRight="@dimen/spacing_small"
-        android:background="@drawable/btn_radius_stroke_secondary"
-        android:gravity="center"
-        android:text="@string/text_order_detail"
-        android:textColor="@color/textSecondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/btn_order_detail"
-        app:layout_constraintTop_toTopOf="@+id/btn_order_detail"
-        />
-
-    <Button
-        android:id="@+id/btn_order_detail"
-        android:layout_width="84dp"
-        android:layout_height="30dp"
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
-        android:background="@drawable/btn_radius_stroke_primary"
-        android:text="@string/text_view_order"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/text_size_body_material"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ll_order_appo_time"
-        />
+        >
+
+        <TextView
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_radius_stroke_secondary"
+            android:gravity="center"
+            android:text="@string/text_order_detail"
+            android:textColor="@color/textSecondary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btn_order_detail"
+            app:layout_constraintTop_toTopOf="@+id/btn_order_detail"
+            />
+
+        <Button
+            android:id="@+id/btn_order_visit"
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_marginLeft="@dimen/spacing_small"
+            android:layout_marginRight="@dimen/spacing_small"
+            android:layout_marginStart="@dimen/spacing_small"
+            android:background="@drawable/btn_radius_stroke_primary"
+            android:text="@string/text_visit_measuring"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_body_material"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_order_appo_time"
+            />
+
+        <Button
+            android:id="@+id/btn_order_detail"
+            android:layout_width="84dp"
+            android:layout_height="30dp"
+            android:background="@drawable/btn_radius_stroke_primary"
+            android:text="@string/text_view_order"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_body_material"
+            />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -52,6 +52,7 @@
     <string name="text_appoint_time">指派时间：%s</string>
     <string name="text_order_detail">订单详情</string>
     <string name="text_view_order">查看订单</string>
+    <string name="text_visit_measuring">上门量房</string>
     <string name="text_room_num">房间数量</string>
     <string name="text_steady_room">规则房间</string>
     <string name="text_unsteady_room">不规则房间</string>
