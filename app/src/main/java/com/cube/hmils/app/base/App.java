@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.blankj.utilcode.util.ProcessUtils;
+import com.blankj.utilcode.util.Utils;
 import com.cube.hmils.BuildConfig;
 import com.cube.hmils.utils.LUtils;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -31,7 +33,10 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
+        Utils.init(this);
+        if (!ProcessUtils.isMainProcess()) {
+            return;
+        }
         LUtils.initialize(this);
         LUtils.isDebug = BuildConfig.DEBUG;
         Fresco.initialize(this);

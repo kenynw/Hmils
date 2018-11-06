@@ -1,10 +1,7 @@
 package com.cube.hmils.model.services;
 
-import android.content.Intent;
-
-import com.cube.hmils.app.base.App;
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.UserModel;
-import com.cube.hmils.model.constant.HmilsIntent;
 import com.cube.hmils.utils.LUtils;
 
 import rx.Subscriber;
@@ -29,19 +26,31 @@ public class ServicesResponse<T> extends Subscriber<T> {
         }
     }
 
+    private void serviceError(ServiceException e) {
+        LUtils.toast(e.getMsg());
+        if (e.getCode() == 10094) {
+            UserModel.getInstance().logout();
+            Navigator.getInstance().openLoginActivity();
+        }
+        onError(e.getCode(), e.getMsg());
+    }
+
     @Override
     public void onNext(T t) {
 
     }
 
-    private void serviceError(ServiceException e) {
-        LUtils.toast(e.getMsg());
-        if (e.getCode() == 10094) {
-            UserModel.getInstance().logout();
-            Intent intent = new Intent(HmilsIntent.INTENT_ACTION_LOGIN);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            App.getInstance().startActivity(intent);
-        }
+    /**
+     * Desc: 具体业务各自处理
+     * <p>
+     * Author: 廖培坤
+     * Date: 2018-07-04
+     *
+     * @param code
+     * @param msg
+     */
+    public void onError(int code, String msg) {
+
     }
 
 }

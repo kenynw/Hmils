@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.constant.EventCode;
+import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.expansion.data.BaseDataFragmentPresenter;
 
@@ -24,7 +25,17 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
     }
 
     public void loadUser() {
-        UserModel.getInstance().getUserDetail().unsafeSubscribe(getSubscriber());
+        UserModel.getInstance().getUserDetail().unsafeSubscribe(new ServicesResponse<User>() {
+            @Override
+            public void onNext(User user) {
+
+            }
+
+            @Override
+            public void onError(int code, String msg) {
+
+            }
+        });
     }
 
     public void logout() {

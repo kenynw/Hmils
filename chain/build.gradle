@@ -31,6 +31,7 @@ dependencies {
 
     // support
     compile rootProject.ext.dependencies["appcompat-v7"]
+    compile rootProject.ext.dependencies["constraint-layout"]
     compile rootProject.ext.dependencies["recyclerview"]
     compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["cardview"]

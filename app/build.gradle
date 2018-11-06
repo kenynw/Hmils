@@ -69,9 +69,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':chain')
     // support
-    compile rootProject.ext.dependencies["constraint-layout"]
 
     // view
     compile rootProject.ext.dependencies["butterknife"]
@@ -95,4 +93,5 @@ dependencies {
     compile rootProject.ext.dependencies["retrofit-adapter-rxjava"]
     compile rootProject.ext.dependencies["fresco"]
     compile project(':pickerview')
+    compile project(':core')
 }

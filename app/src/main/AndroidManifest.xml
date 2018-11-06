@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.cube.hmils">
+    package="com.cube.hmils"
+    >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -23,30 +24,33 @@
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.cube.hmils.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            >
 
             <!-- 元数据 -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths"
+                />
         </provider>
         <receiver
             android:name=".app.base.PushReceiver"
-            android:enabled="true">
+            android:enabled="true"
+            >
             <intent-filter>
 
                 <!-- Required 用户注册SDK的intent -->
-                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required 用户接收SDK消息的intent -->
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
                 <!-- Required 用户接收SDK通知栏信息的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
                 <!-- Required 用户打开自定义通知栏的intent -->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <!-- 接收网络变化 连接/断开 since .6.3 -->
-                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
 
-                <category android:name="com.cube.hmils"/>
+                <category android:name="com.cube.hmils" />
             </intent-filter>
         </receiver>
 
@@ -54,94 +58,114 @@
             android:name=".module.main.LauncherActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/LaunchTheme">
+            android:theme="@style/LaunchTheme"
+            >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".module.main.MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.account.LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
-                <action android:name="com.cube.hmils.intent.login"/>
+                <action android:name="com.cube.hmils.intent.login" />
 
-                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".module.order.RoomNumActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.order.RoomParamsActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.order.OrderConfirmActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.account.ResetPwdActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.account.ForgotActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.user.QRCodeActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.user.ProfileActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.user.EditAddressActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.user.ClientDetailActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.order.ServiceDetailActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.order.OrderSearchActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            ></activity>
         <activity
             android:name=".module.order.OrderDetailActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".module.order.ParamDetailActivity">
-        </activity>
-        <activity android:name=".module.order.ChangeDeviceActivity">
-        </activity>
-        <activity android:name=".module.order.PickMaterialActivity">
-        </activity>
-        <activity android:name=".module.order.OrderListActivity"/>
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity
+            android:name=".module.order.ParamDetailActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity
+            android:name=".module.order.ChangeDeviceActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity
+            android:name=".module.order.PickMaterialActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity
+            android:name=".module.order.OrderListActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".module.order.CreateOrderActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>
