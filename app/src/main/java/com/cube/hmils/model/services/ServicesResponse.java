@@ -10,7 +10,7 @@ import rx.Subscriber;
  * Copyright (c) 2015. LiaoPeiKun Inc. All rights reserved.
  */
 
-public class ServicesResponse<T> extends Subscriber<T> {
+public abstract class ServicesResponse<T> extends Subscriber<T> {
 
     @Override
     public void onCompleted() {
@@ -36,9 +36,7 @@ public class ServicesResponse<T> extends Subscriber<T> {
     }
 
     @Override
-    public void onNext(T t) {
-
-    }
+    public abstract void onNext(T t);
 
     /**
      * Desc: 具体业务各自处理

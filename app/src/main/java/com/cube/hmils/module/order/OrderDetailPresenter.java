@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.RoomOrder;
+import com.cube.hmils.model.bean.RoomOrderRes;
 import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.services.ServicesResponse;
 import com.cube.hmils.utils.EventBusUtil;
@@ -44,9 +45,9 @@ public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailA
     }
 
     public void confirm(int type) {
-        ClientModel.getInstance().comfirmOrder(mProjectId, type).unsafeSubscribe(new ServicesResponse<RoomOrder>() {
+        ClientModel.getInstance().comfirmOrder(mProjectId, type).unsafeSubscribe(new ServicesResponse<RoomOrderRes>() {
             @Override
-            public void onNext(RoomOrder roomOrder) {
+            public void onNext(RoomOrderRes roomOrderRes) {
                 LUtils.log("提交成功");
                 getView().finish();
                 EventBusUtil.eventPost(EventCode.ROOM_PARAMS_FINISH);

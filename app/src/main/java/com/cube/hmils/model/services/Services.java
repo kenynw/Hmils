@@ -9,6 +9,8 @@ import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
+import com.cube.hmils.model.bean.RoomOrderList;
+import com.cube.hmils.model.bean.RoomOrderRes;
 import com.cube.hmils.model.bean.User;
 
 import java.util.Map;
@@ -167,7 +169,7 @@ public interface Services {
      */
     @FormUrlEncoded
     @POST("operator/comfirmOrder/")
-    Observable<RoomOrder> comfirmOrder(
+    Observable<RoomOrderRes> comfirmOrder(
             @Field("projectId") int projectId,
             @Field("payType") int payType
     );
@@ -186,6 +188,22 @@ public interface Services {
             @Field("custId") int custId,
             @Field("projectId") int projectId,
             @Field("busiType") String busiType
+    );
+
+    /**
+     * 创建订单选择套餐
+     *
+     * @param packAge   0--A套餐，1--B套餐
+     * @param payType   0---线上支付，1---线下支付
+     * @param projectId 传projectId=114，有数据
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("custNearby/comfirmOrder")
+    Observable<RoomOrderList> choosePackage(
+            @Field("packAge") int packAge,
+            @Field("payType") int payType,
+            @Field("projectId") String projectId
     );
 
     /**

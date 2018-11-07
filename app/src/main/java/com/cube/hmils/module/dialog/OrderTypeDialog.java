@@ -97,7 +97,7 @@ public class OrderTypeDialog extends BottomSheetDialog {
                                 ChangeDevicePresenter.start(context, order);
                             } else {
 //                                RoomNumPresenter.start(context, order);
-                                Navigator.getInstance().openCreateOrderActivity();
+                                Navigator.getInstance().openCreateOrderActivity(String.valueOf(order.getProjectId()));
                             }
                         }
 

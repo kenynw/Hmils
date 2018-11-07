@@ -7,6 +7,8 @@ import com.cube.hmils.model.bean.OrderResponse;
 import com.cube.hmils.model.bean.Project;
 import com.cube.hmils.model.bean.Response;
 import com.cube.hmils.model.bean.RoomOrder;
+import com.cube.hmils.model.bean.RoomOrderList;
+import com.cube.hmils.model.bean.RoomOrderRes;
 import com.cube.hmils.model.bean.User;
 import com.cube.hmils.model.services.DefaultTransform;
 import com.cube.hmils.model.services.ServicesClient;
@@ -169,8 +171,21 @@ public class ClientModel extends AbsModel {
      * @param projectId
      * @return
      */
-    public Observable<RoomOrder> comfirmOrder(int projectId, int type) {
+    public Observable<RoomOrderRes> comfirmOrder(int projectId, int type) {
         return ServicesClient.getServices().comfirmOrder(projectId, type)
+                .compose(new DefaultTransform<>());
+    }
+
+    /**
+     * 选择套餐
+     *
+     * @param packageType
+     * @param payType
+     * @param projectId
+     * @return
+     */
+    public Observable<RoomOrderList> choosePackage(int packageType, int payType, String projectId) {
+        return ServicesClient.getServices().choosePackage(packageType, payType, projectId)
                 .compose(new DefaultTransform<>());
     }
 

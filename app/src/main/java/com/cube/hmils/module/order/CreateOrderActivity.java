@@ -7,10 +7,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.cube.hmils.R;
 import com.cube.hmils.app.constant.ARouterPaths;
 import com.cube.hmils.core.widget.radius.RadiusTextView;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
 
@@ -36,6 +39,9 @@ public class CreateOrderActivity extends ChainBaseActivity<CreateOrderPresenter>
     @BindView(R.id.tv_order_create_ok)
     TextView mTvOk;
 
+    @Autowired(name = ExtraConstant.EXTRA_PROJECT_ID)
+    String mProjectId;
+
     private int mCurSetIndex = -1;
 
     @Override
@@ -43,6 +49,7 @@ public class CreateOrderActivity extends ChainBaseActivity<CreateOrderPresenter>
         super.onCreate(savedInstanceState);
         setContentView(R.layout.order_activity_create);
         ButterKnife.bind(this);
+        ARouter.getInstance().inject(this);
 
         setToolbarTitle("创建订单");
 
@@ -61,7 +68,8 @@ public class CreateOrderActivity extends ChainBaseActivity<CreateOrderPresenter>
 
     @OnClick(R.id.tv_order_create_ok)
     void onOkClick() {
-
+        int payWay = mRbtnOffline.isChecked() ? 0 : 1;
+        getPresenter().submit(mCurSetIndex, payWay, mProjectId);
     }
 
 }

@@ -28,7 +28,7 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
         UserModel.getInstance().getUserDetail().unsafeSubscribe(new ServicesResponse<User>() {
             @Override
             public void onNext(User user) {
-
+                getView().setData(user);
             }
 
             @Override

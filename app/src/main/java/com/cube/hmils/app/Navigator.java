@@ -2,6 +2,7 @@ package com.cube.hmils.app;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cube.hmils.app.constant.ARouterPaths;
+import com.cube.hmils.model.constant.ExtraConstant;
 
 public class Navigator {
 
@@ -22,8 +23,10 @@ public class Navigator {
         ARouter.getInstance().build(ARouterPaths.ACCOUNT_LOGIN).navigation();
     }
 
-    public void openCreateOrderActivity() {
-        ARouter.getInstance().build(ARouterPaths.CREATE_ORDER).navigation();
+    public void openCreateOrderActivity(String projectId) {
+        ARouter.getInstance().build(ARouterPaths.CREATE_ORDER)
+                .withString(ExtraConstant.EXTRA_PROJECT_ID, projectId)
+                .navigation();
     }
 
 }

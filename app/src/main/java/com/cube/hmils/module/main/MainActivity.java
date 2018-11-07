@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
 import com.cube.hmils.R;
-import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.bijection.ChainBaseActivity;
@@ -42,8 +41,6 @@ public class MainActivity extends ChainBaseActivity<MainPresenter> implements Ta
                     .setIcon(mPagerAdapter.getIconRes(i))
                     .setText(mPagerAdapter.getPageTitle(i));
         }
-
-        Navigator.getInstance().openCreateOrderActivity();
     }
 
     @Override
