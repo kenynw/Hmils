@@ -243,7 +243,7 @@ public interface Services {
      * @return
      */
     @FormUrlEncoded
-    @POST("operator/addRoomParas/")
+    @POST("custNearby/addRoomParas/")
     Observable<Project> saveRoomParams(
             @Field("addArea") String addArea,
             @Field("reduceArea") String reduceArea,
