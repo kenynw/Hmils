@@ -168,7 +168,7 @@ public interface Services {
      * @return
      */
     @FormUrlEncoded
-    @POST("operator/comfirmOrder/")
+    @POST("custNearby/custComfirmOrder/")
     Observable<RoomOrderRes> comfirmOrder(
             @Field("projectId") int projectId,
             @Field("payType") int payType

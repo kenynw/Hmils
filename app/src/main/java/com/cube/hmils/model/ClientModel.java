@@ -171,8 +171,8 @@ public class ClientModel extends AbsModel {
      * @param projectId
      * @return
      */
-    public Observable<RoomOrderRes> comfirmOrder(int projectId, int type) {
-        return ServicesClient.getServices().comfirmOrder(projectId, type)
+    public Observable<RoomOrderRes> comfirmOrder(int projectId) {
+        return ServicesClient.getServices().comfirmOrder(projectId, 1)
                 .compose(new DefaultTransform<>());
     }
 

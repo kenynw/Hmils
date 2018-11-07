@@ -44,8 +44,8 @@ public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailA
         ClientModel.getInstance().getTotalOrder(mProjectId).unsafeSubscribe(getDataSubscriber());
     }
 
-    public void confirm(int type) {
-        ClientModel.getInstance().comfirmOrder(mProjectId, type).unsafeSubscribe(new ServicesResponse<RoomOrderRes>() {
+    public void confirm() {
+        ClientModel.getInstance().comfirmOrder(mProjectId).unsafeSubscribe(new ServicesResponse<RoomOrderRes>() {
             @Override
             public void onNext(RoomOrderRes roomOrderRes) {
                 LUtils.log("提交成功");

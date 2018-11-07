@@ -11,8 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
@@ -44,20 +42,14 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     TextView mTvNum;
     @BindView(R.id.tv_order_detail_price)
     TextView mTvPrice;
-    @BindView(R.id.rbtn_order_detail_online)
-    RadioButton mRbtnOnline;
-    @BindView(R.id.rbtn_order_detail_offline)
-    RadioButton mRbtnOffline;
-    @BindView(R.id.rg_order_detail_pay)
-    RadioGroup mRgPay;
     @BindView(R.id.btn_order_detail_confirm)
     Button mBtnConfirm;
-    @BindView(R.id.ll_order_detail_pay)
-    LinearLayout mLlPay;
     @BindView(R.id.ll_order_detail_state)
     LinearLayout mLlState;
     @BindView(R.id.btn_order_detail_contact)
     Button mBtnContact;
+    @BindView(R.id.btn_order_detail_visit)
+    Button mBtnVisit;
     @BindView(R.id.btn_order_detail_log)
     Button mBtnLog;
 
@@ -91,10 +83,8 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
         if (mType == 0) {
             setToolbarTitle("总订单详情");
-            mLlPay.setVisibility(View.VISIBLE);
             mBtnConfirm.setVisibility(View.VISIBLE);
         } else {
-            mLlPay.setVisibility(View.GONE);
             mBtnConfirm.setVisibility(View.GONE);
             mLlState.setVisibility(View.VISIBLE);
         }
@@ -122,23 +112,31 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
             if (mType == 1) {
                 setToolbarTitle("订单详情-" + roomOrder.getInstallInfo().getOrderStatus());
-                if (install.getOrderCode() == 8006) {
-                    mLlInstall.setVisibility(View.VISIBLE);
-                    String installStr = "%1$s<br>%2$s<br>%3$s<br><font color=\"#5DBA68\">%4$s</font>";
-                    mTvInstallInfo.setText(Html.fromHtml(String.format(installStr, install.getMobile(), install.getName(),
-                            install.getAppoTime(), install.getOrderStatus())));
+                switch (install.getOrderCode()) {
+                    case 8001: // 待处理
+                        mBtnConfirm.setVisibility(View.VISIBLE);
+                        getToolbar().getMenu().getItem(0).setVisible(true);
+                        break;
+                    case 8003:
+                        mBtnVisit.setVisibility(View.VISIBLE);
+                        mBtnVisit.setOnClickListener(v -> {
 
-                    mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
-                            install.getOrderCode() == 8001 ? 0 : 1));
-                    mBtnInstallContact.setOnClickListener(v -> {
-                        Uri uri = Uri.parse("tel:" + install.getMobile());
-                        Intent intent = new Intent(Intent.ACTION_DIAL, uri);
-                        startActivity(intent);
-                    });
-                } else if (install.getOrderCode() == 8001) { // 待处理
-                    mLlPay.setVisibility(View.VISIBLE);
-                    mBtnConfirm.setVisibility(View.VISIBLE);
-                    getToolbar().getMenu().getItem(0).setVisible(true);
+                        });
+                        break;
+                    case 8006: // 待安装
+                        mLlInstall.setVisibility(View.VISIBLE);
+                        String installStr = "%1$s<br>%2$s<br>%3$s<br><font color=\"#5DBA68\">%4$s</font>";
+                        mTvInstallInfo.setText(Html.fromHtml(String.format(installStr, install.getMobile(), install.getName(),
+                                install.getAppoTime(), install.getOrderStatus())));
+
+                        mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
+                                install.getOrderCode() == 8001 ? 0 : 1));
+                        mBtnInstallContact.setOnClickListener(v -> {
+                            Uri uri = Uri.parse("tel:" + install.getMobile());
+                            Intent intent = new Intent(Intent.ACTION_DIAL, uri);
+                            startActivity(intent);
+                        });
+                        break;
                 }
             } else {
                 getToolbar().getMenu().getItem(0).setVisible(true);
@@ -166,7 +164,7 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     @Override
     public void onPositiveClick(@NonNull View view) {
         if (getSupportFragmentManager().findFragmentByTag("confirm") != null) {
-            getPresenter().confirm(mRbtnOnline.isChecked() ? 0 : 1);
+            getPresenter().confirm();
         }
     }
 
