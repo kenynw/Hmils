@@ -9,11 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.Order;
 import com.cube.hmils.module.dialog.OrderTypeDialog;
 import com.cube.hmils.module.order.ChangeDevicePresenter;
 import com.cube.hmils.module.order.OrderListActivity;
-import com.cube.hmils.module.order.RoomNumPresenter;
 import com.dsk.chain.bijection.RequiresPresenter;
 import com.dsk.chain.expansion.data.BaseDataActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -68,7 +69,9 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
                 if (mTypeDialog.getSelectedIndex() == 2) {
                     ChangeDevicePresenter.start(ClientDetailActivity.this, mTypeDialog.getOrder());
                 } else {
-                    RoomNumPresenter.start(ClientDetailActivity.this, mTypeDialog.getOrder());
+                    Order order = mTypeDialog.getOrder();
+                    Navigator.getInstance().openRoomNumActivity(order.getProjectId() + "",
+                            order.getCustName());
                 }
             } else {
                 mTypeDialog = new OrderTypeDialog(ClientDetailActivity.this, client);

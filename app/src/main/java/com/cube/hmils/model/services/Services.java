@@ -214,7 +214,7 @@ public interface Services {
     @FormUrlEncoded
     @POST("operator/addProject/")
     Observable<Project> addRoomNum(
-            @Field("projectId") int projectId,
+            @Field("projectId") String projectId,
             @Field("roomNum") int roomNum
     );
 
@@ -229,7 +229,7 @@ public interface Services {
     @FormUrlEncoded
     @POST("operator/changeHeat/")
     Observable<Project> changeHeat(
-            @Field("projectId") int projectId,
+            @Field("projectId") String projectId,
             @Field("qty") int qty,
             @Field("spec") String spec
     );

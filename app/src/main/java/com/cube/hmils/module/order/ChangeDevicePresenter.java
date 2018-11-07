@@ -35,7 +35,7 @@ public class ChangeDevicePresenter extends Presenter<ChangeDeviceActivity> {
     }
 
     public void changeHeat(String num) {
-        ClientModel.getInstance().changeHeat(mOrder.getProjectId(), Integer.valueOf(num), getView().getDevice().getSpec())
+        ClientModel.getInstance().changeHeat(mOrder.getProjectId() + "", Integer.valueOf(num), getView().getDevice().getSpec())
                 .unsafeSubscribe(new ServicesResponse<Project>() {
                     @Override
                     public void onNext(Project project) {

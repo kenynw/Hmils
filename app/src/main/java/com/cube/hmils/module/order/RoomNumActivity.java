@@ -6,7 +6,12 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.cube.hmils.R;
+import com.cube.hmils.app.constant.ARouterPaths;
+import com.cube.hmils.model.constant.ExtraConstant;
 import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.bijection.ChainBaseActivity;
 import com.dsk.chain.bijection.RequiresPresenter;
@@ -14,6 +19,7 @@ import com.dsk.chain.bijection.RequiresPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = ARouterPaths.ROOM_NUM)
 @RequiresPresenter(RoomNumPresenter.class)
 public class RoomNumActivity extends ChainBaseActivity<RoomNumPresenter> implements TextWatcher {
 
@@ -23,11 +29,17 @@ public class RoomNumActivity extends ChainBaseActivity<RoomNumPresenter> impleme
     @BindView(R.id.btn_room_next)
     Button mBtnNext;
 
+    @Autowired(name = ExtraConstant.EXTRA_PROJECT_ID)
+    String mProjectId;
+    @Autowired(name = ExtraConstant.CLIENT_NAME)
+    String mClientName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_num);
         ButterKnife.bind(this);
+        ARouter.getInstance().inject(this);
 
         mEtNum.addTextChangedListener(this);
         mBtnNext.setOnClickListener(v -> checkInput());

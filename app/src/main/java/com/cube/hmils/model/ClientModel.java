@@ -116,7 +116,7 @@ public class ClientModel extends AbsModel {
                 .compose(new DefaultTransform<>());
     }
 
-    public Observable<Project> addRoomNum(int projectId, int roomNum) {
+    public Observable<Project> addRoomNum(String projectId, int roomNum) {
         return ServicesClient.getServices().addRoomNum(projectId, roomNum)
                 .compose(new DefaultTransform<>());
     }
@@ -128,7 +128,7 @@ public class ClientModel extends AbsModel {
      * @param spec
      * @return
      */
-    public Observable<Project> changeHeat(int projectId, int qyt, String spec) {
+    public Observable<Project> changeHeat(String projectId, int qyt, String spec) {
         return ServicesClient.getServices().changeHeat(projectId, qyt, spec).compose(new DefaultTransform<>());
     }
 

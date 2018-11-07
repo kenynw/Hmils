@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.bean.InstallInfo;
 import com.cube.hmils.model.bean.RoomOrder;
 import com.cube.hmils.module.dialog.BaseAlertDialog;
@@ -117,11 +118,15 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                         mBtnConfirm.setVisibility(View.VISIBLE);
                         getToolbar().getMenu().getItem(0).setVisible(true);
                         break;
-                    case 8003:
+                    case 8003: // 待量房
                         mBtnVisit.setVisibility(View.VISIBLE);
                         mBtnVisit.setOnClickListener(v -> {
-
+                            Navigator.getInstance().openRoomNumActivity(getPresenter().mProjectId + "",
+                                    roomOrder.getRoomName());
                         });
+                        break;
+                    case 8004: // 已发货，待签收
+                        mBtnLog.setVisibility(View.VISIBLE);
                         break;
                     case 8006: // 待安装
                         mLlInstall.setVisibility(View.VISIBLE);
@@ -129,7 +134,7 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                         mTvInstallInfo.setText(Html.fromHtml(String.format(installStr, install.getMobile(), install.getName(),
                                 install.getAppoTime(), install.getOrderStatus())));
 
-                        mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().getProjectId(),
+                        mTvMore.setOnClickListener(v -> ParamDetailPresenter.start(this, getPresenter().mProjectId,
                                 install.getOrderCode() == 8001 ? 0 : 1));
                         mBtnInstallContact.setOnClickListener(v -> {
                             Uri uri = Uri.parse("tel:" + install.getMobile());
@@ -157,7 +162,7 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        ParamDetailPresenter.start(this, getPresenter().getProjectId(), 0);
+        ParamDetailPresenter.start(this, getPresenter().mProjectId, 0);
         return super.onOptionsItemSelected(item);
     }
 

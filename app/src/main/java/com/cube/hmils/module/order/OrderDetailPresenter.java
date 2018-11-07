@@ -19,7 +19,7 @@ import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
 
 public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailActivity, RoomOrder> {
 
-    private int mProjectId;
+    public int mProjectId;
 
     public static void start(Context context, int projectId, int type) {
         Intent intent = new Intent(context, OrderDetailActivity.class);
@@ -66,10 +66,6 @@ public class OrderDetailPresenter extends BaseDataActivityPresenter<OrderDetailA
         if (eventCode == EventCode.ORDER_DETAIL_UPDATE) {
             loadData();
         }
-    }
-
-    public int getProjectId() {
-        return mProjectId;
     }
 
 }

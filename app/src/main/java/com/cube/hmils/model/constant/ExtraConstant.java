@@ -12,6 +12,8 @@ public interface ExtraConstant {
 
     String EXTRA_ORDER_ID = "order_id";
 
+    String CLIENT_NAME = "client_name"; // 客户名字
+
     String EXTRA_MATERIAL_TYPE = "material_type"; // 材料类型
 
     String EXTRA_PROJECT_ID = "project_id";
