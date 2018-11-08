@@ -55,8 +55,15 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
     @Override
     public void setData(Order data) {
         mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
-        if (data.getHandingStatus() == 5)
-            mTvState.setTextColor(getContext().getResources().getColor(R.color.textTertiary));
+        mBtnVisit.setVisibility(View.GONE);
+        switch (data.getHandingStatus()) {
+            case 8010:
+                mBtnVisit.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                mTvState.setTextColor(getContext().getResources().getColor(R.color.textTertiary));
+                break;
+        }
         int index = data.getHandingStatus() <= 0 ? 1 : (data.getHandingStatus() >= 4 ? 3 : data.getHandingStatus());
         mTvState.setText(mOrderStatus[index - 1]);
         mTvUsername.setText(data.getCustName());
