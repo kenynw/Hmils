@@ -68,7 +68,7 @@ public class CreateOrderActivity extends ChainBaseActivity<CreateOrderPresenter>
 
     @OnClick(R.id.tv_order_create_ok)
     void onOkClick() {
-        int payWay = mRbtnOffline.isChecked() ? 0 : 1;
+        int payWay = mRbtnOnline.isChecked() ? 0 : 1;
         getPresenter().submit(mCurSetIndex, payWay, mProjectId);
     }
 
