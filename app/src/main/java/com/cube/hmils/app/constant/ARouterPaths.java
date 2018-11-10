@@ -2,6 +2,9 @@ package com.cube.hmils.app.constant;
 
 public interface ARouterPaths {
 
+    // main
+    String MAIN = "/main/main";
+
     // Account
     String ACCOUNT_LOGIN = "/account/login";
 

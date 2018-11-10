@@ -9,7 +9,7 @@ public interface EventCode {
     /**
      * 退出登录
      */
-    int LOGOUT = 0x02;
+    int TO_HOME = 0x02;
 
     /**
      * 编辑地址
@@ -60,5 +60,7 @@ public interface EventCode {
      * 关闭我的二维码页面
      */
     int CODE_FINISH = 0x09;
+
+    int SET_ORDER_LIST = 0x10;
 
 }

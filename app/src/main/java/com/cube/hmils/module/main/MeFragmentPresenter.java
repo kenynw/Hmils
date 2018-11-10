@@ -42,7 +42,7 @@ public class MeFragmentPresenter extends BaseDataFragmentPresenter<MeFragment, U
         UserModel.getInstance().logout();
         if (!UserModel.getInstance().isLogin()) {
             Bundle bundle = new Bundle();
-            bundle.putInt(EVENT_BUS_CODE, EventCode.LOGOUT);
+            bundle.putInt(EVENT_BUS_CODE, EventCode.TO_HOME);
             EventBus.getDefault().post(bundle);
             getView().startActivity(new Intent(getView().getActivity(), LoginActivity.class));
         }

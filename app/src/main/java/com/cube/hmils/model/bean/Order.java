@@ -34,6 +34,10 @@ public class Order implements Parcelable {
 
     private String time; //指派时间
 
+    private int prCode;
+
+    private String prCodeName;
+
     private ArrayList<Device> heatList; // 温控器类型
 
     public int getProjectId() {
@@ -124,12 +128,36 @@ public class Order implements Parcelable {
         this.heatList = heatList;
     }
 
+    protected Order(Parcel in) {
+        this.projectId = in.readInt();
+        this.orderId = in.readInt();
+        this.orderTime = in.readString();
+        this.custName = in.readString();
+        this.custTel = in.readString();
+        this.custAddr = in.readString();
+        this.handingStatus = in.readInt();
+        this.appoTime = in.readString();
+        this.procCode = in.readString();
+        this.time = in.readString();
+        this.prCode = in.readInt();
+        this.prCodeName = in.readString();
+        this.heatList = in.createTypedArrayList(Device.CREATOR);
+    }
+
+    public int getPrCode() {
+        return prCode;
+    }
+
     public Order() {
     }
 
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public void setPrCode(int prCode) {
+        this.prCode = prCode;
     }
 
     @Override
@@ -144,21 +172,9 @@ public class Order implements Parcelable {
         dest.writeString(this.appoTime);
         dest.writeString(this.procCode);
         dest.writeString(this.time);
+        dest.writeInt(this.prCode);
+        dest.writeString(this.prCodeName);
         dest.writeTypedList(this.heatList);
-    }
-
-    protected Order(Parcel in) {
-        this.projectId = in.readInt();
-        this.orderId = in.readInt();
-        this.orderTime = in.readString();
-        this.custName = in.readString();
-        this.custTel = in.readString();
-        this.custAddr = in.readString();
-        this.handingStatus = in.readInt();
-        this.appoTime = in.readString();
-        this.procCode = in.readString();
-        this.time = in.readString();
-        this.heatList = in.createTypedArrayList(Device.CREATOR);
     }
 
     public static final Creator<Order> CREATOR = new Creator<Order>() {

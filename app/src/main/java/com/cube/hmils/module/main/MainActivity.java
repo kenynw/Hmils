@@ -6,7 +6,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.widget.FrameLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cube.hmils.R;
+import com.cube.hmils.app.constant.ARouterPaths;
 import com.cube.hmils.model.UserModel;
 import com.cube.hmils.module.account.LoginActivity;
 import com.dsk.chain.bijection.ChainBaseActivity;
@@ -15,6 +17,7 @@ import com.dsk.chain.bijection.RequiresPresenter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+@Route(path = ARouterPaths.MAIN)
 @RequiresPresenter(MainPresenter.class)
 public class MainActivity extends ChainBaseActivity<MainPresenter> implements TabLayout.OnTabSelectedListener {
 

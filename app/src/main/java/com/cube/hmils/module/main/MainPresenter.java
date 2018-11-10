@@ -57,7 +57,7 @@ public class MainPresenter extends Presenter<MainActivity> {
 
     @Override
     public void onEventMainThread(int eventCode, Bundle bundle) {
-        if (eventCode == EventCode.LOGOUT) {
+        if (eventCode == EventCode.TO_HOME) {
             getView().setCurrentItem(0);
         } else if (eventCode == EventCode.INIT_PUSH) {
             initPush();

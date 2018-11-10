@@ -1,8 +1,15 @@
 package com.cube.hmils.app;
 
+import android.content.Context;
+import android.content.Intent;
+
+import com.alibaba.android.arouter.facade.Postcard;
+import com.alibaba.android.arouter.facade.callback.NavCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cube.hmils.app.constant.ARouterPaths;
+import com.cube.hmils.model.constant.EventCode;
 import com.cube.hmils.model.constant.ExtraConstant;
+import com.cube.hmils.utils.EventBusUtil;
 
 public class Navigator {
 
@@ -17,6 +24,17 @@ public class Navigator {
             }
         }
         return sInstance;
+    }
+
+    public void toHomeActivity(Context context) {
+        ARouter.getInstance().build(ARouterPaths.MAIN)
+                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                .navigation(context, new NavCallback() {
+                    @Override
+                    public void onArrival(Postcard postcard) {
+                        EventBusUtil.eventPost(EventCode.TO_HOME);
+                    }
+                });
     }
 
     public void openLoginActivity() {
