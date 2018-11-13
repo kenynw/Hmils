@@ -53,7 +53,6 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
     Button mBtnVisit;
     @BindView(R.id.btn_order_detail_log)
     Button mBtnLog;
-
     @BindView(R.id.ll_order_detail_install)
     LinearLayout mLlInstall;
     @BindView(R.id.tv_order_install_label)
@@ -118,7 +117,7 @@ public class OrderDetailActivity extends BaseDataActivity<OrderDetailPresenter, 
                         mBtnConfirm.setVisibility(View.VISIBLE);
                         getToolbar().getMenu().getItem(0).setVisible(true);
                         break;
-                    case 8003: // 待量房
+                    case 8003: // 已支付待量房
                         mBtnVisit.setVisibility(View.VISIBLE);
                         mBtnVisit.setOnClickListener(v -> {
                             Navigator.getInstance().openRoomNumActivity(getPresenter().mProjectId + "",

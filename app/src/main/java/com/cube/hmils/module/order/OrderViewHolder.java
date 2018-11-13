@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cube.hmils.R;
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.bean.Order;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 
@@ -55,12 +56,18 @@ public class OrderViewHolder extends BaseViewHolder<Order> {
     @Override
     public void setData(Order data) {
         mTvTime.setText(String.format(getContext().getString(R.string.text_order_time), data.getOrderTime()));
-        mBtnVisit.setVisibility(data.getPrCode() == 8010 ? View.VISIBLE : View.GONE);
+        mTvState.setText(data.prCodeName);
+        if (data.getPrCode() == 8003) {
+            mBtnVisit.setVisibility(View.VISIBLE);
+            mBtnVisit.setOnClickListener(v -> {
+                Navigator.getInstance().openRoomNumActivity(data.getProjectId() + "", data.getCustName());
+            });
+        } else {
+            mBtnVisit.setVisibility(View.GONE);
+        }
         if (data.getHandingStatus() == 5) {
             mTvState.setTextColor(getContext().getResources().getColor(R.color.textTertiary));
         }
-        int index = data.getHandingStatus() <= 0 ? 1 : (data.getHandingStatus() >= 4 ? 3 : data.getHandingStatus());
-        mTvState.setText(mOrderStatus[index - 1]);
         mTvUsername.setText(data.getCustName());
         mTvContact.setText(data.getCustTel());
         mTvAddress.setText(data.getCustAddr());

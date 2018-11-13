@@ -3,9 +3,14 @@ package com.cube.hmils.module.user;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
+import com.cube.hmils.app.Navigator;
 import com.cube.hmils.model.ClientModel;
 import com.cube.hmils.model.bean.Client;
+import com.cube.hmils.model.bean.Order;
+import com.cube.hmils.model.services.ServicesResponse;
+import com.cube.hmils.utils.LUtils;
 import com.dsk.chain.expansion.data.BaseDataActivityPresenter;
 
 /**
@@ -52,6 +57,21 @@ public class ClientDetailPresenter extends BaseDataActivityPresenter<ClientDetai
 
     public Client getClient() {
         return mClient;
+    }
+
+    public void createOrder() {
+        ClientModel.getInstance().createOrder(mClient.getCustId(), mClient.getProjectId(), mClient.getCustType() == 0 ? "01" : "02")
+                .subscribe(new ServicesResponse<Order>() {
+                    @Override
+                    public void onNext(Order order) {
+                        Navigator.getInstance().openCreateOrderActivity(order.getProjectId() + "");
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LUtils.log(Log.getStackTraceString(e));
+                    }
+                });
     }
 
 }

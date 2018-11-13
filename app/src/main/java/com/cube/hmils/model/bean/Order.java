@@ -36,7 +36,7 @@ public class Order implements Parcelable {
 
     private int prCode;
 
-    private String prCodeName;
+    public String prCodeName;
 
     private ArrayList<Device> heatList; // 温控器类型
 

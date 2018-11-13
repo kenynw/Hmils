@@ -74,9 +74,7 @@ public class ClientDetailActivity extends BaseDataActivity<ClientDetailPresenter
                             order.getCustName());
                 }
             } else {
-//                mTypeDialog = new OrderTypeDialog(ClientDetailActivity.this, client);
-//                mTypeDialog.show();
-                Navigator.getInstance().openCreateOrderActivity(client.getProjectId() + "");
+                getPresenter().createOrder();
             }
         });
         mBtnContact.setOnClickListener(v -> {
