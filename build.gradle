@@ -7,7 +7,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.0-alpha02'
         classpath 'me.tatarka:gradle-retrolambda:3.6.1'
 
         classpath "com.alibaba:arouter-register:1.0.2"
